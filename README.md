@@ -5,6 +5,6 @@
 
 # ??pochopení zadání:??
 Napsat web pomocí React, který bude zobrazovat "dlaždice" student, učitel, katedra.
-Mezi sebou propojit a vytvořit stránku pro katedry, kde budou propojené samostatn stránky učitelů, studijních skupin....
+Mezi sebou propojit a vytvořit stránku pro katedry, kde budou propojené samostatné stránky učitelů, studijních skupin....
 
-Doporučení pro responzivní web použít Bootstrao - vyřeší rozložení jak na mobilních zařízeních, tak PC.
+Doporučení pro responzivní web použít Bootstrap - vyřeší rozložení jak na mobilních zařízeních, tak PC.
