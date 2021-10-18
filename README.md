@@ -12,3 +12,12 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 [props v React](https://youtu.be/DLX62G4lc44?t=4366)
 
 [interakce React s API](https://youtu.be/DLX62G4lc44?t=12346)
+
+Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivím komponentám.)
+
+**LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
+
+**příklad:**
+
+LARGE učitel - bude obsahovat SMALL komponenty studijních skupin které vyučuje.
+Komponenty by měli fungovat jako linky (a href) -> otevře se LARGE komponenta (celá stránka) -> podrobnosti o celé skupině (např 21-5KB), ta má zase seznam učitelů, kteří se podílejí na výuce (SMALL komponenty) odkud se můžeme odkázat zase na LARGE.
