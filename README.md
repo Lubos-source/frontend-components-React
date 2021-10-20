@@ -13,6 +13,8 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 [interakce React s API](https://youtu.be/DLX62G4lc44?t=12346)
 
+[vav unob](https://vav.unob.cz/person/index/542704)
+
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivím komponentám.)
 
 **LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
