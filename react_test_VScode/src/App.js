@@ -1,5 +1,6 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import ContactCard from './ContactCard'
 
 /*
 function App() {
@@ -79,17 +80,23 @@ function App() {
   return (
    
     <div>
-        <div>
+        <div className="contact-cards">
+          <ContactCard contact={{name:"Mr. Json Kittie", imgUrl:"https://placekitten.com/388/200", phone:"+420 737 589 741", email:"sakoru@ji.mm"}}
+          />
+        </div>
+        <div className="Welcome">
           <Welcome name="Lubos" />
           <Welcome name="Martin" />
           <Welcome name="Honza" />
         </div>
-
+        <div className="coment">
           <Comment
           date={comment.date}
           text={comment.text}
           author={comment.author}
           />
+        </div>
+        
     </div>
     
   );
