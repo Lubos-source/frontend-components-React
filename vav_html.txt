@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://vav.unob.cz/person/index/542704 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://vav.unob.cz/client/images/layout_dee/favicon.ico" rel="shortcut icon" type="image/x-icon">
+ 
+    
+    <meta http-equiv="Content-Language" content="cz">
+    <meta name="ROBOTS" content="NONE">
+    <meta name="MSSmartTagsPreventParsing" content="true">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="Copyright" content="">
+    <title>Informační portál výzkumu, vývoje a inovací na Univerzitě obrany</title>
+
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery-ui-1.11.4.min.css" type="text/css" media="all">
+      
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery.dataTables.css" type="text/css" media="all">
+
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/layout_global.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/layout_dee_v9.css" type="text/css" media="all" charset="utf-8">
+
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/navigation_v9.css" type="text/css" media="all" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/iconset_v8.css" media="all" charset="utf-8">
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/form_v2.css" type="text/css" media="all">
+      
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/tooltip.css" type="text/css" media="all">
+      
+    <link rel="stylesheet" href="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/select2.min.css" type="text/css" media="all">
+
+    
+    <!-- Scripts -->
+    <script async="" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/analytics.js.stažený soubor"></script><script type="text/javascript">var posted_data=[]</script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery-1.11.3.min.js.stažený soubor"></script>
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery.timers.min.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery-ui-1.11.4.min.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/vav_config.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/vav_main.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/styles_moding.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/autosize.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/tooltip.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/jquery.dataTables.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/date-de.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/select2.full.min.js.stažený soubor"></script>
+    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/svelte_components.js.stažený soubor"></script>
+
+    
+    <!--[if IE 6]>
+            <style>
+                    wrap { width: document.documentElement.clientWidth < 1002 ? "1002px" : "100%"; }
+            </style>
+            <script type="text/javascript">
+                    function calcWidth() {
+                            document.getElementById('wrap').style.width = document.documentElement.clientWidth < 1002 ? '1002px' : '100%';
+                    }
+                    onresize = calcWidth();
+            </script>
+    <![endif]-->
+    <!--[if IE]><script type="text/javascript" src="https://vav.unob.cz/client/jquery/excanvas/excanvas-compressed.js"></script><![endif]-->
+    
+    <!-- google analytics-->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-66141625-2', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+  </head>
+    <body id="inpersonal" class="  ">
+        
+    <div id="printbox">
+      <img src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/logovav.png" alt="" width="20" height="20">
+      <div>Portál výzkumu, vývoje a inovací UO </div>
+    </div>
+    <div id="linkbar">
+      <!--<a href="http://portal.unob.cz">Služební portál UO</a> |
+      <a href="http://vportal.unob.cz">Studijní portál UO</a> | -->
+      <a href="https://intranet.unob.cz/">Intranet UO</a> |
+      <a href="http://www.vojenskaskola.cz/skola/uo/Stranky/default.aspx">Stránky školy</a> |
+      <a href="https://email.unob.cz/">Pošta</a> |
+      <a href="https://vav.unob.cz/menu/results" class="icobutton ico-properties-simple simple" title="Registr výsledků" style="opacity: 0.5;"><span>&nbsp;</span></a>              <a href="https://vav.unob.cz/menu/projects" class="icobutton ico-project-simple simple" title="Registr projektů/záměrů" style="opacity: 0.5;"><span>&nbsp;</span></a>        <a href="https://vav.unob.cz/menu/persons" class="icobutton ico-user-simple simple" title="Registr osob" style="opacity: 0.5;"><span>&nbsp;</span></a>        <a href="https://vav.unob.cz/menu/requests" class="icobutton ico-request-simple simple" title="Vyhledání požadavku" style="opacity: 0.5;"><span>&nbsp;</span></a>            <div id="user-info">
+        <script type="text/javascript">
+          vav.author_sid = 542704;
+          auth.perid = 542704;
+          auth.usrid = 421019;
+        </script>
+        <input type="hidden" name="sid" value="542704"><!-- id tvurce  -->
+                  <strong>Uživatel:</strong>
+          <i>beranj2</i> [Uživatel]&nbsp;<a href="https://vav.unob.cz/auth/logout" class="icobutton ico-logout-simple simple" title="Odhlásit" style="opacity: 0.5;"><span>&nbsp;</span></a>              </div><!-- end user-info -->
+    </div>
+        <div id="working"></div>
+    <div id="wrap">
+            <div id="header">
+        <div id="logo-header">
+          <a href="https://vav.unob.cz/" title="Domů" id="logo-clickable"></a>
+        </div><!-- end logo-header -->
+      </div><!-- end header -->
+                  <div id="content">
+                <div id="left-sidebar">
+          <div id="left-content">
+            <div id="navigation">
+              
+<ul><!-- public section -->
+  
+    <li id="aktuality">
+      <div class="corner">
+        <a href="https://vav.unob.cz/home"><span>Informace a aktuality</span></a>        <div class="sub"><ul>
+        <li class="active">
+            <a href="https://vav.unob.cz/home"><span>Aktuality</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/home/links"><span>Důležité odkazy</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/permanent_documents"><span>Dokumenty ke stažení</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/tools/userdoc"><span>Nápověda</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/support/index"><span>Náměty a chyby</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/registr/index"><span>Registr</span></a></li>
+    </ul>
+
+</div>
+      </div>
+    </li>
+    <!-- end of public section -->
+
+  <!-- private section -->
+            <li id="personal">
+        <div class="corner">
+          <a href="https://vav.unob.cz/menu/personal"><span>Osobní karta</span></a>          <div class="sub">
+            <ul>
+            <li class="active">
+            <a href="https://vav.unob.cz/menu/personal_results/542704"><span>Výsledky</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/activities/person/542704"><span>Aktivity</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/requests/person/542704"><span>Požadavky</span></a></li>
+  </ul>
+
+          </div>
+        </div>
+      </li>
+    
+    <li id="results">
+      <div class="corner">
+        <a href="https://vav.unob.cz/menu/results"><span>Výsledky a citace</span></a>        <div class="sub">
+          
+<ul>
+            <li class="active">
+            <a href="https://vav.unob.cz/menu/results"><span>Evidence výsledků</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/activities/index"><span>Aktivity</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/menu/riv"><span>Rejstřík informací (RIV)</span></a></li>
+            <li class="active">
+            <a href="https://vav.unob.cz/menu/results_clipboard"><span>Kontejner s výsledky</span></a></li>
+  </ul>
+
+        </div>
+      </div>
+    </li>
+
+
+
+          <li id="projects">
+        <div class="corner">
+          <a href="https://vav.unob.cz/menu/projects"><span>Projekty a požadavky</span></a>          <div class="sub">
+            
+<ul>
+                        <li class="active">
+                        <a href="https://vav.unob.cz/menu/projects"><span>Projekty/záměry</span></a></li>
+                        <li class="active">
+                        <a href="https://vav.unob.cz/menu/requests"><span>Požadavky</span></a></li>
+                        <li class="active">
+                        <a href="https://vav.unob.cz/requests/finance_draw/6"><span>Čerpání</span></a></li>
+    </ul>
+
+          </div>
+        </div>
+      </li>
+
+    
+
+          <li id="support">
+        <div class="corner">
+          <a href="https://vav.unob.cz/menu/departments"><span>Lidé a pracoviště</span></a>          <div class="sub">
+            
+<ul>
+                        <li class="active">
+                        <a href="https://vav.unob.cz/menu/departments"><span>Přehled pracovišť</span></a></li>
+                        <li class="active">
+                        <a href="https://vav.unob.cz/menu/persons"><span>Evidence osob</span></a></li>
+    </ul>
+
+          </div>
+        </div>
+      </li>
+    
+      
+  
+      <!-- end of private section -->
+</ul>
+
+            </div><!-- end navigation -->
+          </div><!-- end left-content -->
+        </div><!-- end left-sidebar -->
+                <div id="right-sidebar">
+          <div id="right-content">
+            <h1>Úvodní stránka osoby</h1>
+<p>Základní informace o osobě.</p>
+<h3>Editace</h3>
+<p>Editace údajů o osobě, nastavení profilu osoby. Aktuálně přihlášená osoba může editovat jen své údaje. </p>
+<p>Údaje může editovat i osoba s oprávněním <em>Rektorát</em>.</p>
+<h3>Přehledy</h3>
+<p>Vybrané přehledy z jednotlivých registrů.</p>
+<h3>Výsledky</h3>
+<p>Seznam výsledků osoby.</p>
+          </div><!-- end right-content -->
+        </div><!-- end right-sidebar -->
+                        <div id="page">
+          <div id="page_header">
+            <div id="page_header_r"><div id="page_header_l"></div></div>
+          </div>
+          <div id="page_main">
+            <div id="page_main_r">
+              <div id="page_main_l">
+
+                <div id="main">
+                  <!--
+                  <p class="important center">Na portále probíhá aktualizace. Může se stát, že některé části budou dočasně nedostupné nebo nefunkční. Děkuji za pochopení. V případě nejasností mě kontaktujte: Ondryhal Vojtěch 442625. </p>
+                  -->
+                                      <div id="main-appmenu">
+                      <div class="appmenu">
+                        <a href="https://vav.unob.cz/person/reports/542704" class="icobutton ico-summaries " title="Přehledy pro aktuální osobu."><span>Přehledy</span></a><a href="https://vav.unob.cz/results/person/542704" class="icobutton ico-properties " title="Přehled výsledků."><span>Výsledky</span></a><a href="https://vav.unob.cz/person/projects/542704" class="icobutton ico-project " title="Seznam projektů/záměrů."><span>Projekty/záměry</span></a><a href="https://vav.unob.cz/activities/person/542704" class="icobutton ico-activity " title="Evidence aktivit osoby."><span>Aktivity</span></a><a href="https://vav.unob.cz/requests/person/542704" class="icobutton ico-request " title="Požadavky vybrané osoby."><span>Moje požadavky</span></a><a href="https://vav.unob.cz/extra_reward/person/542704/person" class="icobutton ico-extra_reward " title="Přehled mimořádných odměn za tvůrčí činnost"><span>Odměny</span></a><a href="https://vav.unob.cz/person/edit/542704" class="icobutton ico-editdoc "><span>Editace</span></a>                      </div>
+                      <div class="appsubmenu">
+                        <div class="filter">
+                          &nbsp;                        </div>
+                        <div class="pagination">
+                                                  </div>
+                      </div>
+                    </div><!-- end main-appmenu -->
+                    <br> <!-- maly fix pro firefox -->
+                    <div class="clear-both" style="margin-bottom: -14px">&nbsp;</div>
+                  
+                  <div id="main-content">
+
+                    
+<script type="text/javascript">
+  person.perid = "542704";
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+//    $(".section" ).accordion({
+//      heightStyle: "content",
+//      collapsible: true
+//    });
+  });
+</script>
+
+<style>
+  /*h1 {border: none !important}*/
+
+  .section table {
+    border-collapse: collapse;
+    border: solid 1px;
+  }
+
+  .section td, .section th{
+    border: solid 1px #ccc;
+    padding: 5px;
+  }
+
+  tr.alt th {
+    background: #f2efea;
+  }
+
+  tr.over {
+    background: #e3ded8 !important;
+  }
+
+  .section h3 {
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+
+</style>
+
+
+<h1>Beran Jan <span style="color: green; font-weight: normal">(Osoba je propojena s přihlašovacím účtem - beranj2)</span></h1>
+
+<div class="section">
+    <table class="no_table" style="border:0!important; width:100%; height:10px">
+        <tbody><tr>
+            <td style="height: 10px; line-height: 16px; vertical-align: middle;" class="no_table_cell">
+                <h3>Základní údaje</h3>
+            </td>
+                        <td style="width: 20%; height: 10px; line-height: 16px; vertical-align: middle;" class="no_table_cell">
+                <div style="padding-left: 5px;">
+                    <h3>Souhrn mimořádných odměn</h3>
+                </div>
+            </td>
+                    </tr>
+        <tr>
+            <td style="height: 10px; line-height: 16px; vertical-align: middle;" class="no_table_cell">
+                <table id="phome1" border="0" cellpadding="2" cellspacing="0" class="stripped max-width">
+
+                                    <tbody><tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Pracoviště</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                    </tr>
+                                <tr>
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Tituly</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">čet. </td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Telefon</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Email</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">jan.beran@unob.cz</td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">
+                        Kancelář
+                        <div style="font-size: 9px; color: grey">edituje pověřená osoba za součást v aplikaci Lokace pracoviště</div>
+                    </td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Pracoviště (slouží pro cizí)</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="alt">
+                    <td width="200px" class="right head" style="line-height: 16px; vertical-align: middle;">Vztah</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                    Domácí                    </td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Scopus ID</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Researcher ID</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">UČO</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                    58066                    </td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">ORCID</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">VEDIDK</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">&nbsp;</td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Rozvrhy</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                    <a href="https://apl.unob.cz/UOAPI/Rozvrhy/Osoba/58066" target="_blank">přejít na rozvrh</a>                    </td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Garance</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                    <a href="https://apl.unob.cz/UOAPI/Akreditace/OsobaPredmet/58066" target="_blank">přejít na akreditaci</a>                    </td>
+                </tr>
+                <tr class="alt">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Pracovní úvazek na pedagogickou činnost v % (P4)</td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                    0                    </td>
+                </tr>
+                <tr class="">
+                    <td class="right head" style="line-height: 16px; vertical-align: middle;">Typ řešitele (P2)<div style="font-size: 9px; color: grey">edituje R-OdVV</div></td>
+                    <td class="left-align" style="line-height: 16px; vertical-align: middle;">
+                                        S - Student Mgr. Bc. studia                    </td>
+                </tr>
+                                </tbody></table>
+            </td>
+                        <td class="no_table_cell" style="height: 100%; line-height: 16px; vertical-align: middle;">
+                                <div style="padding-left: 5px; height: 100%">
+                    <table border="0" cellpadding="2" cellspacing="0" class="list" id="xreward_summary_table" style="width:100%; height:100%;">
+                        <tbody><tr>
+                            <th style="text-align: left; height: 10px">Předpokládaný počet bodů v roce 2021</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 20px; line-height: 16px; vertical-align: middle;">0,0000</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; height: 10px">Počet získaných bodů v roce 2020</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 20px; line-height: 16px; vertical-align: middle;">0,0000</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; height: 10px">Vyplacená odměna v roce 2020 v Kč</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 20px; line-height: 16px; vertical-align: middle;">0,00</td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: left; height: 10px">Celkem vyplacená odměna v Kč</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 20px; line-height: 16px; vertical-align: middle;">0,00</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </td>
+                    </tr>
+    </tbody></table>
+</div>
+
+<div class="section">
+  <h3>Aktuální projekty/záměry</h3>
+  <div>
+
+    
+    Seznam projektů/záměrů je prázdný.
+  </div>
+  
+  <br>
+  <h2>Úvazek dle aktuálního druhu projektu/DZRO</h2>
+  <table id="phome2" border="0" cellpadding="2" cellspacing="0" class="stripped list">
+    <tbody><tr class="skip_tr">
+        <th width="100px">Celkový úvazek na tvůrčí činnosti na</th>
+        <th class="center">Úvazek v %</th>           
+    </tr>
+    <tr class="alt">
+        <td class="" style="line-height: 16px; vertical-align: middle;">DZRO (I)</td>
+        <td class="center" style="line-height: 16px; vertical-align: middle;">0</td>
+    </tr>
+    <tr>
+        <td class="" style="line-height: 16px; vertical-align: middle;">Projektech specifického výzkumu (S)</td>
+        <td class="center" style="line-height: 16px; vertical-align: middle;">0</td>
+    </tr>
+    <tr class="alt">
+        <td class="" style="line-height: 16px; vertical-align: middle;">Projektech účelové podpory (P)</td>
+        <td class="center" style="line-height: 16px; vertical-align: middle;">0</td>
+    </tr>
+    <tr>
+        <td class="" style="line-height: 16px; vertical-align: middle;">Projektech výzkumného záměru (Z)</td>
+        <td class="center" style="line-height: 16px; vertical-align: middle;">0</td>
+    </tr>
+    <tr class="skip_tr">
+        <td class="head" style="line-height: 16px; vertical-align: middle;">Součet</td>
+        <td class="center head" style="line-height: 16px; vertical-align: middle;">0</td>
+    </tr>
+  </tbody></table>
+</div>
+
+
+                  </div><!-- end main-content -->
+                  <div class="clear-left">&nbsp;</div><!-- zarovnani obsahu stredniho sloupce s delkou leveho/praveho sloupce -->
+                </div><!-- end main -->
+
+              </div><!-- end page_main_l -->
+            </div><!-- end page_main_r -->
+          </div><!-- end page_main -->
+          <div id="page_footer">
+            <div id="page_footer_r"><div id="page_footer_l"></div></div>
+          </div><!-- end page_footer -->
+        </div><!-- end page -->
+      </div><!-- end content -->
+            <div id="footer">
+        <!--
+        <p>
+        <a href="https://vav.unob.cz/">Home</a>            &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <span title="Vojtěch Ondryhal">VO</span>, <span title="Michal Trunda">MT</span>                   &nbsp;&middot;&nbsp;<a href="https://vav.unob.cz/docproject/page/pd_home">prg</a>        </p>
+        -->
+      </div><!-- end footer -->
+            </div><!-- end wrap -->
+    
+
+
+<script src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/working.js.stažený soubor" type="text/javascript"></script>    <script type="text/javascript" src="./Informační portál výzkumu, vývoje a inovací na Univerzitě obrany_files/placeholders.jquery.min.js.stažený soubor"></script>
+  
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-front alert ui-dialog-buttons ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-describedby="message" aria-labelledby="ui-id-1" style="display: none; position: absolute;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix ui-draggable-handle"><span id="ui-id-1" class="ui-dialog-title">Upozornění</span><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close" role="button" title="Close"><span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">Close</span></button></div><div id="message" class="ui-dialog-content ui-widget-content"></div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span class="ui-button-text">OK</span></button></div></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div></div></body></html>
