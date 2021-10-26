@@ -34,6 +34,7 @@ small komponenty (nemaji odkaz na API) - (label a ID) - po kliknuti na label (a 
 V rozvrhu je učitel - kliknu na učitel zobrazí se (velká stránka) 
 LARGE (měli by mít propojení s API) - dostaneme neúplnou informaci a musíme se dotázat API abychom dostali zbytek potřebných informací.
 
+small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucitel) - jmeno, prijmeni, SPOLECNE INFO.... -> link LARGE : víc info pokud student tak zkouky, vysledky,... pokud ucitel tak predmety kde uci, garant,... nebo pokud jine osoby tak prazdne...
 
 Časový harmonogram:
 ----
