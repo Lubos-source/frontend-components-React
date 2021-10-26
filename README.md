@@ -26,10 +26,10 @@ Komponenty by měli fungovat jako linky (a href) -> otevře se LARGE komponenta 
 
 Časový harmonogram:
 
-1. 11. 2021 zveřejnění harmonogramu prací na projektu,
-1. 11. 2021 zveřejnění identifikovaných nejsložitějších problémů v projektu,
-15. 12. 2021 verze Alfa,
-15. 1. 2022 verze Beta,
-24. 1. 2021 počátek zkouškového období,
-31. 1. 2022 uzavření projektu,
-18. 3. 2022 konec zkouškového období.
+1) 1.11. 2021 zveřejnění harmonogramu prací na projektu,
+2) 1.11. 2021 zveřejnění identifikovaných nejsložitějších problémů v projektu,
+3) 15.12. 2021 verze Alfa,
+4) 15.1. 2022 verze Beta,
+5) 24.1. 2021 počátek zkouškového období,
+6) 31.1. 2022 uzavření projektu,
+7) 18.3. 2022 konec zkouškového období.
