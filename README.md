@@ -24,7 +24,15 @@ Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázán
 LARGE učitel - bude obsahovat SMALL komponenty studijních skupin které vyučuje.
 Komponenty by měli fungovat jako linky (a href) -> otevře se LARGE komponenta (celá stránka) -> podrobnosti o celé skupině (např 21-5KB), ta má zase seznam učitelů, kteří se podílejí na výuce (SMALL komponenty) odkud se můžeme odkázat zase na LARGE.
 
+**příklad:**
+Propojení s API:
+small komponenty (nemaji odkaz na API) - (label a ID) - po kliknuti na label (a href) se dostaneme na stránku která popisuje danou komponentu.
+V rozvrhu je učitel - kliknu na učitel zobrazí se (velká stránka) 
+LARGE (měli by mít propojení s API) - dostaneme neúplnou informaci a musíme se dotázat API abychom dostali zbytek potřebných informací.
+
+
 Časový harmonogram:
+----
 
 1) 1.11. 2021 zveřejnění harmonogramu prací na projektu,
 2) 1.11. 2021 zveřejnění identifikovaných nejsložitějších problémů v projektu,
