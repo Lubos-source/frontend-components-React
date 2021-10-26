@@ -15,6 +15,8 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 [vav unob](https://vav.unob.cz/person/index/542704)
 
+[FAKE date](https://swapi.co/)
+
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivím komponentám.)
 
 **LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
