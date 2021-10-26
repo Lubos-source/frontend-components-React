@@ -54,3 +54,11 @@ small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucite
 ● 31.1. 2022 uzavření projektu
 
 ● 18.3. 2022 konec zkouškového období
+
+Vlastní časový harmonogram
+----
+
+Vytvoření struktur html jednotlivých stránek (student / učitel,studijní skupina, katedry) 
+
+Využití dat z https://swapi.co/ k provozu.
+Propojení LARGE komponent s API.
