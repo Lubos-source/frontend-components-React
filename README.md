@@ -19,6 +19,8 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 [FAKE date](https://swapi.co/)
 
+[Fetching api data with react](https://dev.to/olenadrugalya/ways-of-getting-data-from-api-in-react-2kpf)
+
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivím komponentám.)
 
 **LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
