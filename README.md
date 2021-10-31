@@ -68,5 +68,7 @@ Vlastní časový harmonogram:
 Nejsložitější problémy v projektu:
 ----
 ● přístup k jednotlivým komponentám
+
 ● propojení jednotlivých komponent
+
 ● grafické zobrazení - SVG
