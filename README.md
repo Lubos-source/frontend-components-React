@@ -21,7 +21,7 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 [Fetching api data with react](https://dev.to/olenadrugalya/ways-of-getting-data-from-api-in-react-2kpf)
 
-Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivím komponentám.)
+Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivým komponentám.)
 
 **LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
 
@@ -55,10 +55,18 @@ small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucite
 
 ● 18.3. 2022 konec zkouškového období
 
-Vlastní časový harmonogram
+Vlastní časový harmonogram:
 ----
 
-Vytvoření struktur html jednotlivých stránek (student / učitel,studijní skupina, katedry) 
+● 14.11. 2021 Vytvoření struktur html jednotlivých stránek (student / učitel,studijní skupina, katedry) 
 
-Využití dat z https://swapi.co/ k provozu.
-Propojení LARGE komponent s API.
+● 28.11. 2021 Využití dat z https://swapi.co/ k provozu.
+
+● 12.12. 2021 Propojení LARGE komponent s API.
+
+
+Nejsložitější problémy v projektu:
+----
+● přístup k jednotlivým komponentám
+● propojení jednotlivých komponent
+● grafické zobrazení - SVG
