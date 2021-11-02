@@ -15,6 +15,8 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 [interakce React s API](https://youtu.be/DLX62G4lc44?t=12346)
 
+[Fetch data from API on the website](https://youtu.be/T3Px88x_PsA)
+
 [vav unob](https://vav.unob.cz/person/index/542704)
 
 [FAKE date](https://swapi.co/)
@@ -58,9 +60,11 @@ small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucite
 Vlastní časový harmonogram:
 ----
 
-● 14.11. 2021 Vytvoření struktur html jednotlivých stránek (student / učitel,studijní skupina, katedry) 
+● 14.11. 2021 Vytvoření struktur html jednotlivých stránek (student / učitel,studijní skupina, katedry) (natvrdo)
 
-● 28.11. 2021 Využití dat z https://swapi.co/ k provozu.
+● 28.11. 2021 Využití dat z https://swapi.co/ nebo jiné api k provozu a dostání dat na stránku.
+
+● .unknown. 2021 Vytvoření vyhledávání studenta, učitele atd...
 
 ● 12.12. 2021 Propojení LARGE komponent s API.
 
@@ -71,4 +75,4 @@ Nejsložitější problémy v projektu:
 
 ● propojení jednotlivých komponent
 
-● grafické zobrazení - SVG
+● grafické zobrazení - SVG ??
