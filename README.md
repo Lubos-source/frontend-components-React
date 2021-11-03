@@ -80,4 +80,6 @@ Nejsložitější problémy v projektu:
 
 ● propojení jednotlivých komponent mezi sebou, kam a kdy která komponenta odkáže. Možnost více komponent pro jednu položku (např. areál exituje small a zároveň large komponenta)
 
+● dostání programu do DOCKERU (docker-compose)
+
 ● grafické zobrazení - SVG ??? to máme dělat ????
