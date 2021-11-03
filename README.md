@@ -40,6 +40,17 @@ LARGE (měli by mít propojení s API) - dostaneme neúplnou informaci a musíme
 
 small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucitel) - jmeno, prijmeni, SPOLECNE INFO.... -> link LARGE : víc info pokud student tak zkouky, vysledky,... pokud ucitel tak predmety kde uci, garant,... nebo pokud jine osoby tak prazdne...
 
+Společné podmínky:
+
+● Průběžné ukládání verzí na public úložišti Github s licencí MIT, taktéž finální verze (viz harmonogram).
+
+● WEB Root API či UI je konfigurovatelný.
+
+● Je definovaný dockerfile / compose.yml pro spuštění výsledného projektu v prostředí docker nebo je k dispozici ipynb pro demonstraci.
+
+● Kód je dokumentovaný [Python jak dokumentovat](https://realpython.com/documenting-python-code/), [React/Javascript jak dokumentovat](https://jsdoc.app/about-getting-started.html )
+
+
 Časový harmonogram:
 ----
 
@@ -74,7 +85,7 @@ Nejsložitější problémy v projektu:
 ----
 ● napsat vhodně program aby se dal využít i na jiné API než na které budeme testovat, případně aby bylo nutno udělat minimum změn :)
 
-● Potřebujeme najít UNOB API a zjistit jak vypadají data v ní - podle toho pak změníme program.
+● Potřebujeme najít UNOB API a zjistit jak vypadají data v ní - podle toho pak změníme program. (zodpovědná osoba na UO - Hana Vlachová)
 
 ● interakce reactu s API, aby se nenačítali data dlouho. Vymyslet asi postupné načítání jen potřebných dat, které chce uživatel vidět a poté získávání dalších dat na základě požadavků uživatele. (GraphQL???)
 
