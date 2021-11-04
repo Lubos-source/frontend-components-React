@@ -4,7 +4,8 @@ import ContactCard from './ContactCard'
 import Student from './Student'
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
-import FetchRandomUser from './components/fetchtest'
+import FetchRandomUser from './components/fetchtest';
+import TestMap from './components/map';
 //import axios from 'axios'
 
 const USER_SERVICE_URL = 'https://swapi.co/api/people';   //'https://jsonplaceholder.typicode.com/users';
@@ -179,29 +180,6 @@ export default test;
 */
 
 function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
- useEffect(()=> {
-  fetch('https://swapi.co/api/people/1')
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw response;
-    })
-    .then(data => {
-      setData(data);
-    })
-    .catch(error => {
-      console.error("Error fetching data: ", error);
-      setError(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    })
- }, [])
 
   return (
    
@@ -213,7 +191,7 @@ function App() {
           email:"sakoru@ji.mm",
           id:"000"}}
           />
-            
+        <p>-----------------------------------    </p>
         </div>
 
         <div className="Fetch Random User">
@@ -224,8 +202,13 @@ function App() {
           </FetchRandomUser>
         </div>
         
-          
-        
+        <div className="Testing map">
+            <TestMap>
+              <div>
+              
+              </div>
+            </TestMap>
+          </div>  
     </div>
     
   );
