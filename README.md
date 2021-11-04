@@ -5,7 +5,7 @@ Zpracovávají čet. Lubomír Horký a čet. Jan Beran:
 
 ### token = 60cb36f52d9af022
 
-# ??pochopení zadání:??
+# pochopení zadání:
 Napsat web pomocí React, který bude zobrazovat "dlaždice" studijní program v něm předměty, každý předmět bude mít lekce(hodiny) a každá hodina bude mít rozepsané učebny + areály. Po kliknutí na areál se dostaneme do danného areálu například Šumavská a v něm se nám zobrazí učebny. Po kliknutí na učebnu bude existovat komponenta která bude obsahovat jaké lekce se v učebně prezentují.
 
 
@@ -25,20 +25,34 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivým komponentám.)
 
-**LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku)
+**LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku), obsahuje stranku jako takovou, od nejduležitějších informaci k méně důležitým !
 
-**příklad k 4)zadani.... :**
+**MEDIUM** - abalit do card (např. možnost nastrkat více studentu do karet)
 
+**SMALL** - čistě link !
+
+**react rooter** - je jedna stranka cela APP, mění se url, proto misto ahref <Link to=.....>, konfigurovatelné URL
+1 entita 1 komponenta ! (např. student entita - má všechny komponenty (large, small, medium...)
+
+**jak vytvářet komponenty** : "src - entities - (student) - studentkomponenta.js" (v ní všechny komponenty studentSmall, studentMedium, studentLarge)
+entities má jeden index.js soubor s viz OBR hint!!!
+
+**Tvořit postupně poznámky** - vytvořit si postupně poznámky, jaký problém -> jaké řešení -> fungovalo to -> ne -> další řešení atd... Postupně dělat poznámky jak na tom pracujem a co jak vytváříme. Pro budoucí STČ dokumentaci.
+  
+  
+příklad k 4)zadani.... :
+----
+  
 LARGE učitel - bude obsahovat SMALL komponenty studijních skupin které vyučuje.
-Komponenty by měli fungovat jako linky (a href) -> otevře se LARGE komponenta (celá stránka) -> podrobnosti o celé skupině (např 21-5KB), ta má zase seznam učitelů, kteří se podílejí na výuce (SMALL komponenty) odkud se můžeme odkázat zase na LARGE.
+Komponenty by měli fungovat jako linky (a href / link to) -> otevře se LARGE komponenta (celá stránka) -> podrobnosti o celé skupině (např 21-5KB), ta má zase seznam učitelů, kteří se podílejí na výuce (SMALL komponenty) odkud se můžeme odkázat zase na LARGE.
 
 **příklad:**
 Propojení s API:
-small komponenty (nemaji odkaz na API) - (label a ID) - po kliknuti na label (a href) se dostaneme na stránku která popisuje danou komponentu.
+small komponenty (nemaji odkaz na API) - (label a ID) - po kliknuti na label (a href / link to) se dostaneme na stránku která popisuje danou komponentu.
 V rozvrhu je učitel - kliknu na učitel zobrazí se (velká stránka) 
 LARGE (měli by mít propojení s API) - dostaneme neúplnou informaci a musíme se dotázat API abychom dostali zbytek potřebných informací.
 
-small- JEN TEXT jmeno, skupina -> link -> na medium (osoba jak student tak ucitel) - jmeno, prijmeni, SPOLECNE INFO.... -> link LARGE : víc info pokud student tak zkouky, vysledky,... pokud ucitel tak predmety kde uci, garant,... nebo pokud jine osoby tak prazdne...
+small- JEN TEXT -> link -> na medium (osoba jak student tak ucitel) - jmeno, prijmeni, SPOLECNE INFO.... -> link LARGE : víc info pokud student tak zkousky, vysledky,... pokud ucitel tak predmety kde uci, garant,... nebo pokud jine osoby tak prazdne...
 
 Společné podmínky:
 
@@ -93,4 +107,4 @@ Nejsložitější problémy v projektu:
 
 ● dostání programu do DOCKERU (docker-compose)
 
-● grafické zobrazení - SVG ??? to máme dělat ????
+● grafické zobrazení areálu - mapa budov -> každá budova má point -> přesměruje nás na seznam učeben
