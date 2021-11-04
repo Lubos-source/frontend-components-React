@@ -32,7 +32,9 @@ Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázán
 **SMALL** - čistě link !
 
 **react rooter** - je jedna stranka cela APP, mění se url, proto misto ahref <Link to=.....>, konfigurovatelné URL
-1 entita 1 komponenta ! (např. student entita - má všechny komponenty (large, small, medium...)
+1 entita 1 komponenta ! (např. student entita - má všechny komponenty (large, small, medium...) POUŽÍT !!
+  
+**bootstrap 5** - použít ke tvorbě !
 
 **jak vytvářet komponenty** : "src - entities - (student) - studentkomponenta.js" (v ní všechny komponenty studentSmall, studentMedium, studentLarge)
 entities má jeden index.js soubor s viz OBR hint!!!
