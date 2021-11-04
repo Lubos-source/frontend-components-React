@@ -4,34 +4,13 @@ import ContactCard from './ContactCard'
 import Student from './Student'
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
-import FetchRandomUser from './components/fetchtest';
-import TestMap from './components/map';
+import FetchRandomUser from './entities/fetchtest';
+import TestMap from './entities/map';
 //import axios from 'axios'
 
 const USER_SERVICE_URL = 'https://swapi.co/api/people';   //'https://jsonplaceholder.typicode.com/users';
 
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
+
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
@@ -84,100 +63,8 @@ const comment = {
 };
 */
 
-/*
-function skup(){
 
-  this.state = {
-      loading: false,
-      character: {}
-    }
-  
-  this.setState({loading: true})
-  fetch("https://swapi.co/api/people/1")
-  .then(response => response.json())
-  .then(data => {
-      this.setState({
-          character: data
-      })
-  })
 
-}
-*/
-/*
-export default function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-useEffect(()=> {
-  fetch('')
-    .then(response => {
-      if (response.ok) {
-        return response.json()
-      }
-      throw response;
-    })
-    .then(data => {
-      setData(data);
-    })
-    .catch(error => {
-      console.error("Error fetching data: ", error);
-      setError(error);
-    })
-    .finally(() => {
-      setLoading(false);
-    })
-}, [])  
-}
-*/
-
-/*
-class test extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-        isFetching: false,
-        users: []
-    };
-  }
-    
-  render(){
-    return(
-      <div>
-          {this.state.users}
-      </div>
-    )
-  }
-    componentDidMount() {
-      this.fetchUsers();
-      this.timer = setInterval(() => this.fetchUsers(), 5000);
-    }
-    componentWillUnmount() {
-      clearInterval(this.timer);
-      this.timer = null;
-    }
-
-    async fetchUsersAsync() {
-      try {
-          this.setState({...this.state, isFetching: true});
-          const response = await axios.get(USER_SERVICE_URL);
-          this.setState({users: response.data, isFetching: false});
-      } catch (e) {
-          console.log(e);
-          this.setState({...this.state, isFetching: false});
-      }
-  };
-
-  fetchUsers = this.fetchUsersAsync;
-    
-}
-
-export default test;
-*/
-
-/*
-
-*/
 
 function App() {
 
