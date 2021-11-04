@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect } from "react";
-import mapaT from "../media/test.png"
+import MapaSumavska from "../media/sumak.png"
 
 export default class TestMap extends React.Component{
 
@@ -9,37 +9,23 @@ export default class TestMap extends React.Component{
     
         return(
             <div>
-                <map name="infographic">
-                    <area shape="rect" coords="184,6,253,27"
-                        href="https://mozilla.org"
-                        target="_blank" alt="Mozilla" />
-                    <area shape="circle" coords="130,136,60"
-                        href="https://developer.mozilla.org/"
-                        target="_blank" alt="MDN" />
-                    <area shape="poly" coords="130,6,253,96,223,106,130,39"
-                        href="https://developer.mozilla.org/docs/Web/Guide/Graphics"
-                        target="_blank" alt="Graphics" />
-                    <area shape="poly" coords="253,96,207,241,189,217,223,103"
-                        href="https://developer.mozilla.org/docs/Web/HTML"
-                        target="_blank" alt="HTML" />
-                    <area shape="poly" coords="207,241,54,241,72,217,189,217"
-                        href="https://developer.mozilla.org/docs/Web/JavaScript"
-                        target="_blank" alt="JavaScript" />
-                    <area shape="poly" coords="54,241,6,97,36,107,72,217"
-                        href="https://developer.mozilla.org/docs/Web/API"
-                        target="_blank" alt="Web APIs" />
-                    <area shape="poly" coords="6,97,130,6,130,39,36,107"
-                        href="https://developer.mozilla.org/docs/Web/CSS"
-                        target="_blank" alt="CSS" />
+                <map name="sumavska">
+                    <area shape="rect" coords="276,613,400,649" href="šumák1" target="_self" alt="Š1"/>
+                    <area shape="rect" coords="265,442,329,483" href="šumák3" target="_self" alt="Š3"/>
+                    <area shape="rect" coords="193,437,250,487" href="šumák4" target="_self" alt="Š4"/>
+                    <area shape="poly" coords="102,422,102,488,185,488,185,445,162,445,162,465,129,465,129,423,103,423" href="asiŠ5-zakroucenabudova" target="_self" alt="zakroucenaBudovaAsiŠ5" />
+                    <area shape="rect" coords="97,378,141,415" href="šumák5A" target="_self" alt="Š5A"/>
+                    <area shape="rect" coords="97,169,143,253" href="šumák5B" target="_self" alt="Š5B"/>
+                    <area shape="rect" coords="97,88,220,143" href="šumák6" target="_self" alt="Š6"/>
+                    <area shape="rect" coords="284,88,419,141" href="šumák8" target="_self" alt="Š8"/>
+                    <area shape="rect" coords="359,160,419,287" href="šumák9" target="_self" alt="Š9"/>
+                    <area shape="rect" coords="359,288,419,404" href="šumák9A" target="_self" alt="Š9A"/>
                 </map>
-                <img usemap="#infographic" src={mapaT} alt="MDN infographic" width="500px"/>              
+                <img usemap="#sumavska" src={MapaSumavska} alt="mapa Sumavska" />              
 
             </div>
         )
 
     }
-
-
-
 
 }
