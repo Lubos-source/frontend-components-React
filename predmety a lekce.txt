@@ -1,0 +1,309 @@
+Předměty a lekce 
+
+•	Aerobic
+•	Aerodynamika a konstrukce letadel
+•	Aerodynamika a konstrukce letadel II
+•	Aerodynamika a konstrukce letadel III
+•	Akademická angličtina
+•	Aktuální infekční onemocnění – novinky v epidemiologii a mikrobiologii
+•	Aktuální problémy vojenství
+•	Algoritmizace a programování 
+•	Algoritmizace inženýrských úloh II 
+•	Analýza informačních zdrojů 
+•	Anglický jazyk 
+•	Anglický jazyk I
+•	Anglický jazyk I CEFR A1
+•	Anglický jazyk I CEFR A2
+•	Anglický jazyk I CEFR B1
+•	Anglický jazyk II
+•	Anglický jazyk II CEFR A1
+•	Anglický jazyk II CEFR A2
+•	Anglický jazyk II CEFR B1
+•	Anglický jazyk III 
+•	Aplikovaná geografie a meteorologie
+•	Aplikovaná chemie 
+•	Aplikovaná matematika
+•	Aplikovaná matematika elektrotechnická I
+•	Aplikovaná matematika strojní I
+•	Aplikovaná meteorologie
+•	Aplikovaná statistika
+•	Aplikovaná teorie řízení
+•	Aplikovaná teorie řízení a leadership
+•	Aplikované vojenské technologie
+•	Architektury výpočetních systémů 
+•	ATSEP –  kvalifikační kurz: Surveillance Data Transmision
+•	ATSEP –  obnovovací/konverzní kurz: ATM/CNS Data Processing Domain
+•	Automatizované systémy řízení dělostřelectva
+•	Avionické systémy
+•	Bakalářský seminář
+•	Balistická a výbuchová odolnost
+•	Bezdrátové komunikace
+•	Bezpečnost a obrana ČR 
+•	Bezpečnost a obrana státu
+•	Bezpečnost civilního letectví
+•	Bezpečnost KIS
+•	Bezpečnost KIT 
+•	Bezpečnost pohybu vozidel 
+•	Bezpečnostní aspekty mezinárodních vztahů
+•	Bezpečnostní systém ČR
+•	Bezpečnostní technologie ochrany KIS
+•	Biofyzika, základy radiologie a radiační ochrana
+•	Biochemie, toxikologie, návykové látky a chemická ochrana
+•	Bojová technika – zbraňové systémy
+•	Bojová ženijní podpora
+•	Bojové velení a řízení
+•	Cizí jazyk 
+•	Části strojů 
+•	Diferenciální geometrie 
+•	Digitální přenosové systémy
+•	Diplomový seminář 
+•	Dopravní prostředky a jejich bezpečnost 
+•	Ekonomika obrany státu
+•	Elektronické měření 
+•	Elektronické obvody
+•	Elektronické zabezpečovací systémy
+•	Elektronický boj 
+•	Financování a ekonomické řízení 
+•	Fotogrammetrie
+•	Francouzský jazyk
+•	Fyzická bezpečnost
+•	Fyzika
+•	Fyzika 4
+•	Fyzika atmosféry
+•	Fyzika III
+•	Geodézie 
+•	Geografické a informační systémy
+•	Geografie a klimatologie
+•	Geografie a klimatologie II
+•	Hardware a simulace 
+•	Hodnocení pracovní zátěže a ochrana zdraví při práci
+•	Hospodaření s majetkem státu 
+•	Hydromechanika a termomechanika
+•	Chemické a biologické zbraně a ochrana proti nim
+•	Chemie
+•	Individuální a kolektivní ochrana
+•	Informační analýza 
+•	Informační podpora bezpečnosti 
+•	Informační podpora rozhodovacích procesů 
+•	Informační systémy
+•	Informační systémy v geografii a meteorologii II
+•	Informační technologie v ozbrojených silách 
+•	Informatika
+•	Integrované sítě
+•	Jaderné zbraně a radiační ochrana
+•	Kalkulace zásob 
+•	Kartografie a geoinformatika
+•	Konstrukce a provoz letadel
+•	Konstrukce a provoz protiletadlových systémů
+•	Kriminalistika
+•	Krizové řízení 
+•	Krizový management 
+•	Kryptografický prostředek ELCRODAT 4–2
+•	Kryptografický prostředek třídy TCE 621
+•	Kryptografický prostředek třídy TCE 621/M
+•	Kurz generálního štábu MO
+•	Kurz obranných příprav 
+•	Kurz operačního použití elektronického boje 
+•	Kurz pro palubní navigátory 
+•	Kurz zpravodajské analýza
+•	Kurz zpravodajské podpory BÚU
+•	Kybernetická bezpečnost 
+•	Kybernetická bezpečnost I 
+•	Leadership 
+•	Letadlové soustavy
+•	Letecké elektronické systémy
+•	Letecké elektronické systémy I
+•	Letecké elektronické systémy II
+•	Letecké informační systémy
+•	Letecké motory a letadlové soustavy
+•	Letecké motory II 
+•	Letecké přístroje I
+•	Letecké přístroje II 
+•	Letové postupy a provozování letadel 
+•	Logistická podpora letového provozu
+•	Logistické zabezpečení bojové činnosti
+•	Logistika v oblasti bezpečnosti
+•	Management
+•	Management ekonomické služby a ekonomické informační systémy
+•	Management ILS
+•	Management rizik
+•	Management ve zdravotnictví 
+•	Matematické metody
+•	Matematika
+•	Matematika D
+•	Matematika I
+•	Matematika II
+•	Matematika III
+•	Matematika IV
+•	Materiály a technologie zbrojní výroby
+•	Matlab základy
+•	Mechatronika
+•	Mechatronika I
+•	Mentoring
+•	Meteorologické přístroje a metody pozorování 
+•	Metodika přípravy
+•	Metodologie
+•	Metodologie vědecké práce
+•	Metody bezpečnostního a obranného výzkumu
+•	Metody instrumentální a polní analýzy 
+•	Mezinárodní humanitární právo
+•	Mnohorozměrné statistické metody pro analýzu bezpečnostních hrozeb
+•	Modelování a simulace
+•	Modelování a průchodnost terénu
+•	Moderní trendy v komunikačních technologiích 
+•	Munice
+•	Munice a balistika
+•	Munice a balistika II
+•	Nauka o materiálu
+•	Německý jazyk
+•	Odběr a transport biologických vzorků I – základní
+•	Odběr a transport biologických vzorků II – pokročilý
+•	Odborná praxe
+•	Odolnost EZS
+•	Odvodní řízení aktivních záloh
+•	Ochrana obyvatelstva a IZS 
+•	Operační a bojové použití vojska pozemní protivzdušné obrany 
+•	Operační analýza ve vojenství 
+•	Operační systémy
+•	Operační výzkum 
+•	Organizace a operační použití letectva
+•	Organizace a řízení ILS
+•	Organizace a řízení jednotek ženijního vojska
+•	Organizace a řízení logistiky
+•	Organizace a řízení LRNS
+•	Organizace LTZ
+•	Organizace zabezpečení letového provozu 
+•	Organizační leadership
+•	Ozbrojené síly a společnost I
+•	Ozbrojené síly cizích států
+•	Ozbrojené síly při řešení krizových situací
+•	Plánování operací na operačním stupni
+•	Počítačové sítě
+•	Počítačové sítě a jejich bezpečnost
+•	Podpora a zabezpečení ozbrojených sil v operacích – dělostřelectvo
+•	Použití ozbrojených sil
+•	Pracovní právo a právo služebního poměru
+•	Praktická příprava VP
+•	Pravděpodobnost a statistika
+•	Právo bezpečnosti a obrany
+•	Právo ve zdravotnictví I
+•	Praxe
+•	Projektový management 
+•	Provoz a bojové použití RL techniky a techniky EB
+•	Provoz letecké techniky II
+•	Průzkumná, topografická a meteorologická činnost dělostřelectva
+•	Pružnost a pevnost
+•	První pomoc v poli
+•	Přenosové systémy a sítě
+•	Příprava na STANAG
+•	Příprava v poli
+•	Psaní odborných textů
+•	Psychologie zdravotnická
+•	Radiokomunikace
+•	Radiolokace
+•	Radiotechnická vysokofrekvenční zařízení
+•	Radiotechnické signály a jejich zpracování 
+•	Realizace osobních výdajů
+•	Realizace osobních výdajů - LZ
+•	Ročníkový projekt
+•	RSOM
+•	Ruský jazyk 
+•	Řízení a rozvoj lidských zdrojů 
+•	Řízení KIS 
+•	Řízení letového provozu 
+•	Řízení obranných zdrojů
+•	Řízení palby
+•	Řízení palby dělostřelectva 
+•	Řízení projektu manažerem
+•	Řízení rizik
+•	Řízení služeb provozu vojenské techniky a materiálu 
+•	Řízení vojsk
+•	Senzorické systémy zbraní
+•	Součástky elektrotechniky I
+•	Společnost a ozbrojené síly 
+•	Spolehlivost a diagnostika bojových a speciálních vozidel
+•	Správní právo a odpovědnostní vztahy
+•	Statika, pružnost a pevnost 
+•	Stavba letadel I
+•	Stavba letadel II 
+•	Stáž II
+•	Strategické řízení a obranné plánování
+•	Strukturovaná kabeláž 
+•	Synoptická meteorologie 
+•	Synoptická meteorologie II
+•	Systémy fyzické ochrany
+•	Tactical Combat Casualty Care Combat LifeSaver
+•	Taktika
+•	Taktika bojových jednotek
+•	Taktika dělostřelectva 
+•	Technická měření 
+•	Technická služba
+•	Technika letištního technického zabezpečení 
+•	Technologie systémů velení a řízení vzdušných sil
+•	Technologie údržby bojových a speciálních vozidel 
+•	Technologie výroby
+•	Tělesná příprava
+•	Tělesná výchova
+•	Teorie a konstrukce bojových a speciálních vozidel 
+•	Teorie, 	diagnostika a zesilování konstrukcí 
+•	Terorismus
+•	Tropická a cestovní medicína pro zdravotnické pracovníky AČR
+•	Účelový specializační kurz ELINT – 2021
+•	Údržba a opravy letecké techniky
+•	Úkoly a použití jednotek ženijního vojska
+•	Urgentní péče v poli
+•	Válečná chirurgie
+•	Válečné studie 
+•	Válečné studie II
+•	Válečné vnitřní lékařství
+•	Vedení lidí
+•	Velení a řízení ozbrojených sil
+•	Velení a řízení v pozemní PVO
+•	Velení a řízení v protivzdušné obraně
+•	Velení a štábní služba letectva
+•	Velení vojskům a štábní práce 
+•	Vojenská doprava
+•	Vojenská farmacie
+•	Vojenská geografie
+•	Vojenská historie 
+•	Vojenská logistika
+•	Vojenská topografie a navigační systémy
+•	Vojenské stavby
+•	Vojenské umění 
+•	Vojenský leadership
+•	Všeobecná ženijní podpora 
+•	Vševojsková příprava 
+•	Vybavení a výzbroj letadel
+•	Vybrané manažerské nástroje a metody
+•	Vývoj a správa IS
+•	Vývoj aplikací
+•	Výzbroj a bojové použití chemického vojska
+•	Zabezpečení personálu a infrastruktury logistiky
+•	Zacházení s omamnými a psychotropními látkami 
+•	Základní kurz – Palubní střelec
+•	Základní kurz UAS
+•	Základní pilotní příprava 
+•	Základy aerodynamiky a konstrukce letadel 
+•	Základy elektrotechniky 
+•	Základy elektrotechniky a výkonové elektrotechniky 
+•	Základy informatiky 
+•	Základy kartografie a topografie
+•	Základy laické první pomoci
+•	Základy práva
+•	Základy řízení finančních zdrojů
+•	Základy spolehlivosti
+•	Základy spolehlivosti technických systémů
+•	Základy strojnictví a části strojů 
+•	Základy tělesné výchovy 
+•	Základy zpravodajství 
+•	Zaměřovací přístroje
+•	Zaměřovače a systémy řízení palby
+•	Zbraně
+•	Zbraně a munice
+•	Zbraně hromadného ničení a ochrana proti nim 
+•	Zbraňové systémy PVO
+•	Zbrojní služba
+•	Zpravodajské zabezpečení a průzkum 
+•	Zpravodajský systém České republiky
+•	Ženijní podpora
+•	Ženijní technika
