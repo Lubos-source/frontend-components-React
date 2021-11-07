@@ -6,10 +6,10 @@ import {LessonSmall} from "../lesson/lesson";
 import {ClassroomSmall} from "../classroom/classroom";
 
 const subjectsRoot = root + "subjects"
-
+/*
 export const SubjectSmall = (props) => {
     return(
         <Link to={subjectsRoot}> {props.name} </Link>
 
     )
-}
+}*/

@@ -6,7 +6,11 @@ import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
 import FetchRandomUser from './entities/fetchtest';
 import TestMap from './entities/map';
-//import axios from 'axios'
+import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
+import {ArealLarge} from "./entities/areal/areal";
+import {LessonSmall} from "./entities/lesson/lesson";
+import { renderIntoDocument } from 'react-dom/test-utils';
+
 
 const USER_SERVICE_URL = 'https://swapi.co/api/people';   //'https://jsonplaceholder.typicode.com/users';
 
@@ -15,9 +19,13 @@ function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
+function Home() {
+  return <h1>Home site :)</h1>;
+}
+
 //-----------------------------------------------------------------------------//
 
-/*
+/* //TESTing//
 function formatDate(date) {
   return date.toLocaleDateString();
 }
@@ -63,13 +71,35 @@ const comment = {
 };
 */
 
+//menime root :)  :
+export const Routing = () => {
+return(
+  <div>
+  <BrowserRouter>
+    <Routes>
+    <Route path="/" element={<Home/>}/>
+      <Route path="/areal" element={<ArealLarge/>}/>
+      <Route path="/lesson" element={<LessonSmall/>}/>
+      <Route path="/about" element={<About/>}/>
+      <Route path="/fetchsite" element={<FetchRandomUser/>}/>
+    </Routes>
+  </BrowserRouter>
+  </div>
+)
+}
+
+export const About = () => {
+  return(
+    <div>
+    <div>ABOUT site</div>
+
+    </div>
+)
+
+}
 
 
-
-function App() {
-
-  return (
-   
+/* //TESTing2//
     <div>
         <div className="Studenti">
           <Student osoba = {{jmeno:"Test Test",
@@ -97,34 +127,6 @@ function App() {
             </TestMap>
           </div>  
     </div>
-    
-  );
-}
-
-
-export default App;
-
-/*
-<div className="contact-cards">
-          <ContactCard contact = {{name:"Mr. Json Kittie", 
-          imgUrl:"https://placekitten.com/388/200", 
-          phone:"+420 737 589 741", 
-          email:"sakoru@ji.mm"}}
-          />
-        </div>
-        <div className="Welcome">
-          <Welcome name="Lubos" />
-          <Welcome name="Martin" />
-          <Welcome name="Honza" />
-        </div>
-        <div className="coment">
-          <Comment
-          date={comment.date}
-          text={comment.text}
-          author={comment.author}
-          />
-        </div>
-        
-
+      
 
 */

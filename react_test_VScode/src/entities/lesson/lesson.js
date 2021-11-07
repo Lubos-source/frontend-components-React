@@ -6,3 +6,13 @@ import {SubjectSmall} from "../subject/subject";
 import {ClassroomSmall} from "../classroom/classroom";
 
 const lessonRoot = root + "lesson"
+
+export const LessonSmall = () => {
+
+    return(
+        <div>
+           <h3> TEST </h3>
+        </div>
+
+    )
+}
