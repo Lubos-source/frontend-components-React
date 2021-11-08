@@ -8,6 +8,8 @@ import FetchRandomUser from './entities/fetchtest';
 import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
 import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} from "./entities/areal/areal";
+import {ClassroomLarge} from "./entities/classroom/classroom";
+import ClassroomSUMLarge from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import { renderIntoDocument } from 'react-dom/test-utils';
 
@@ -32,6 +34,12 @@ function Home() {
       </li>
       <li>
         <Link to="/fetchsite">Fetch from API testing</Link>
+      </li>
+      <li>
+        <Link to="/classrooms">ClassRooms list</Link>
+      </li>
+      <li>
+        <Link to="/classtestfetch">ClassRoom fatch from API</Link>
       </li>
     </ul>
   </div>
@@ -100,6 +108,10 @@ return(
       <Route path="/areals/KOU" element={<ArealLargeKOU/>}/>
       <Route path="/areals/BAB" element={<ArealLargeBAB/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>
+      <Route path="/classrooms" element={<ClassroomLarge/>}/>
+
+      <Route path="/classtestfetch" element={<ClassroomSUMLarge/>}/>
+      
       <Route path="/about" element={<About/>}/>
       <Route path="/fetchsite" element={<FetchRandomUser/>}/>
     </Routes>
