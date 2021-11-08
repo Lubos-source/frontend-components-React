@@ -7,7 +7,7 @@ import React, { useState, useEffect, Component } from "react";
 import FetchRandomUser from './entities/fetchtest';
 import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
-import {ArealLarge} from "./entities/areal/areal";
+import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} from "./entities/areal/areal";
 import {LessonSmall} from "./entities/lesson/lesson";
 import { renderIntoDocument } from 'react-dom/test-utils';
 
@@ -20,7 +20,23 @@ function Welcome(props) {
 }
 
 function Home() {
-  return <h1>Home site :)</h1>;
+  return (
+  <div>
+    <h1>navigation testing HOME site :)</h1>
+    <ul>
+      <li>
+        <Link to="/areals">areals</Link>
+      </li>
+      <li>
+        <Link to="/about">about</Link>
+      </li>
+      <li>
+        <Link to="/fetchsite">Fetch from API testing</Link>
+      </li>
+    </ul>
+  </div>
+  
+  )
 }
 
 //-----------------------------------------------------------------------------//
@@ -78,7 +94,11 @@ return(
   <BrowserRouter>
     <Routes>
     <Route path="/" element={<Home/>}/>
-      <Route path="/areal" element={<ArealLarge/>}/>
+      <Route path="/areals" element={<ArealList/>}/>
+      <Route path="/areals/SUM" element={<ArealLargeSUM/>}/>
+      <Route path="/areals/CP" element={<ArealLargeCP/>}/>
+      <Route path="/areals/KOU" element={<ArealLargeKOU/>}/>
+      <Route path="/areals/BAB" element={<ArealLargeBAB/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>
       <Route path="/about" element={<About/>}/>
       <Route path="/fetchsite" element={<FetchRandomUser/>}/>
