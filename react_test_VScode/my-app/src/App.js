@@ -11,6 +11,7 @@ import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} fr
 import {ClassroomLarge} from "./entities/classroom/classroom";
 import ClassroomSUMLarge from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
+import {SubjectSmall} from "./entities/subject/subject";
 import { renderIntoDocument } from 'react-dom/test-utils';
 
 
@@ -40,6 +41,12 @@ function Home() {
       </li>
       <li>
         <Link to="/classtestfetch">ClassRoom fatch from API</Link>
+      </li>
+      <li>
+        <Link to="/lesson">lesson</Link>
+      </li>
+      <li>
+        <Link to="/subject">subject</Link>
       </li>
     </ul>
   </div>
@@ -108,6 +115,7 @@ return(
       <Route path="/areals/KOU" element={<ArealLargeKOU/>}/>
       <Route path="/areals/BAB" element={<ArealLargeBAB/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>
+      <Route path="/subject" element={<SubjectSmall/>}/>
       <Route path="/classrooms" element={<ClassroomLarge/>}/>
 
       <Route path="/classtestfetch" element={<ClassroomSUMLarge/>}/>
@@ -159,6 +167,4 @@ export const About = () => {
             </TestMap>
           </div>  
     </div>
-      
-
 */
