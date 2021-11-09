@@ -73,7 +73,6 @@ const arealRoot = root + "areals/KOU"
                 <area shape="poly" coords="102,422,102,488,185,488,185,445,162,445,162,465,129,465,129,423,103,423" href={arealRoot+"/..."} target="_self" alt="." />
             </map>
             <img usemap="#kounicova" src={MapaKOU} alt="mapa Kounicova a Soudni" />              
-    
         </div>
     
         </div>
