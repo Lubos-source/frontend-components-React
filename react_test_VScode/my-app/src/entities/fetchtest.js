@@ -59,6 +59,7 @@ export default class FetchRandomUser extends React.Component{
 
 }
 
+
 /*
             <div>
               <div>titul: {this.state.person.name.title}</div>

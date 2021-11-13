@@ -25,3 +25,72 @@ export const ProgList = () => {
         </div>
     )
 }
+
+export const ProgSubject = () => {
+    const arealRoot = root + "studyprog/subject"
+        return(
+            <div>
+            <h1>Předměty:</h1>
+            <ul>
+                <li>
+                Aerodynamika a konstrukce letadel
+                </li>
+                <li>
+                Aerodynamika a konstrukce letadel II
+                </li>
+                <li>
+                Aerodynamika a konstrukce letadel III
+                </li>
+                <li>
+                    ....
+                </li>
+            </ul>
+            </div>
+        )
+    }
+
+    export const ProgLesson = () => {
+        const arealRoot = root + "studyprog/lesson"
+            return(
+                <div>
+                <h1>Lekce:</h1>
+                <ul>
+                    <li>
+                    Aerobik
+                    </li>
+                    <li>
+                    Bakalářský seminář
+                    </li>
+                    <li>
+                    Diplomový seminář 
+                    </li>
+                    <li>
+                        ....
+                    </li>
+                </ul>
+                </div>
+            )
+        }
+
+        export const ProgCourse = () => {
+            const arealRoot = root + "studyprog/course"
+                return(
+                    <div>
+                    <h1>Kurzy:</h1>
+                    <ul>
+                        <li>
+                        ATSEP –  kvalifikační kurz: Surveillance Data Transmision
+                        </li>
+                        <li>
+                        ATSEP –  obnovovací/konverzní kurz: ATM/CNS Data Processing Domain
+                        </li>
+                        <li>
+                        Kurz generálního štábu MO
+                        </li>
+                        <li>
+                            ....
+                        </li>
+                    </ul>
+                    </div>
+                )
+            }

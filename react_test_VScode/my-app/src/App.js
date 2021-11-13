@@ -12,7 +12,7 @@ import {ClassroomLarge} from "./entities/classroom/classroom";
 import ClassroomSUMLarge from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
-import {ProgList} from './entities/studyprog/studyprog';
+import {ProgCourse, ProgLesson, ProgList, ProgSubject} from './entities/studyprog/studyprog';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
 
@@ -117,7 +117,9 @@ return(
       <Route path="/classrooms" element={<ClassroomLarge/>}/>
       <Route path="/studyprog" element={<ProgList/>}/>
       <Route path="/classtestfetch" element={<ClassroomSUMLarge/>}/>
-      
+      <Route path="/studyprog/subject" element={<ProgSubject/>}/>
+      <Route path="/studyprog/lesson" element={<ProgLesson/>}/>
+      <Route path="/studyprog/course" element={<ProgCourse/>}/>
       <Route path="/about" element={<About/>}/>
       <Route path="/fetchsite" element={<FetchRandomUser/>}/>
     </Routes>
