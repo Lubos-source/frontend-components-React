@@ -108,8 +108,8 @@ return(
     <Routes>
     <Route path="/" element={<Home/>}/>
       <Route path="/areals" element={<ArealList/>}/>
-      <Route path="/areals/SUM" element={<ArealLargeSUM/>}/>
-      <Route path="/areals/CP" element={<ArealLargeCP/>}/>
+      <Route path="/areals/Sumavska" element={<ArealLargeSUM/>}/>
+      <Route path="/areals/CernaPole" element={<ArealLargeCP/>}/>
       <Route path="/areals/KOU" element={<ArealLargeKOU/>}/>
       <Route path="/areals/BAB" element={<ArealLargeBAB/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>

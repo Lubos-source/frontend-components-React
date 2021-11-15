@@ -2,7 +2,12 @@ import MapaSumavska from "../../media/sumak.png";
 import MapaCP from "../../media/cernapole.png";
 import MapaKOU from "../../media/kounicova.png";
 import MapaBAB from "../../media/babaka.png";
-import { Link } from "react-router-dom";
+
+import ArealData from "../../media/Buildings.json";
+
+import { Link, useParams } from "react-router-dom";
+
+import React, {Component, useState, useEffect } from "react";
 
 import {root} from "../index";
 
@@ -11,7 +16,7 @@ import {ClassroomSmall} from "../classroom/classroom";
 const arealRoot = root + "areals"
 
 export const ArealLargeSUM = () => {
-const arealRoot = root + "areals/SUM"
+const arealRoot = root + "areals/Sumavska"
         return(
             <div>
             
@@ -38,7 +43,7 @@ const arealRoot = root + "areals/SUM"
 }
 
 export const ArealLargeCP = () => {
-const arealRoot = root + "areals/CP"
+const arealRoot = root + "areals/CernaPole"
     return(
         <div>
 
@@ -101,16 +106,19 @@ const arealRoot = root + "areals/BAB"
         
 }
 
-export const ArealList = () => {
+export const ArealList = (props) => {
+    props=({areal : [{name: "Sumavska", id : 0 },
+                    {name: "CernaPole", id : 1 }]})
 
+    
     return(
         <div>
         <ul>
             <li>
-                <Link to={arealRoot+"/SUM"}>Sumak</Link>
+                <Link to={arealRoot+"/"+ props.areal[0].name}>{props.areal[0].name}</Link>
             </li>
             <li>
-                <Link to={arealRoot+"/CP"}>Cerna Pole</Link>
+                <Link to={arealRoot+"/"+ props.areal[1].name}>{props.areal[1].name}</Link>
             </li>
             <li>    
                 <Link to={arealRoot+"/KOU"}>Kounicova</Link>
