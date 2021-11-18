@@ -3,6 +3,8 @@ import MapaCP from "../../media/cernapole.png";
 import MapaKOU from "../../media/kounicova.png";
 import MapaBAB from "../../media/babaka.png";
 
+import  Card  from "react-bootstrap/Card";
+import { Row } from "react-bootstrap";
 import ArealData from "../../media/classrooms.json";
 
 import { Link, useParams } from "react-router-dom";
@@ -12,6 +14,13 @@ import React, {Component, useState, useEffect } from "react";
 import {root} from "../index";
 
 import {ClassroomSmall} from "../classroom/classroom";
+
+function escapeUnicode(str) {
+    return str.replace(/[^\0-~]/g, function(ch) {
+        return "\\u" + ("000" + ch.charCodeAt().toString(16)).slice(-4);
+    });
+}
+
 
 
 const arealRoot = root + "areals"
@@ -112,22 +121,24 @@ export const ArealList = (props) => {
     
 //console.log(ArealData)
     return(<div>
-        <div>
-            <h2>-----------------Automaticky z JSON file ----------------</h2>
+        <Card>
+            <h2>-----------------Automaticky list arealu z JSON file ----------------</h2>
             <ul>
             {
                 ArealData.areas.map((datas, key)=>{
                     return(
                         <div key={key}>
-                            <li>
-                            <Link to={arealRoot+"/"+ datas.name}>{datas.name}</Link>
-                            </li>
+                            <Card.Body>
+                                <Card.Text>
+                                    <Row><Link to={arealRoot+"/"+ datas.name}>{datas.name}{console.log(datas.name)}</Link></Row>
+                                </Card.Text>
+                            </Card.Body>
                         </div>
                     )
                                                 })
             }
             </ul>
-        </div>
+        </Card>
 
         <div>
             <h2>------------------Testing "natvrdo"------------------</h2>

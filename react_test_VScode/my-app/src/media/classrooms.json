@@ -1396,102 +1396,103 @@
       "sphereId": 2,
       "colorId": 12
     }
+  ],
+  "lessonType": [
+    {
+      "id": 1,
+      "name": "pøednáška",
+      "shortName": "P",
+      "colorId": 2
+    },
+    {
+      "id": 2,
+      "name": "cvièení",
+      "shortName": "CV",
+      "colorId": 17
+    },
+    {
+      "id": 3,
+      "name": "semináø",
+      "shortName": "SEM",
+      "colorId": 6
+    },
+    {
+      "id": 4,
+      "name": "laboratorní cvièení",
+      "shortName": "LAB",
+      "colorId": 13
+    },
+    {
+      "id": 5,
+      "name": "polní výcvik",
+      "shortName": "PV",
+      "colorId": 4
+    },
+    {
+      "id": 6,
+      "name": "exkurze",
+      "shortName": "EX",
+      "colorId": 10
+    },
+    {
+      "id": 7,
+      "name": "praxe",
+      "shortName": "PX",
+      "colorId": 10
+    },
+    {
+      "id": 8,
+      "name": "kurz",
+      "shortName": "KRZ",
+      "colorId": 8
+    },
+    {
+      "id": 9,
+      "name": "stáž",
+      "shortName": "STŽ",
+      "colorId": 10
+    },
+    {
+      "id": 11,
+      "name": "terén",
+      "shortName": "TER",
+      "colorId": 4
+    },
+    {
+      "id": 12,
+      "name": "samostatná práce",
+      "shortName": "SMP",
+      "colorId": 18
+    },
+    {
+      "id": 13,
+      "name": "konzultace",
+      "shortName": "KON",
+      "colorId": 6
+    },
+    {
+      "id": 15,
+      "name": "kolokvium",
+      "shortName": "KOL",
+      "colorId": 8
+    },
+    {
+      "id": 16,
+      "name": "jiné",
+      "shortName": "J",
+      "colorId": 8
+    },
+    {
+      "id": 18,
+      "name": "termín (zk., kl.z.)",
+      "shortName": "ZK",
+      "colorId": 19
+    },
+    {
+      "id": 19,
+      "name": "státní zkoušky",
+      "shortName": "SZK",
+      "colorId": 7
+    }
   ]
-  ,"lessonType": [
-  {
-    "id": 1,
-    "name": "pøednáška",
-    "shortName": "P",
-    "colorId": 2
-  },
-  {
-    "id": 2,
-    "name": "cvièení",
-    "shortName": "CV",
-    "colorId": 17
-  },
-  {
-    "id": 3,
-    "name": "semináø",
-    "shortName": "SEM",
-    "colorId": 6
-  },
-  {
-    "id": 4,
-    "name": "laboratorní cvièení",
-    "shortName": "LAB",
-    "colorId": 13
-  },
-  {
-    "id": 5,
-    "name": "polní výcvik",
-    "shortName": "PV",
-    "colorId": 4
-  },
-  {
-    "id": 6,
-    "name": "exkurze",
-    "shortName": "EX",
-    "colorId": 10
-  },
-  {
-    "id": 7,
-    "name": "praxe",
-    "shortName": "PX",
-    "colorId": 10
-  },
-  {
-    "id": 8,
-    "name": "kurz",
-    "shortName": "KRZ",
-    "colorId": 8
-  },
-  {
-    "id": 9,
-    "name": "stáž",
-    "shortName": "STŽ",
-    "colorId": 10
-  },
-  {
-    "id": 11,
-    "name": "terén",
-    "shortName": "TER",
-    "colorId": 4
-  },
-  {
-    "id": 12,
-    "name": "samostatná práce",
-    "shortName": "SMP",
-    "colorId": 18
-  },
-  {
-    "id": 13,
-    "name": "konzultace",
-    "shortName": "KON",
-    "colorId": 6
-  },
-  {
-    "id": 15,
-    "name": "kolokvium",
-    "shortName": "KOL",
-    "colorId": 8
-  },
-  {
-    "id": 16,
-    "name": "jiné",
-    "shortName": "J",
-    "colorId": 8
-  },
-  {
-    "id": 18,
-    "name": "termín (zk., kl.z.)",
-    "shortName": "ZK",
-    "colorId": 19
-  },
-  {
-    "id": 19,
-    "name": "státní zkoušky",
-    "shortName": "SZK",
-    "colorId": 7
-  }
-]}
+}
