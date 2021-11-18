@@ -3,7 +3,7 @@ import MapaCP from "../../media/cernapole.png";
 import MapaKOU from "../../media/kounicova.png";
 import MapaBAB from "../../media/babaka.png";
 
-import ArealData from "../../media/Buildings.json";
+import ArealData from "../../media/classrooms.json";
 
 import { Link, useParams } from "react-router-dom";
 
@@ -13,7 +13,9 @@ import {root} from "../index";
 
 import {ClassroomSmall} from "../classroom/classroom";
 
+
 const arealRoot = root + "areals"
+
 
 export const ArealLargeSUM = () => {
 const arealRoot = root + "areals/Sumavska"
@@ -107,18 +109,34 @@ const arealRoot = root + "areals/BAB"
 }
 
 export const ArealList = (props) => {
-    props=({areal : [{name: "Sumavska", id : 0 },
-                    {name: "CernaPole", id : 1 }]})
-
     
-    return(
+//console.log(ArealData)
+    return(<div>
         <div>
+            <h2>-----------------Automaticky z JSON file ----------------</h2>
+            <ul>
+            {
+                ArealData.areas.map((datas, key)=>{
+                    return(
+                        <div key={key}>
+                            <li>
+                            <Link to={arealRoot+"/"+ datas.name}>{datas.name}</Link>
+                            </li>
+                        </div>
+                    )
+                                                })
+            }
+            </ul>
+        </div>
+
+        <div>
+            <h2>------------------Testing "natvrdo"------------------</h2>
         <ul>
             <li>
-                <Link to={arealRoot+"/"+ props.areal[0].name}>{props.areal[0].name}</Link>
+                <Link to={arealRoot+"/"+ "Sumavska"}>Sumavska</Link>
             </li>
             <li>
-                <Link to={arealRoot+"/"+ props.areal[1].name}>{props.areal[1].name}</Link>
+                <Link to={arealRoot+"/"+ "CernaPole"}>CernaPole</Link>
             </li>
             <li>    
                 <Link to={arealRoot+"/KOU"}>Kounicova</Link>
@@ -127,6 +145,7 @@ export const ArealList = (props) => {
                 <Link to={arealRoot+"/BAB"}>Babak</Link>
             </li>
         </ul>
+        </div>
         </div>
     )
 
