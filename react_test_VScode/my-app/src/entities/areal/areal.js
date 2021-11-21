@@ -27,7 +27,7 @@ const arealRoot = root + "areals"
 
 
 export const ArealLargeSUM = () => {
-const arealRoot = root + "areals/Sumavska"
+    const arealRoot = root + "areals/5"
         return(
             <div>
             
@@ -54,7 +54,7 @@ const arealRoot = root + "areals/Sumavska"
 }
 
 export const ArealLargeCP = () => {
-const arealRoot = root + "areals/CernaPole"
+    const arealRoot = root + "areals/2"
     return(
         <div>
 
@@ -75,11 +75,9 @@ const arealRoot = root + "areals/CernaPole"
 }
 
 export const ArealLargeKOU = () => {
-const arealRoot = root + "areals/KOU"
+const arealRoot = root + "areals/7"
     return(
-        <div>
-        <div><h1>TEST rootingu</h1></div>
-    
+        <div>    
     
         <div>
             <map name="kounicova">
@@ -97,7 +95,7 @@ const arealRoot = root + "areals/KOU"
 }
 
 export const ArealLargeBAB = () => {
-const arealRoot = root + "areals/BAB"
+const arealRoot = root + "areals/6"
     return(
         <div>        
         
@@ -122,7 +120,7 @@ export const ArealList = (props) => {
 //console.log(ArealData)
     return(<div>
         <Card>
-            <h2>-----------------Automaticky list arealu z JSON file ----------------</h2>
+            <h2>-----------------Automatický list areálu z JSON file ----------------</h2>
             <ul>
             {
                 ArealData.areas.map((datas, key)=>{
@@ -130,7 +128,7 @@ export const ArealList = (props) => {
                         <div key={key}>
                             <Card.Body>
                                 <Card.Text>
-                                    <Row><Link to={arealRoot+"/"+ datas.name}>{datas.name}{console.log(datas.name)}</Link></Row>
+                                    <Row><Link to={arealRoot+"/"+ datas.id}>{datas.name}</Link></Row>
                                 </Card.Text>
                             </Card.Body>
                         </div>
@@ -140,24 +138,24 @@ export const ArealList = (props) => {
             </ul>
         </Card>
 
-        <div>
-            <h2>------------------Testing "natvrdo"------------------</h2>
-        <ul>
-            <li>
-                <Link to={arealRoot+"/"+ "Sumavska"}>Sumavska</Link>
-            </li>
-            <li>
-                <Link to={arealRoot+"/"+ "CernaPole"}>CernaPole</Link>
-            </li>
-            <li>    
-                <Link to={arealRoot+"/KOU"}>Kounicova</Link>
-            </li>
-            <li>    
-                <Link to={arealRoot+"/BAB"}>Babak</Link>
-            </li>
-        </ul>
-        </div>
         </div>
     )
+
+}
+
+export const ArealLarge = (props) => {
+    //const { id } = useParams();
+    //const arealRoot = root + "areals" + "/" + id
+    
+    //console.log(arealRoot)
+    //console.log(id)
+    return(
+    <div>
+        <Card>
+        <Card.Header><b>Seznam učeben: </b></Card.Header>
+            <ClassroomSmall/>
+        </Card>
+    </div>)
+
 
 }

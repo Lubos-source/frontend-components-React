@@ -7,8 +7,8 @@ import React, { useState, useEffect, Component } from "react";
 import FetchRandomUser from './entities/fetchtest';
 import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
-import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} from "./entities/areal/areal";
-import {ClassroomLarge} from "./entities/classroom/classroom";
+import {ArealLarge, ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} from "./entities/areal/areal";
+import {ClassroomList} from "./entities/classroom/classroom";
 import ClassroomSUMLarge from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
@@ -17,11 +17,6 @@ import { renderIntoDocument } from 'react-dom/test-utils';
 
 
 const USER_SERVICE_URL = 'https://swapi.co/api/people';   //'https://jsonplaceholder.typicode.com/users';
-
-
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
 
 function Home() {
   return (
@@ -32,7 +27,7 @@ function Home() {
         <Link to="/areals">areals</Link>
       </li>
       <li>
-        <Link to="/about">about</Link>
+        <Link to="/about">Problems in project</Link>
       </li>
       <li>
         <Link to="/fetchsite">Fetch from API testing</Link>
@@ -41,7 +36,7 @@ function Home() {
         <Link to="/classrooms">ClassRooms list</Link>
       </li>
       <li>
-        <Link to="/classtestfetch">ClassRoom fatch from API</Link>
+        <Link to="/classtestfetch">ClassRoom fatch from online API</Link>
       </li>
       <li>
         <Link to="/studyprog">Studijni program</Link>
@@ -52,69 +47,25 @@ function Home() {
   )
 }
 
-//-----------------------------------------------------------------------------//
-
-/* //TESTing//
-function formatDate(date) {
-  return date.toLocaleDateString();
-}
-
-function Avatar(props) {
-  return (
-    <img
-      className="Avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
-    />
-  );
-}
-
-function UserInfo(props) {
-  return (
-    <div className="UserInfo">
-      <Avatar user={props.user} />
-      <div className="UserInfo-name">{props.user.name}</div>
-    </div>
-  );
-}
-
-function Comment(props) {
-  return (
-    <div className="Comment">
-      <UserInfo user={props.author} />
-      <div className="Comment-text">{props.text}</div>
-      <div className="Comment-date">
-        {formatDate(props.date)}
-      </div>
-    </div>
-  );
-}
-
-const comment = {
-  date: new Date(),
-  text: 'I hope you enjoy learning React!',
-  author: {
-    name: 'Hello Kitty',
-    avatarUrl: 'https://placekitten.com/g/64/64',
-  },
-};
-*/
-
 //menime root :)  :
 export const Routing = () => {
 return(
   <div>
   <BrowserRouter>
     <Routes>
-    <Route path="/" element={<Home/>}/>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/areals/:id" element={<ArealLarge/>}/>
       <Route path="/areals" element={<ArealList/>}/>
-      <Route path="/areals/Sumavska" element={<ArealLargeSUM/>}/>
-      <Route path="/areals/CernaPole" element={<ArealLargeCP/>}/>
-      <Route path="/areals/KOU" element={<ArealLargeKOU/>}/>
-      <Route path="/areals/BAB" element={<ArealLargeBAB/>}/>
+      
+      <Route path="/areals/5" element={<ArealLargeSUM/>}/>
+      <Route path="/areals/2" element={<ArealLargeCP/>}/>
+      <Route path="/areals/7" element={<ArealLargeKOU/>}/>
+      <Route path="/areals/8" element={<ArealLargeKOU/>}/>
+      <Route path="/areals/6" element={<ArealLargeBAB/>}/>
+      
       <Route path="/lesson" element={<LessonSmall/>}/>
       <Route path="/subject" element={<SubjectSmall/>}/>
-      <Route path="/classrooms" element={<ClassroomLarge/>}/>
+      <Route path="/classrooms" element={<ClassroomList/>}/>
       <Route path="/studyprog" element={<ProgList/>}/>
       <Route path="/classtestfetch" element={<ClassroomSUMLarge/>}/>
       <Route path="/studyprog/subject" element={<ProgSubject/>}/>
@@ -131,7 +82,19 @@ return(
 export const About = () => {
   return(
     <div>
-    <div>ABOUT site</div>
+    <div><h1>##Problémy v projektu: <l style={{color: 'red'}}> ('red') - aktuální </l> </h1>
+
+    <h3>ROOTING : </h3>
+    <div>Nefunguje přepínání mezi stránkami, <b>vyřešeno:</b> </div>
+        Vytvoření constanty "Routing" v "App.js" a její naimportování
+        do index.js. V const Routing je Switcher = novější verze = Routes a v ní jednotlivé Route path="" element=
+        Pro zobrazení danné stránky se používá parametr "element" NOVĚJŠÍ VERZE !
+
+<h3>Učebny :</h3>
+<div>Problém načtení z json a zobrazení učeben na dannou budovu.<b>Hotovo</b></div> 
+<div style={{color: 'red'}}>Problém zobrazování češtiny z JSON file....přitom zobrazení češtiny na stránce jde ! 
+    asi problém že neumí přečíst tyhle znaky z JSON souboru?</div>
+</div>
 
     </div>
 )

@@ -1,75 +1,94 @@
 
 import {root} from "../index";
 
+
 import React, {Component, useState, useEffect } from "react";
+
+import  Card  from "react-bootstrap/Card";
+import { Row } from "react-bootstrap";
 
 import {LessonSmall} from "../lesson/lesson";
 
+import { Link, useParams } from "react-router-dom";
+
+import ArealData from "../../media/classrooms.json";
+
 const classroomRoot = root + "classroom"
 
-export const ClassroomLarge = () => {
-            return(
+export const ClassroomList = () => {
+
+    return(
         <div>
-                <div>
-                    Šumavská
-                    <ul>
-                        Š9A:
-                        <li>
-                            učebna 1
-                        </li>
-                        <li>
-                            učebna 2
-                        </li>
-                        <li>
-                            ....
-                        </li>
-                    </ul>
-                    <ul>
-                        Š1:
-                        <li>
-                            učebna 1
-                        </li>
-                        <li>
-                            učebna 2
-                        </li>
-                        <li>
-                            ....
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                Kounicova
-                <ul>
-                    K1:
-                    <li>
-                        učebna 1
-                    </li>
-                    <li>
-                        učebna 2
-                    </li>
-                    <li>
-                        ....
-                    </li>
-                </ul>
-                <ul>
-                    Kx:
-                    <li>
-                        učebna 1
-                    </li>
-                    <li>
-                        učebna 2
-                    </li>
-                    <li>
-                        ....
-                    </li>
-                </ul>
-            </div>
-    </div>
-            )
-    
+            {
+                ArealData.areas.map((datas, key)=>{
+                    return(
+                        <div key={key}>
+                            <Card>
+                                <Card.Header><b>{datas.name}</b></Card.Header>
+                                    {ClassroomCondition(datas.id)}
+                            </Card>
+                        </div>
+                    )
+                                                })
+            }
+        </div>
+
+    )
+               
 }
 
+export const ClassroomCondition = (areaid) => {
+    const [expanded, setExpanded] = useState(false);
+    var result = <>Error</>
+    if (expanded) {
+        result = (
+            <>                                       
+             <Card.Body>
+                 <Card.Text>
+                     <Row>{ClassroomMedium(areaid)}</Row>                     
+                 </Card.Text>
+             </Card.Body>              
+         <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
+                                
+            </>
+        )
+    } else {
+        result = (
+            <>                
+            <Card.Body>
+                <Card.Text>
+                    <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
+                </Card.Text>
+            </Card.Body>                                                   
+            </>
+        )
+    }
+    return result
+}
 
+export const ClassroomMedium = (arealid) => {
+    console.log("hodnota ClassroomMedium je : ", arealid, "typu : ", arealid.type)
+    return(
+        <div>
+            {
+                ArealData.classrooms.map((datas)=>{
+                    if(datas.areaId==arealid){
+                        return(
+                            
+                            <Card.Body>
+                                <Card.Text>                                    
+                                    <Row>{datas.name}</Row>
+                                </Card.Text>
+                            </Card.Body>
+                            
+                        )
+                    }
+                                                })
+            }
+        </div>
+
+    )
+}
 
 export default class ClassroomSUMLarge extends React.Component{
 
@@ -116,3 +135,12 @@ export const Classroomprops = (props) => {
     )
 }
 */
+
+export const ClassroomSmall = (arealid) => {
+    const { id } = useParams();
+    console.log("id v ClassroomSmall je : ", id)
+    return(
+    <div>
+            {ClassroomMedium(id)}
+    </div>)
+}
