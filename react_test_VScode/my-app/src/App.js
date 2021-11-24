@@ -8,7 +8,7 @@ import FetchRandomUser from './entities/fetchtest';
 import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
 import {ArealLarge, ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList} from "./entities/areal/areal";
-import {ClassroomList} from "./entities/classroom/classroom";
+import {ClassroomList, ClassroomTest} from "./entities/classroom/classroom";
 import ClassroomSUMLarge from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
@@ -41,6 +41,9 @@ function Home() {
       <li>
         <Link to="/studyprog">Studijni program</Link>
       </li>
+      <li>
+        <Link to="/testing">Testing fetch + query</Link>
+      </li>
     </ul>
   </div>
   
@@ -63,6 +66,7 @@ return(
       <Route path="/areals/8" element={<ArealLargeKOU/>}/>
       <Route path="/areals/6" element={<ArealLargeBAB/>}/>
       
+      <Route path="/testing" element ={<ClassroomTest/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>
       <Route path="/subject" element={<SubjectSmall/>}/>
       <Route path="/classrooms" element={<ClassroomList/>}/>
@@ -93,7 +97,7 @@ export const About = () => {
 <h3>Učebny :</h3>
 <div>Problém načtení z json a zobrazení učeben na dannou budovu.<b>Hotovo</b></div> 
 <div style={{color: 'red'}}>Problém zobrazování češtiny z JSON file....přitom zobrazení češtiny na stránce jde ! 
-    asi problém že neumí přečíst tyhle znaky z JSON souboru?</div>
+    asi problém že neumí přečíst tyhle znaky z JSON souboru?<b>Hotovo</b> Převedení JSON na JS a určení UTF 8 kódování</div>
 </div>
 
     </div>

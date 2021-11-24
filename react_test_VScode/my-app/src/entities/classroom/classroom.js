@@ -11,7 +11,8 @@ import {LessonSmall} from "../lesson/lesson";
 
 import { Link, useParams } from "react-router-dom";
 
-import ArealData from "../../media/classrooms.json";
+import ArealData from "../../media/classrooms2.js";
+//
 
 const classroomRoot = root + "classroom"
 
@@ -143,4 +144,77 @@ export const ClassroomSmall = (arealid) => {
     <div>
             {ClassroomMedium(id)}
     </div>)
+}
+
+
+export const ClassroomTest = (props) => {
+    
+
+    const [state, setState] = useState({
+        'title': props.title,
+        'date': props.date,
+        //'guest': [{'name': props.guest.name, 'twiter': props.guest.twiter}],
+        'description': props.description
+        /*'lessons': [
+            {'id': 257, 'name': '23-5AT'}
+        ],
+        'subjects': [
+            {'id': 458, 'name': 'subj1'}
+        ]*/
+    });
+
+    useEffect(() => {
+        fetch('https://www.learnwithjason.dev/graphql', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: `
+                  query GetLearnWithJasonEpisodes($now: DateTime!) {
+                    allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
+                      date
+                      title
+                      guest {
+                        name
+                        twitter
+                      }
+                      description
+                    }
+                  }
+                `,
+              variables: {
+                now: new Date().toISOString(),
+              },
+            }),
+          })
+            .then((res) => res.json())
+            .then((result) => setState(result.data.allEpisode[0]));
+    }, [] )
+    
+    //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
+
+
+/*
+    const ClassroomLessons = []
+    for(var index = 0; index < state.lessons.length; index++) {
+        const sgItem = state.lessons[index]
+        ClassroomLessons.push(<ClassroomSmall id={sgItem.id} name={sgItem.name}/>);
+        ClassroomLessons.push(<br />);
+    }
+
+    const ClassroomSubjects = []
+    for(var index = 0; index < state.subjects.length; index++) {
+        const ssItem = state.subjects[index];
+        ClassroomSubjects.push(<ClassroomSmall id={ssItem.id} name={ssItem.name}/>)
+    }
+*/
+    return (<div>
+                <h1>{state.title}</h1>
+                <p>date: {state.date}</p>
+                <p>description: {state.description}</p>
+                <p>{JSON.stringify(state)}</p>
+                {console.log("State console log2: ", state)}
+
+            </div>)
 }

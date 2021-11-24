@@ -5,7 +5,7 @@ import MapaBAB from "../../media/babaka.png";
 
 import  Card  from "react-bootstrap/Card";
 import { Row } from "react-bootstrap";
-import ArealData from "../../media/classrooms.json";
+import ArealData from "../../media/classrooms2.js";
 
 import { Link, useParams } from "react-router-dom";
 
