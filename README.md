@@ -87,23 +87,23 @@ Společné podmínky:
 Vlastní časový harmonogram:
 ----
 
-● 14.11. 2021 Vytvoření struktur html jednotlivých stránek, jak by mohly vypadat (studijní program, předmět, lekce, učebna, areál) Určit si která z komponent bude LARGE, MEDIUM a SMALL. Uvědomit si a vymyslet, které informace budou danné komponenty obsahovat.
+● 14.11. 2021 Vytvoření struktur html jednotlivých stránek, jak by mohly vypadat (studijní program, předmět, lekce, učebna, areál) Určit si která z komponent bude LARGE, MEDIUM a SMALL. Uvědomit si a vymyslet, které informace budou danné komponenty obsahovat. ✔
 
-● 28.11. 2021 Využití data ze ["STARWARS database API"](https://swapi.co/) nebo jiné API k provozu a dostání testovacích dat z API do požadovaných polích vytvořené stránky.
+● 28.11. 2021 Využití data ze ["STARWARS database API"](https://swapi.co/) nebo jiné API k provozu a dostání testovacích dat z API do požadovaných polích vytvořené stránky. nakonec TESTUJEME na JSON souboru, vytaženého z rozvrhu :)
 
 ● 12.12. 2021 Propojení komponent mezi sebou. Dovytvoření chybějících komponent.
 
-● 31.12.2021 Nalezení UNOB API, prozkoumání jak v ní vypadají data, která potřebujeme.
+● 31.12.2021 Nalezení UNOB API, prozkoumání jak v ní vypadají data, která potřebujeme. // NEREALIZOVAT (nakonec místní JSON soubor z rozvrhu)
 
-● 10.1.2022 Přepsání programu, aby komunikoval s UNOB API a dostali jsme do aplikace reálná požadovaná data.
+● 10.1.2022 Přepsání programu, aby komunikoval s API od spolužáků a dostali jsme požadovaná data.
 
 Nejsložitější problémy v projektu:
 ----
 ● napsat vhodně program aby se dal využít i na jiné API než na které budeme testovat, případně aby bylo nutno udělat minimum změn :)
 
-● Potřebujeme najít UNOB API a zjistit jak vypadají data v ní - podle toho pak změníme program. (zodpovědná osoba na UO - Hana Vlachová)
+● Potřebujeme najít UNOB API a zjistit jak vypadají data v ní - podle toho pak změníme program. (zodpovědná osoba na UO - Hana Vlachová) //nakonec nerealizujeme
 
-● interakce reactu s API, aby se nenačítali data dlouho. Vymyslet asi postupné načítání jen potřebných dat, které chce uživatel vidět a poté získávání dalších dat na základě požadavků uživatele. (GraphQL???)
+● interakce reactu s API, aby se nenačítali data dlouho. Vymyslet asi postupné načítání jen potřebných dat, které chce uživatel vidět a poté získávání dalších dat na základě požadavků uživatele. (GraphQL???) // úkol pro jinou skupinu
 
 ● propojení jednotlivých komponent mezi sebou, kam a kdy která komponenta odkáže. Možnost více komponent pro jednu položku (např. areál exituje small a zároveň large komponenta)
 
