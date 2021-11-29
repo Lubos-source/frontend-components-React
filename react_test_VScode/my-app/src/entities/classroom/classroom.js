@@ -150,38 +150,43 @@ export const ClassroomSmall = (arealid) => {
 export const ClassroomTest = (props) => {
     
 
-    const [state, setState] = useState({
-        'title': props.title,
-        'date': props.date,
-        //'guest': [{'name': props.guest.name, 'twiter': props.guest.twiter}],
-        'description': props.description
-        /*'lessons': [
-            {'id': 257, 'name': '23-5AT'}
-        ],
-        'subjects': [
-            {'id': 458, 'name': 'subj1'}
-        ]*/
-    });
+    const [state, setState] = useState(
+        {
+            'continents': //areals
+            [{
+                'name': props.name, //jmeno arealu
+                'code': props.code, //id arealu
+                'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
+                                  'languages': [{'code' : 'c', 'name':'n','native':'na'}]     //predmety (id, jmeno, lekce...)
+                                }]
+            }]
+            
+        });
 
     useEffect(() => {
-        fetch('https://www.learnwithjason.dev/graphql', {
+        fetch('https://countries.trevorblades.com/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               query: `
-                  query GetLearnWithJasonEpisodes($now: DateTime!) {
-                    allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
-                      date
-                      title
-                      guest {
-                        name
-                        twitter
-                      }
-                      description
+              # Write your query or mutation here
+              query {
+                continents {
+                  code
+                  name
+                  countries {
+                    name
+                    code
+                    languages {
+                      code
+                      name
+                      native
                     }
                   }
+                }
+              }              
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -189,20 +194,27 @@ export const ClassroomTest = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.allEpisode[0]));
+            .then((result) => setState(result.data));
     }, [] )
     
     //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
-
-
 /*
-    const ClassroomLessons = []
-    for(var index = 0; index < state.lessons.length; index++) {
-        const sgItem = state.lessons[index]
-        ClassroomLessons.push(<ClassroomSmall id={sgItem.id} name={sgItem.name}/>);
-        ClassroomLessons.push(<br />);
-    }
+    const countries = []
+    for(var ind = 0; ind < state.continents[ind].countries.length; ind++){
+        for(var index = 0; index < state.continents[ind].countries.length; index++) {
+            const sgItem = state.continents[index].countries[index]
+            countries.push(<LessonSmall id={sgItem.code} name={sgItem.name}/>);
+            countries.push(<br />);
+        }
+}*/
 
+    const continents = []
+    for(var index = 0; index < state.continents.length; index++) {
+        const sgItem = state.continents[index]
+        continents.push(<div><h1>continent NAME: {sgItem.name}</h1> <p>continent CODE: {sgItem.code}</p> contries: [name, id, languages:[code, name, nativ]</div>);
+        continents.push(<br />);
+    }
+/*
     const ClassroomSubjects = []
     for(var index = 0; index < state.subjects.length; index++) {
         const ssItem = state.subjects[index];
@@ -210,11 +222,84 @@ export const ClassroomTest = (props) => {
     }
 */
     return (<div>
-                <h1>{state.title}</h1>
-                <p>date: {state.date}</p>
-                <p>description: {state.description}</p>
-                <p>{JSON.stringify(state)}</p>
+                <div>{continents}</div>
+                
+                <p><b>státy: </b> <td>  {/*countries*/} </td></p>
                 {console.log("State console log2: ", state)}
+                
+                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
 
             </div>)
 }
+
+
+/*
+
+export const ClassroomTest = (props) => {
+    
+
+    const [state, setState] = useState(
+        {
+            'title': props.title,
+            'date': props.date,
+            //'guest': [{'name': props.guest.name, 'twiter': props.guest.twiter}],
+            'description': props.description,
+            'guest': [ { 'name': 'testingname', 'twitter':'tetsingtwitter' }]
+            'lessons': [
+                {'id': 257, 'name': '23-5AT'}
+            ],
+            'subjects': [
+                {'id': 458, 'name': 'subj1'}
+            ]
+        });
+
+        useEffect(() => {
+            fetch('https://www.learnwithjason.dev/graphql', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  query: `
+                      query GetLearnWithJasonEpisodes($now: DateTime!) {
+                        allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
+                          date
+                          title
+                          guest {
+                            name
+                            twitter
+                          }
+                          description
+                        }
+                      }
+                    `,
+                  variables: {
+                    now: new Date().toISOString(),
+                  },
+                }),
+              })
+                .then((res) => res.json())
+                .then((result) => setState(result.data.allEpisode[0]));
+        }, [] )
+        
+        //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
+    
+        const guest = []
+        for(var index = 0; index < state.guest.length; index++) {
+            const sgItem = state.guest[index]
+            guest.push(<LessonSmall id={sgItem.twitter} name={sgItem.name}/>);
+            guest.push(<br />);
+        }
+    
+        return (<div>
+                    <h1>{state.title}</h1>
+                    <p><b>date:</b> {state.date}</p>
+                    <p><b>description:</b> {state.description}</p>
+                    <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
+                    {console.log("State console log2: ", state)}
+                    <p><b>Test guest:</b> <td> Twitter: {guest}</td></p>
+    
+                </div>)
+    }
+
+*/
