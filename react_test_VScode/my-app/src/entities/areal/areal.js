@@ -13,14 +13,8 @@ import React, {Component, useState, useEffect } from "react";
 
 import {root} from "../index";
 
-import {ClassroomSmall} from "../classroom/classroom";
-
-function escapeUnicode(str) {
-    return str.replace(/[^\0-~]/g, function(ch) {
-        return "\\u" + ("000" + ch.charCodeAt().toString(16)).slice(-4);
-    });
-}
-
+import {ClassroomTest} from "../classroom/classroom";
+import { useButtonProps } from "@restart/ui/esm/Button";
 
 
 const arealRoot = root + "areals"
@@ -153,9 +147,111 @@ export const ArealLarge = (props) => {
     <div>
         <Card>
         <Card.Header><b>Seznam učeben: </b></Card.Header>
-            <ClassroomSmall/>
+            <ClassroomTest id={props.code}/>
         </Card>
     </div>)
 
+
+}
+
+export const ArealTest = (props) => {
+    
+
+    const [state, setState] = useState(
+        {
+            'continents': //areals
+            [{
+                'name': props.name, //jmeno arealu
+                'code': props.code, //id arealu
+                'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
+                                  'languages': [{'code' : 'c', 'name':'n','native':'na'}]     //predmety (id, jmeno, lekce...)
+                                }]
+            }]
+            
+        });
+
+    useEffect(() => {
+        fetch('https://countries.trevorblades.com/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: `
+              # Write your query or mutation here
+              query {
+                continents {
+                  code
+                  name`/*
+                  countries {
+                    name
+                    code
+                    languages {
+                      code
+                      name
+                      native
+                    }
+                }*/+`
+                }
+              }              
+                `,
+              variables: {
+                now: new Date().toISOString(),
+              },
+            }),
+          })
+            .then((res) => res.json())
+            .then((result) => setState(result.data));
+    }, [] )
+    
+    //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
+/*
+    const countries = []
+    for(var ind = 0; ind < state.continents[ind].countries.length; ind++){
+        for(var index = 0; index < state.continents[ind].countries.length; index++) {
+            const sgItem = state.continents[index].countries[index]
+            countries.push(<LessonSmall id={sgItem.code} name={sgItem.name}/>);
+            countries.push(<br />);
+        }
+}*/
+
+    const continents = []
+    for(var index = 0; index < state.continents.length; index++) {
+        const sgItem = state.continents[index]
+        continents.push(<ArealSmall name={sgItem.name} code={sgItem.code}/>);
+        //continents.push(<br />);
+    }
+/*
+    const ClassroomSubjects = []
+    for(var index = 0; index < state.subjects.length; index++) {
+        const ssItem = state.subjects[index];
+        ClassroomSubjects.push(<ClassroomSmall id={ssItem.id} name={ssItem.name}/>)
+    }
+*/
+    return (<div>
+                <div>{continents}</div>
+                
+                <p><b>státy: </b> <td>  {/*countries*/} </td></p>
+                {console.log("State console log2: ", state)}
+                
+                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
+
+            </div>)
+}
+
+
+export const ArealSmall = (props) => {
+
+    return (
+        <Card>
+            <Card.Header>continent NAME: <b>{props.name}</b></Card.Header> 
+            <Card.Text>
+                <Row>continent CODE: {props.code}</Row>
+                <Row>contries: [name, id, languages:[code, name, nativ]</Row>
+                <Link to={arealRoot + `/${props.code}`}>odkaz - {props.name}{props.children}</Link>
+            </Card.Text>
+        {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
+        </Card>
+    )
 
 }

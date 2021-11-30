@@ -91,39 +91,6 @@ export const ClassroomMedium = (arealid) => {
     )
 }
 
-export default class ClassroomSUMLarge extends React.Component{
-
-    state = {
-        loading: true,
-        class: null,
-    
-      }
-    
-      async componentDidMount(){
-        const url = "https://api.randomuser.me/";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({class: data.results[0], loading: false})
-        //console.log(data.results[0]);
-      }
-
-        render(){
-            if (this.state.loading) {
-                return(<div align="">loading....</div>)
-              }
-          
-              if (!this.state.class) {
-                return(<div>ClassRoom not found!</div>)
-              }
-            return(
-            <div>
-                fatch test :
-                <div>ClassRoom name: <b>{this.state.class.name.first}</b></div>
-            </div>
-            )
-        }
-
-}
 
 //tvorba classrooms pomoci props (inProgress):
 /*
@@ -136,31 +103,22 @@ export const Classroomprops = (props) => {
     )
 }
 */
-
-export const ClassroomSmall = (arealid) => {
-    const { id } = useParams();
-    console.log("id v ClassroomSmall je : ", id)
+export const ClassroomSmall = (props) => {
+    
     return(
-    <div>
-            {ClassroomMedium(id)}
-    </div>)
+        <div>
+               <Link to={classroomRoot + `/${props.code}`}>odkaz - {props.name}{props.children}</Link> 
+        </div>)
 }
 
 
-export const ClassroomTest = (props) => {
-    
+export const ClassroomTest = (arealid) => {
+    const { id } = useParams();
+    console.log("id v ClassroomTest je : ", id)
 
     const [state, setState] = useState(
         {
-            'continents': //areals
-            [{
-                'name': props.name, //jmeno arealu
-                'code': props.code, //id arealu
-                'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
-                                  'languages': [{'code' : 'c', 'name':'n','native':'na'}]     //predmety (id, jmeno, lekce...)
-                                }]
-            }]
-            
+            'countries':[{'name':'n', 'code': 'c'}]
         });
 
     useEffect(() => {
@@ -171,21 +129,14 @@ export const ClassroomTest = (props) => {
             },
             body: JSON.stringify({
               query: `
-              # Write your query or mutation here
               query {
-                continents {
-                  code
+                continent(code : "`+id+`"){
+                countries
+                {
                   name
-                  countries {
-                    name
-                    code
-                    languages {
-                      code
-                      name
-                      native
-                    }
-                  }
+                  code
                 }
+              }
               }              
                 `,
               variables: {
@@ -194,44 +145,22 @@ export const ClassroomTest = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data));
+            .then((result) => setState(result.data.continent));
+            console.log("State je : ", state)
     }, [] )
     
-    //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
-/*
     const countries = []
-    for(var ind = 0; ind < state.continents[ind].countries.length; ind++){
-        for(var index = 0; index < state.continents[ind].countries.length; index++) {
-            const sgItem = state.continents[index].countries[index]
-            countries.push(<LessonSmall id={sgItem.code} name={sgItem.name}/>);
-            countries.push(<br />);
-        }
-}*/
-
-    const continents = []
-    for(var index = 0; index < state.continents.length; index++) {
-        const sgItem = state.continents[index]
-        continents.push(<div><h1>continent NAME: {sgItem.name}</h1> <p>continent CODE: {sgItem.code}</p> contries: [name, id, languages:[code, name, nativ]</div>);
-        continents.push(<br />);
+    for(var index = 0; index < state.countries.length; index++) {
+        const sgItem = state.countries[index]
+        countries.push(<ClassroomSmall name={sgItem.name} code={sgItem.code}/>);
     }
-/*
-    const ClassroomSubjects = []
-    for(var index = 0; index < state.subjects.length; index++) {
-        const ssItem = state.subjects[index];
-        ClassroomSubjects.push(<ClassroomSmall id={ssItem.id} name={ssItem.name}/>)
-    }
-*/
-    return (<div>
-                <div>{continents}</div>
-                
-                <p><b>státy: </b> <td>  {/*countries*/} </td></p>
-                {console.log("State console log2: ", state)}
-                
-                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
 
-            </div>)
+    return(
+    <div>
+            {countries}
+            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(state)}</p>
+    </div>)
 }
-
 
 /*
 
