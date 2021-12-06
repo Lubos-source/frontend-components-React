@@ -95,6 +95,8 @@ export const About = () => {
 <div style={{color: 'red'}}> Postupný fetching pouze informací které potřebujeme ! (menší zátěž) hotové: arealy --- tridy v danem arealu,<br />
 dodělat další --- každá třída : předměty --- každý předmět --- hodiny se třídou (popřípadě areálem, pokud bude v jiném než aktuálním)
 </div>
+<div style={{color: 'red'}}> Při fetch dat uložených ve state jedné komponenty ---- <b> jak dostanu data do jiné komponenty ?</b> (asi pomocí props ? ale jak ?)
+</div>
 </div>
 
     </div>

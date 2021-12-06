@@ -1,5 +1,5 @@
 import React, {Component, useState, useEffect } from "react";
-import MapaSumavska from "../media/sumak.png"
+import MapaSumavska from "../media/sumak_svg.SVG"
 
 export default class TestMap extends React.Component{
 

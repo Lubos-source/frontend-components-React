@@ -1,7 +1,7 @@
-import MapaSumavska from "../../media/sumak.png";
+import MapaSumavska from "../../media/sumak_svg.SVG";
 import MapaCP from "../../media/cernapole.png";
-import MapaKOU from "../../media/kounicova.png";
-import MapaBAB from "../../media/babaka.png";
+import MapaKOU from "../../media/kounicova_svg.SVG";
+import MapaBAB from "../../media/babak_svg.SVG";
 
 import  Card  from "react-bootstrap/Card";
 import { Row } from "react-bootstrap";
@@ -137,23 +137,6 @@ export const ArealList = (props) => {
 
 }
 
-export const ArealLarge = (props) => {
-    //const { id } = useParams();
-    //const arealRoot = root + "areals" + "/" + id
-    
-    //console.log(arealRoot)
-    //console.log(id)
-    return(
-    <div>
-        <Card>
-        <Card.Header><b>Seznam učeben: </b></Card.Header>
-            <ClassroomTest id={props.code}/>
-        </Card>
-    </div>)
-
-
-}
-
 export const ArealTest = (props) => {
     
 
@@ -229,9 +212,9 @@ export const ArealTest = (props) => {
     }
 */
     return (<div>
-                <div>{continents}</div>
+                <div>{/*continents*/}</div>
                 
-                <p><b>státy: </b> <td>  {/*countries*/} </td></p>
+                <p><b>státy: </b> <td>  {continents} </td></p>
                 {console.log("State console log2: ", state)}
                 
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
@@ -240,11 +223,37 @@ export const ArealTest = (props) => {
 }
 
 
-export const ArealSmall = (props) => {
+export const ArealLarge = (props) => {
+    //const { id } = useParams();
+    //const arealRoot = root + "areals" + "/" + id
+    
+    //console.log(arealRoot)
+    //console.log(id)
+    return(
+    <div>
+        <Card>
+        <Card.Header>
+            Areal: <b> {props.name} :</b>
+            <p>Seznam učeben: </p>
+        </Card.Header>
+            <ClassroomTest id={props.code}/>
+        </Card>
+    </div>)
 
+
+}
+
+
+
+export const ArealSmall = (props) => {
+    const state =useState({
+        'name': props.name,
+        'code': props.code
+    });
+    //useEffect(()=>{})
     return (
         <Card>
-            <Card.Header>continent NAME: <b>{props.name}</b></Card.Header> 
+            <Card.Header>continent NAME: <b>{state.name}</b></Card.Header> 
             <Card.Text>
                 <Row>continent CODE: {props.code}</Row>
                 <Row>contries: [name, id, languages:[code, name, nativ]</Row>
