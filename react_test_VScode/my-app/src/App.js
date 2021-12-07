@@ -97,6 +97,9 @@ dodělat další --- každá třída : předměty --- každý předmět --- hodi
 </div>
 <div style={{color: 'red'}}> Při fetch dat uložených ve state jedné komponenty ---- <b> jak dostanu data do jiné komponenty ?</b> (asi pomocí props ? ale jak ?)
 </div>
+<div style={{color: 'red'}}>
+Při použití "const state =useState(<br/>{"{"} 'name': props.name,<br/>'code': props.code {"}"} );<br/> - se vynechá 0.prvek !
+</div>
 </div>
 
     </div>

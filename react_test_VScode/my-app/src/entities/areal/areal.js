@@ -224,11 +224,13 @@ export const ArealTest = (props) => {
 
 
 export const ArealLarge = (props) => {
-    //const { id } = useParams();
-    //const arealRoot = root + "areals" + "/" + id
+    const state =useState({
+        'name': props.name,
+        'code': props.code
+    });
     
-    //console.log(arealRoot)
-    //console.log(id)
+    //setState(props)
+    console.log("props: ", props.name, props.code)
     return(
     <div>
         <Card>
@@ -236,7 +238,7 @@ export const ArealLarge = (props) => {
             Areal: <b> {props.name} :</b>
             <p>Seznam učeben: </p>
         </Card.Header>
-            <ClassroomTest id={props.code}/>
+            <ClassroomTest id/>
         </Card>
     </div>)
 
@@ -250,14 +252,15 @@ export const ArealSmall = (props) => {
         'name': props.name,
         'code': props.code
     });
+    console.log("ArealSmall state: ", state[0].name)
     //useEffect(()=>{})
     return (
         <Card>
-            <Card.Header>continent NAME: <b>{state.name}</b></Card.Header> 
+            <Card.Header>continent NAME: <b>{state[0].name}</b></Card.Header> 
             <Card.Text>
-                <Row>continent CODE: {props.code}</Row>
+                <Row>continent CODE: {state[0].code}</Row>
                 <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                <Link to={arealRoot + `/${props.code}`}>odkaz - {props.name}{props.children}</Link>
+                odkaz: <Link to={arealRoot + `/${props.code}`}> {props.name}{props.children}</Link>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>

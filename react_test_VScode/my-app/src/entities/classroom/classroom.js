@@ -107,7 +107,7 @@ export const ClassroomSmall = (props) => {
     
     return(
         <div>
-               <Link to={classroomRoot + `/${props.code}`}>odkaz - {props.name}{props.children}</Link> 
+               odkaz: <Link to={classroomRoot + `/${props.code}`}> {props.name}{props.children}</Link> 
         </div>)
 }
 
