@@ -1,5 +1,5 @@
 import MapaSumavska from "../../media/sumak_svg.SVG";
-import MapaCP from "../../media/cernapole.png";
+import MapaCP from "../../media/cernapole_svg.SVG";
 import MapaKOU from "../../media/kounicova_svg.SVG";
 import MapaBAB from "../../media/babak_svg.SVG";
 
