@@ -146,9 +146,9 @@ export const ArealTest = (props) => {
             [{
                 'name': props.name, //jmeno arealu
                 'code': props.code, //id arealu
-                'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
+               /* 'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
                                   'languages': [{'code' : 'c', 'name':'n','native':'na'}]     //predmety (id, jmeno, lekce...)
-                                }]
+                                }]*/
             }]
             
         });
@@ -203,6 +203,7 @@ export const ArealTest = (props) => {
         const sgItem = state.continents[index]
         continents.push(<ArealSmall name={sgItem.name} code={sgItem.code}/>);
         //continents.push(<br />);
+        //console.log("continents sgItems: ", sgItem) //Zde ještě je AFRICA! [0]prvek v poli
     }
 /*
     const ClassroomSubjects = []
@@ -215,7 +216,7 @@ export const ArealTest = (props) => {
                 <div>{/*continents*/}</div>
                 
                 <p><b>státy: </b> <td>  {continents} </td></p>
-                {console.log("State console log2: ", state)}
+                {console.log("State console log2: ", state)/*Zde ještě je AFRICA! [0]prvek v poli*/} 
                 
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
 
@@ -224,7 +225,7 @@ export const ArealTest = (props) => {
 
 
 export const ArealLarge = (props) => {
-    const state =useState({
+    const [state, setState] =useState({
         'name': props.name,
         'code': props.code
     });
@@ -248,19 +249,21 @@ export const ArealLarge = (props) => {
 
 
 export const ArealSmall = (props) => {
-    const state =useState({
+
+    //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ?
+    const state ={
         'name': props.name,
         'code': props.code
-    });
-    console.log("ArealSmall state: ", state[0].name)
+    };
+    console.log("ArealSmall state: ", state)
     //useEffect(()=>{})
     return (
         <Card>
-            <Card.Header>continent NAME: <b>{state[0].name}</b></Card.Header> 
+            <Card.Header>continent NAME: <b>{state.name}{/*props.name*//*-funguje-je to divný(asi špatné uložení props do state)*/}</b></Card.Header> 
             <Card.Text>
-                <Row>continent CODE: {state[0].code}</Row>
+                <Row>continent CODE: {state.code}</Row>
                 <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                odkaz: <Link to={arealRoot + `/${props.code}`}> {props.name}{props.children}</Link>
+                odkaz: <Link to={arealRoot + `/${state.code}`}> {state.name}{props.children}</Link>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>
