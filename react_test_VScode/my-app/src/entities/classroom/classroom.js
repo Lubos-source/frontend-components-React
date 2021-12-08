@@ -13,6 +13,7 @@ import { Link, useParams } from "react-router-dom";
 
 import ArealData from "../../media/classrooms2.js";
 //
+import {ArealSmall} from "../areal/areal";
 
 const classroomRoot = root + "classroom"
 
@@ -92,23 +93,61 @@ export const ClassroomMedium = (arealid) => {
 }
 
 
-//tvorba classrooms pomoci props (inProgress):
-/*
-https://youtu.be/3M5iHWetiJA?t=542
-export const Classroomprops = (props) => {
-        return(
-        <div>
-            {props.classroom.name}
-        </div>
-    )
-}
-*/
+//---------------------------------------------tvorba classrooms pomoci props a fetch (GraphQL) (inProgress):--------------------------------------
+
 export const ClassroomSmall = (props) => {
     
     return(
+        <Row>
+               třída: <Link to={classroomRoot + `/${props.code}`}> {props.name}{props.children}</Link> 
+        </Row>)
+}
+
+export const ClassroomMed = (props) => {
+
+    return(
         <div>
-               odkaz: <Link to={classroomRoot + `/${props.code}`}> {props.name}{props.children}</Link> 
-        </div>)
+                <Card.Body>
+                    <Card.Text>                                    
+                        <Row><ClassroomSmall name={props.name} code={props.code}/></Row>
+                        <Row>code (id): {props.code}</Row>
+                        <Row>? třeba "Zjednoduseny rozvrh pro tridu" ?</Row>
+                    </Card.Text>
+                </Card.Body>
+  
+        </div>
+
+    )
+}
+
+export const PodminkaClassroom = (props) => {
+    const [expanded, setExpanded] = useState(false);
+    var result = <>Error</>
+    if (expanded) {
+        result = (
+            <>                                       
+             <Card.Body>
+                 <Card.Text>
+                     <Row>{<ClassroomMed name={props.name} code={props.code}/>}</Row>                     
+                 </Card.Text>
+             </Card.Body>              
+         <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
+                                
+            </>
+        )
+    } else {
+        result = (
+            <>                
+            <Card.Body>
+                <Card.Text>
+                    <Row>{<ClassroomSmall name={props.name} code={props.code}/>}</Row>
+                    <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
+                </Card.Text>
+            </Card.Body>                                                   
+            </>
+        )
+    }
+    return result
 }
 
 
@@ -118,7 +157,8 @@ export const ClassroomTest = (arealid) => {
 
     const [state, setState] = useState(
         {
-            'countries':[{'name':'n', 'code': 'c'}]
+            'name' : "continent",
+            'countries' : [{'name':'n', 'code': 'c'}]
         });
 
     useEffect(() => {
@@ -131,6 +171,7 @@ export const ClassroomTest = (arealid) => {
               query: `
               query {
                 continent(code : "`+id+`"){
+                name
                 countries
                 {
                   name
@@ -147,88 +188,17 @@ export const ClassroomTest = (arealid) => {
             .then((res) => res.json())
             .then((result) => setState(result.data.continent));
             console.log("State je : ", state)
-    }, [] )
+    }, [id] )
     
     const countries = []
     for(var index = 0; index < state.countries.length; index++) {
         const sgItem = state.countries[index]
-        countries.push(<ClassroomSmall name={sgItem.name} code={sgItem.code}/>);
+        countries.push(<PodminkaClassroom name={sgItem.name} code={sgItem.code}/>);
     }
 
-    return(
-    <div>
+    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
+    <div>   <h1>Seznam tříd v areálu <i><ArealSmall name={state.name} code={"testing"}/></i>: </h1>
             {countries}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(state)}</p>
     </div>)
 }
-
-/*
-
-export const ClassroomTest = (props) => {
-    
-
-    const [state, setState] = useState(
-        {
-            'title': props.title,
-            'date': props.date,
-            //'guest': [{'name': props.guest.name, 'twiter': props.guest.twiter}],
-            'description': props.description,
-            'guest': [ { 'name': 'testingname', 'twitter':'tetsingtwitter' }]
-            'lessons': [
-                {'id': 257, 'name': '23-5AT'}
-            ],
-            'subjects': [
-                {'id': 458, 'name': 'subj1'}
-            ]
-        });
-
-        useEffect(() => {
-            fetch('https://www.learnwithjason.dev/graphql', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  query: `
-                      query GetLearnWithJasonEpisodes($now: DateTime!) {
-                        allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
-                          date
-                          title
-                          guest {
-                            name
-                            twitter
-                          }
-                          description
-                        }
-                      }
-                    `,
-                  variables: {
-                    now: new Date().toISOString(),
-                  },
-                }),
-              })
-                .then((res) => res.json())
-                .then((result) => setState(result.data.allEpisode[0]));
-        }, [] )
-        
-        //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
-    
-        const guest = []
-        for(var index = 0; index < state.guest.length; index++) {
-            const sgItem = state.guest[index]
-            guest.push(<LessonSmall id={sgItem.twitter} name={sgItem.name}/>);
-            guest.push(<br />);
-        }
-    
-        return (<div>
-                    <h1>{state.title}</h1>
-                    <p><b>date:</b> {state.date}</p>
-                    <p><b>description:</b> {state.description}</p>
-                    <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
-                    {console.log("State console log2: ", state)}
-                    <p><b>Test guest:</b> <td> Twitter: {guest}</td></p>
-    
-                </div>)
-    }
-
-*/

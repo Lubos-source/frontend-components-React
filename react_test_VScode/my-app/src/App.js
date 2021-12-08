@@ -7,7 +7,7 @@ import React, { useState, useEffect, Component } from "react";
 import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
 import {ArealLarge, ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList, ArealTest} from "./entities/areal/areal";
-import {ClassroomList} from "./entities/classroom/classroom";
+import {ClassroomList,ClassroomTest} from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
 import {ProgCourse, ProgLesson, ProgList, ProgSubject} from './entities/studyprog/studyprog';
@@ -34,7 +34,7 @@ function Home() {
         <Link to="/studyprog">Studijni program</Link>
       </li>
       <li>
-        <Link to="/testing">Seznam Areálů (graphQL <b>newest</b>)</Link>
+        <Link to="areals/testing">Seznam Areálů (graphQL <b>newest</b>)</Link>
       </li>
     </ul>
   </div>
@@ -48,20 +48,24 @@ return(
   <div>
   <BrowserRouter>
     <Routes>
+{/*----------------------------Stránky pomocí FETCH (GraphQL) ----------------------------------------*/}
       <Route path="/" element={<Home/>}/>
-      <Route path="/areals/:id" element={<ArealLarge/>}/>
+      <Route path="/areals/:id" element={<ClassroomTest/>}/>
+      <Route path="/classroom/:id" element={<div> <h1>ZDE bude rozvrh pro danou třídu</h1></div>}/>
+      <Route path="/areals/testing" element ={<ArealTest/>}/>
+
+{/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals" element={<ArealList/>}/>
-      
       <Route path="/areals/5" element={<ArealLargeSUM/>}/>
       <Route path="/areals/2" element={<ArealLargeCP/>}/>
       <Route path="/areals/7" element={<ArealLargeKOU/>}/>
       <Route path="/areals/8" element={<ArealLargeKOU/>}/>
       <Route path="/areals/6" element={<ArealLargeBAB/>}/>
       
-      <Route path="/testing" element ={<ArealTest/>}/>
       <Route path="/lesson" element={<LessonSmall/>}/>
       <Route path="/subject" element={<SubjectSmall/>}/>
       <Route path="/classrooms" element={<ClassroomList/>}/>
+      
       <Route path="/studyprog" element={<ProgList/>}/>
       <Route path="/studyprog/subject" element={<ProgSubject/>}/>
       <Route path="/studyprog/lesson" element={<ProgLesson/>}/>
@@ -85,20 +89,22 @@ export const About = () => {
         Pro zobrazení danné stránky se používá parametr "element" NOVĚJŠÍ VERZE !</div>
 
 <h3>Učebny :</h3>
-<div style={{color: 'green'}}>Problém načtení z json a zobrazení učeben na dannou budovu.<b>Hotovo</b></div> 
-<div style={{color: 'green'}}>
+<div style={{color: 'green'}}>Problém načtení z json a zobrazení učeben na dannou budovu.<b>vyřešeno</b></div> 
+<div style={{color: 'green'}}><br/>
   Problém zobrazování češtiny z JSON file....přitom zobrazení češtiny na stránce jde ! 
-  asi problém že neumí přečíst tyhle znaky z JSON souboru?<b>Hotovo</b><br /> -Převedení JSON na JS a určení UTF 8 kódování
+  asi problém že neumí přečíst tyhle znaky z JSON souboru?<b>vyřešeno:</b><br /> -Převedení JSON na JS a určení UTF 8 kódování
 </div>
 <h3>Arealy :</h3>
-<div style={{color: 'green'}}>Načítání z API (fetch GRAPQL).<b>Hotovo</b></div>
-<div style={{color: 'red'}}> Postupný fetching pouze informací které potřebujeme ! (menší zátěž) hotové: arealy --- tridy v danem arealu,<br />
+<div style={{color: 'green'}}>Načítání z API (fetch GRAPQL).<b>vyřešeno:</b></div>
+<div style={{color: 'green'}}><br/> Při fetch dat uložených ve state jedné komponenty ---- jak dostanu data do jiné komponenty ? (asi pomocí props ? ale jak ?)
+<b>vyřešeno:</b><br /> -Každá stránka bude mít hlavní komponentu pro fetch dat a v ní bude volat další (medium) pomocí props -- v medium zase volám small pomocí props -- takhle přenesu požadované informace do všech komponent.
+</div>
+<div style={{color: 'green'}}><br/>
+Při použití "const state =useState(<br/>{"{"} 'name': props.name,<br/>'code': props.code {"}"} );<br/> - se vynechá 0.prvek !<b>vyřešeno:</b><br/>
+-uložení props do dictionary state, místo vytvoření state constanty s pomocnou funkcí setState() jak by tomu mělo být správně...
+</div>
+<div style={{color: 'orange'}}> <br/>Postupný fetching pouze informací které potřebujeme ! (menší zátěž) hotové: arealy --- tridy v danem arealu,<br />
 dodělat další --- každá třída : předměty --- každý předmět --- hodiny se třídou (popřípadě areálem, pokud bude v jiném než aktuálním)
-</div>
-<div style={{color: 'red'}}> Při fetch dat uložených ve state jedné komponenty ---- <b> jak dostanu data do jiné komponenty ?</b> (asi pomocí props ? ale jak ?)
-</div>
-<div style={{color: 'red'}}>
-Při použití "const state =useState(<br/>{"{"} 'name': props.name,<br/>'code': props.code {"}"} );<br/> - se vynechá 0.prvek !
 </div>
 </div>
 

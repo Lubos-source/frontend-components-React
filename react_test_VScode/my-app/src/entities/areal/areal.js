@@ -137,6 +137,9 @@ export const ArealList = (props) => {
 
 }
 
+
+//---------------------------------Nové, správné provedení pomocí FETCH (GraphQL)-----------------------------
+
 export const ArealTest = (props) => {
     
 
@@ -188,34 +191,19 @@ export const ArealTest = (props) => {
     }, [] )
     
     //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
-/*
-    const countries = []
-    for(var ind = 0; ind < state.continents[ind].countries.length; ind++){
-        for(var index = 0; index < state.continents[ind].countries.length; index++) {
-            const sgItem = state.continents[index].countries[index]
-            countries.push(<LessonSmall id={sgItem.code} name={sgItem.name}/>);
-            countries.push(<br />);
-        }
-}*/
 
     const continents = []
     for(var index = 0; index < state.continents.length; index++) {
         const sgItem = state.continents[index]
-        continents.push(<ArealSmall name={sgItem.name} code={sgItem.code}/>);
+        continents.push(<ArealMedium name={sgItem.name} code={sgItem.code}/>);
         //continents.push(<br />);
         //console.log("continents sgItems: ", sgItem) //Zde ještě je AFRICA! [0]prvek v poli
     }
-/*
-    const ClassroomSubjects = []
-    for(var index = 0; index < state.subjects.length; index++) {
-        const ssItem = state.subjects[index];
-        ClassroomSubjects.push(<ClassroomSmall id={ssItem.id} name={ssItem.name}/>)
-    }
-*/
+
     return (<div>
                 <div>{/*continents*/}</div>
                 
-                <p><b>státy: </b> <td>  {continents} </td></p>
+                <p><b>Seznam areálů: </b> <td>  {continents} </td></p>
                 {console.log("State console log2: ", state)/*Zde ještě je AFRICA! [0]prvek v poli*/} 
                 
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
@@ -225,10 +213,10 @@ export const ArealTest = (props) => {
 
 
 export const ArealLarge = (props) => {
-    const [state, setState] =useState({
+    const state ={
         'name': props.name,
         'code': props.code
-    });
+    };
     
     //setState(props)
     console.log("props: ", props.name, props.code)
@@ -248,25 +236,33 @@ export const ArealLarge = (props) => {
 
 
 
-export const ArealSmall = (props) => {
+export const ArealMedium = (props) => {
 
     //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ?
     const state ={
         'name': props.name,
         'code': props.code
     };
-    console.log("ArealSmall state: ", state)
+    console.log("ArealMedium state: ", state)
     //useEffect(()=>{})
     return (
         <Card>
-            <Card.Header>continent NAME: <b>{state.name}{/*props.name*//*-funguje-je to divný(asi špatné uložení props do state)*/}</b></Card.Header> 
+            <Card.Header>Název AREÁLU: <b>{state.name}</b></Card.Header> 
             <Card.Text>
                 <Row>continent CODE: {state.code}</Row>
                 <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                odkaz: <Link to={arealRoot + `/${state.code}`}> {state.name}{props.children}</Link>
+                učebny: <ArealSmall name={state.name} code={state.code}/>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>
     )
 
+}
+
+export const ArealSmall = (props) => {
+    
+    return(
+    
+            <Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+    )
 }
