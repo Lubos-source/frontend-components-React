@@ -140,22 +140,10 @@ export const ArealList = (props) => {
 
 //---------------------------------Nové, správné provedení pomocí FETCH (GraphQL)-----------------------------
 
-export const ArealTest = (props) => {
-    
-
+export const ArealLargeAPI = (props) => {
     const [state, setState] = useState(
-        {
-            'continents': //areals
-            [{
-                'name': props.name, //jmeno arealu
-                'code': props.code, //id arealu
-               /* 'countries': [ { 'name': 'testingname', 'code':'tetsingtwitter',  //tridy (jmeno, id) //jeste v arealech budou budovy asi ? uvidime podle graphQL zatim testujem na tomhle
-                                  'languages': [{'code' : 'c', 'name':'n','native':'na'}]     //predmety (id, jmeno, lekce...)
-                                }]*/
-            }]
-            
-        });
-
+        {'continents':[]}
+    );
     useEffect(() => {
         fetch('https://countries.trevorblades.com/', {
             method: 'POST',
@@ -168,16 +156,7 @@ export const ArealTest = (props) => {
               query {
                 continents {
                   code
-                  name`/*
-                  countries {
-                    name
-                    code
-                    languages {
-                      code
-                      name
-                      native
-                    }
-                }*/+`
+                  name
                 }
               }              
                 `,
@@ -188,57 +167,57 @@ export const ArealTest = (props) => {
           })
             .then((res) => res.json())
             .then((result) => setState(result.data));
+            
     }, [] )
     
     //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
-
-    const continents = []
-    for(var index = 0; index < state.continents.length; index++) {
-        const sgItem = state.continents[index]
-        continents.push(<ArealMedium name={sgItem.name} code={sgItem.code}/>);
-        //continents.push(<br />);
-        //console.log("continents sgItems: ", sgItem) //Zde ještě je AFRICA! [0]prvek v poli
-    }
-
-    return (<div>
-                <div>{/*continents*/}</div>
-                
-                <p><b>Seznam areálů: </b> <td>  {continents} </td></p>
-                {console.log("State console log2: ", state)/*Zde ještě je AFRICA! [0]prvek v poli*/} 
-                
-                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(state)}</p>
-
-            </div>)
+    //console.log("po fetchi:", state)
+    return(
+        <div>
+            <ArealLarge json={state}/>
+        </div>
+    )
 }
 
 
 export const ArealLarge = (props) => {
-    const state ={
-        'name': props.name,
-        'code': props.code
-    };
-    
+    const json=props.json
+
+/*
+    const [state, setState] = useState(
+        {
+            'continents': //areals
+            [{
+                'name': "name", //jmeno arealu
+                'code': "code", //id arealu
+            }]
+            
+        });
+*/
+
     //setState(props)
-    console.log("props: ", props.name, props.code)
-    return(
-    <div>
-        <Card>
-        <Card.Header>
-            Areal: <b> {props.name} :</b>
-            <p>Seznam učeben: </p>
-        </Card.Header>
-            <ClassroomTest id/>
-        </Card>
-    </div>)
+    console.log("----obsah props:--- ", json)
 
+    
+    const continents = []
+    for(var index = 0; index < json.continents.length; index++) {
+        const sgItem = json.continents[index]
+        continents.push(<ArealMedium name={sgItem.name} code={sgItem.code}/>);
+    }
 
+    return (<div>
+                               
+                <p><b>Seznam areálů: </b> <td>  {continents} </td></p>                
+                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+
+            </div>)
 }
 
 
 
 export const ArealMedium = (props) => {
 
-    //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ?
+    //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ? ---> NENÍ TO NEJLEPŠÍ, NĚKDE SE OBJEVÍ CHYBA !!!
     const state ={
         'name': props.name,
         'code': props.code
@@ -251,7 +230,7 @@ export const ArealMedium = (props) => {
             <Card.Text>
                 <Row>continent CODE: {state.code}</Row>
                 <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                učebny: <ArealSmall name={state.name} code={state.code}/>
+                budovy: <ArealSmall name={state.name} code={state.code}/>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>

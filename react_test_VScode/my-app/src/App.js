@@ -1,20 +1,15 @@
 //import logo from './logo.svg';
 import './App.css';
-import ContactCard from './ContactCard'
-import Student from './Student'
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
-import TestMap from './entities/map';
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
-import {ArealLarge, ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList, ArealTest} from "./entities/areal/areal";
-import {ClassroomList,ClassroomTest} from "./entities/classroom/classroom";
+import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList, ArealLargeAPI} from "./entities/areal/areal";
+import {ClassroomList,BuildingsLargeAPI} from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
 import {ProgCourse, ProgLesson, ProgList, ProgSubject} from './entities/studyprog/studyprog';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
-
-const USER_SERVICE_URL = 'https://swapi.co/api/people';   //'https://jsonplaceholder.typicode.com/users';
 
 function Home() {
   return (
@@ -25,7 +20,7 @@ function Home() {
         <Link to="/areals">areals</Link>
       </li>
       <li>
-        <Link to="/about">Problems in project</Link>
+        <Link to="/about"><p style={{color: 'red'}}>Problems in project</p></Link>
       </li>
       <li>
         <Link to="/classrooms">ClassRooms list</Link>
@@ -34,7 +29,7 @@ function Home() {
         <Link to="/studyprog">Studijni program</Link>
       </li>
       <li>
-        <Link to="areals/testing">Seznam Areálů (graphQL <b>newest</b>)</Link>
+        <Link to="areals/testing"><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
       </li>
     </ul>
   </div>
@@ -42,7 +37,6 @@ function Home() {
   )
 }
 
-//menime root :)  :
 export const Routing = () => {
 return(
   <div>
@@ -50,9 +44,10 @@ return(
     <Routes>
 {/*----------------------------Stránky pomocí FETCH (GraphQL) ----------------------------------------*/}
       <Route path="/" element={<Home/>}/>
-      <Route path="/areals/:id" element={<ClassroomTest/>}/>
-      <Route path="/classroom/:id" element={<div> <h1>ZDE bude rozvrh pro danou třídu</h1></div>}/>
-      <Route path="/areals/testing" element ={<ArealTest/>}/>
+      <Route path="/areals/:id" element={<BuildingsLargeAPI/>}/>
+      <Route path="/classroom/:id" element={<div> <h1>ZDE bude seznam tříd pro dannou budovu<br/> (kartičky s informacemi)</h1></div>}/>
+      <Route path="/areals/testing" element ={<ArealLargeAPI/>}/>
+      <Route path="/about" element={<About/>}/>
 
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals" element={<ArealList/>}/>
@@ -70,7 +65,6 @@ return(
       <Route path="/studyprog/subject" element={<ProgSubject/>}/>
       <Route path="/studyprog/lesson" element={<ProgLesson/>}/>
       <Route path="/studyprog/course" element={<ProgCourse/>}/>
-      <Route path="/about" element={<About/>}/>
     </Routes>
   </BrowserRouter>
   </div>
@@ -106,6 +100,16 @@ Při použití "const state =useState(<br/>{"{"} 'name': props.name,<br/>'code':
 <div style={{color: 'orange'}}> <br/>Postupný fetching pouze informací které potřebujeme ! (menší zátěž) hotové: arealy --- tridy v danem arealu,<br />
 dodělat další --- každá třída : předměty --- každý předmět --- hodiny se třídou (popřípadě areálem, pokud bude v jiném než aktuálním)
 </div>
+<div style={{color: 'green'}}><br/> Zjistit co bude na stránce "studijní program"<b>vyřešeno:</b><br/>
+Studijní program --- seznam předmětů --- semestry předmětu --- topic předmětu<br />
+(každý předmět může a nemusí mít více semestrů) (dále obsahuje garanty předmětu, semestru, vyučující,....)
+</div>
+<div style={{color: 'red'}}><br/> Vytvořit laoding :"<br/>
+
+</div>
+<div style={{color: 'red'}}><br/> Problém s předáním "props" do "state" jiné komponenty !!!!! - zatím vyřešeno že používáme jen "props"<br/>
+Při fetchnutí v komponentě "*API" vpořádku nastavíme data do "state" (setState), ale po předání pomocí "props" NEJDE znovu vložit do "state" jiné komponenty !!!
+</div>
 </div>
 
     </div>
@@ -113,33 +117,3 @@ dodělat další --- každá třída : předměty --- každý předmět --- hodi
 
 }
 
-
-/* //TESTing2//
-    <div>
-        <div className="Studenti">
-          <Student osoba = {{jmeno:"Test Test",
-          skupina:"23-5KB",  
-          phone:"+420 737 589 741", 
-          email:"sakoru@ji.mm",
-          id:"000"}}
-          />
-        <p>-----------------------------------    </p>
-        </div>
-
-        <div className="Fetch Random User">
-          <FetchRandomUser>
-            <div>
-            
-            </div>
-          </FetchRandomUser>
-        </div>
-        
-        <div className="Testing map">
-            <TestMap>
-              <div>
-              
-              </div>
-            </TestMap>
-          </div>  
-    </div>
-*/
