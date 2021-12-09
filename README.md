@@ -25,6 +25,18 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivým komponentám.)
 
+Studijní program: 
+kniha -> je schválena pro řízení studijního programu -> studium je zakončeno státní zkouškou 
+- vytvoříme si komponentu, která zobrazí studijní program
+
+● Studijní program - má více předmětů
+
+● Seznam předmětů - má více semestrů
+
+● Semestr předmětů - v semstrech je více témat 
+
+● Topic 
+
 **LARGE** - podrobné (možnost přepnout se ze SUB informace (small,medium) na LARGE komponentu příslušného prvku), obsahuje stranku jako takovou, od nejduležitějších informaci k méně důležitým !
 
 **MEDIUM** - abalit do card (např. možnost nastrkat více studentu do karet)
