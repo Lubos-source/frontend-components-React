@@ -27,7 +27,7 @@ Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázán
 
 Studijní program: 
 kniha -> je schválena pro řízení studijního programu -> studium je zakončeno státní zkouškou 
-- vytvoříme si komponentu, která zobrazí studijní program
+    vytvoříme si komponentu, která zobrazí studijní program
 
 ● Studijní program - má více předmětů
 
