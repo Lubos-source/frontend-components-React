@@ -5,9 +5,9 @@ import React, { useState, useEffect, Component } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes, useParams } from "react-router-dom";
 import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList,buildingRoot, arealRoot, ArealLargeAPI, BuildingsLargeAPI} from "./entities/areal/areal";
 import {ClassroomList,ClassroomsLargeAPI,ClassroomMed,classroomRoot} from "./entities/classroom/classroom";
-import {LessonSmall} from "./entities/lesson/lesson";
-import {SubjectSmall} from "./entities/subject/subject";
-import {ProgCourse, ProgLesson, ProgList, ProgSubject} from './entities/studyprog/studyprog';
+//import {LessonSmall} from "./entities/lesson/lesson";
+//import {SubjectSmall} from "./entities/subject/subject";
+import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
 
@@ -26,7 +26,7 @@ function Home() {
         <Link to="/classrooms">ClassRooms list</Link>
       </li>
       <li>
-        <Link to="/studyprog">Studijni program</Link>
+        <Link to={progRoot+"/testing"}><p style={{color: 'grey'}}>Seznam studijních předmětů (graphQL <b>newest</b>)</p></Link>
       </li>
       <li>
         <Link to={arealRoot+"/testing"}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
@@ -36,10 +36,17 @@ function Home() {
   
   )
 }
+/*
+<Route path="/lesson" element={<LessonSmall/>}/>      
+<Route path="/studyprog" element={<ProgList/>}/>
+<Route path="/studyprog/subject" element={<ProgSubject/>}/>
+<Route path="/studyprog/lesson" element={<ProgLesson/>}/>
+*/
 
 export const Routing = () => {
 return(
   <div>
+  
   <BrowserRouter>
     <Routes>
 {/*----------------------------Stránky pomocí FETCH (GraphQL) ----------------------------------------*/}
@@ -47,6 +54,7 @@ return(
       <Route path={arealRoot+"/:id"} element={<BuildingsLargeAPI/>}/>
       <Route path={buildingRoot+"/:id"} element={<ClassroomsLargeAPI/>}/>
       <Route path={arealRoot+"/testing"} element ={<ArealLargeAPI/>}/>
+      <Route path={progRoot+"/testing"} element ={<ProgLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
       <Route path={classroomRoot+"/:id"} element={<h1>Stránka danné třídy</h1>}/>
 
@@ -58,14 +66,7 @@ return(
       <Route path="/areals/8" element={<ArealLargeKOU/>}/>
       <Route path="/areals/6" element={<ArealLargeBAB/>}/>
       
-      <Route path="/lesson" element={<LessonSmall/>}/>
-      <Route path="/subject" element={<SubjectSmall/>}/>
-      <Route path="/classrooms" element={<ClassroomList/>}/>
-      
-      <Route path="/studyprog" element={<ProgList/>}/>
-      <Route path="/studyprog/subject" element={<ProgSubject/>}/>
-      <Route path="/studyprog/lesson" element={<ProgLesson/>}/>
-      <Route path="/studyprog/course" element={<ProgCourse/>}/>
+      <Route path="/classrooms" element={<ClassroomList/>}/>  
     </Routes>
   </BrowserRouter>
   </div>

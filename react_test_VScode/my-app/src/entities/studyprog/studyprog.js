@@ -1,10 +1,116 @@
-
 import {root} from "../index";
 
-import {SubjectSmall} from "../subject/subject";
-import {LessonSmall} from "../lesson/lesson";
+//import {SubjectSmall} from "../subject/subject";
+//import {LessonSmall} from "../lesson/lesson";
 import { Link } from "react-router-dom";
 
+import  Card  from "react-bootstrap/Card";
+import { Row } from "react-bootstrap";
+import ArealData from "../../media/classrooms2.js";
+
+
+import {useParams } from "react-router-dom";
+
+import React, {Component, useState, useEffect } from "react";
+
+import {ClassroomTest} from "../classroom/classroom";
+import { useButtonProps } from "@restart/ui/esm/Button";
+
+export const progRoot = root + "studyprog"
+
+export const ProgLargeAPI = (props) => {
+    const [state, setState] = useState(
+        {'continents':[]}
+    );
+    useEffect(() => {
+        fetch('https://countries.trevorblades.com/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: `
+              # Write your query or mutation here
+              query {
+                continents {
+                  code
+                  name
+                }
+              }              
+                `,
+              variables: {
+                now: new Date().toISOString(),
+              },
+            }),
+          })
+            .then((res) => res.json())
+            .then((result) => setState(result.data));
+            
+    }, [] )
+    
+    //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
+    //console.log("po fetchi:", state)
+    return(
+        <div>
+            <ProgLarge json={state}/>
+        </div>
+    )
+}
+
+export const ProgLarge = (props) => {
+    const json=props.json
+
+
+    //setState(props)
+    console.log("----obsah props:--- ", json)
+
+    
+    const continents = []
+    for(var index = 0; index < json.continents.length; index++) {
+        const sgItem = json.continents[index]
+        continents.push(<ProgMedium name={sgItem.name} code={sgItem.code}/>);
+    }
+
+    return (<div>
+                               
+                <p><b>Seznam studijních programů: </b> <td>  {continents} </td></p>                
+                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+
+            </div>)
+}
+
+export const ProgMedium = (props) => {
+
+    //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ? ---> NENÍ TO NEJLEPŠÍ, NĚKDE SE OBJEVÍ CHYBA !!!
+    const state ={
+        'name': props.name,
+        'code': props.code
+    };
+    console.log("ProgMedium state: ", state)
+    //useEffect(()=>{})
+    return (
+        <Card>
+            <Card.Header>Název studijního programu: <b>{state.name}</b></Card.Header> 
+            <Card.Text>
+                <Row>continent CODE: {state.code}</Row>
+                <Row>contries: [name, id, languages:[code, name, nativ]</Row>
+                budovy: <ProgSmall name={state.name} code={state.code}/>
+            </Card.Text>
+        {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
+        </Card>
+    )
+
+}
+
+export const ProgSmall = (props) => {
+    
+    return(
+    
+            <Link to={progRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+    )
+}
+
+/*
 const studyprogRoot = root + "studyprog"
 
 export const ProgList = () => {
@@ -72,6 +178,7 @@ export const ProgSubject = () => {
             )
         }
 
+       
         export const ProgCourse = () => {
             const arealRoot = root + "studyprog/course"
                 return(
@@ -94,3 +201,4 @@ export const ProgSubject = () => {
                     </div>
                 )
             }
+            */
