@@ -2,9 +2,9 @@
 import './App.css';
 import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
-import { BrowserRouter, Route, Switch, Link, Redirect, Routes } from "react-router-dom";
-import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList, ArealLargeAPI} from "./entities/areal/areal";
-import {ClassroomList,BuildingsLargeAPI} from "./entities/classroom/classroom";
+import { BrowserRouter, Route, Switch, Link, Redirect, Routes, useParams } from "react-router-dom";
+import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList,buildingRoot, arealRoot, ArealLargeAPI, BuildingsLargeAPI} from "./entities/areal/areal";
+import {ClassroomList,ClassroomsLargeAPI,ClassroomMed,classroomRoot} from "./entities/classroom/classroom";
 import {LessonSmall} from "./entities/lesson/lesson";
 import {SubjectSmall} from "./entities/subject/subject";
 import {ProgCourse, ProgLesson, ProgList, ProgSubject} from './entities/studyprog/studyprog';
@@ -29,7 +29,7 @@ function Home() {
         <Link to="/studyprog">Studijni program</Link>
       </li>
       <li>
-        <Link to="areals/testing"><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
+        <Link to={arealRoot+"/testing"}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
       </li>
     </ul>
   </div>
@@ -44,10 +44,11 @@ return(
     <Routes>
 {/*----------------------------Stránky pomocí FETCH (GraphQL) ----------------------------------------*/}
       <Route path="/" element={<Home/>}/>
-      <Route path="/areals/:id" element={<BuildingsLargeAPI/>}/>
-      <Route path="/classroom/:id" element={<div> <h1>ZDE bude seznam tříd pro dannou budovu<br/> (kartičky s informacemi)</h1></div>}/>
-      <Route path="/areals/testing" element ={<ArealLargeAPI/>}/>
+      <Route path={arealRoot+"/:id"} element={<BuildingsLargeAPI/>}/>
+      <Route path={buildingRoot+"/:id"} element={<ClassroomsLargeAPI/>}/>
+      <Route path={arealRoot+"/testing"} element ={<ArealLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
+      <Route path={classroomRoot+"/:id"} element={<h1>Stránka danné třídy</h1>}/>
 
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals" element={<ArealList/>}/>

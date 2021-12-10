@@ -17,7 +17,7 @@ import {ClassroomTest} from "../classroom/classroom";
 import { useButtonProps } from "@restart/ui/esm/Button";
 
 
-const arealRoot = root + "areals"
+export const arealRoot = root + "areals"
 
 
 export const ArealLargeSUM = () => {
@@ -244,4 +244,136 @@ export const ArealSmall = (props) => {
     
             <Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>
     )
+}
+
+
+
+export const buildingRoot=arealRoot+"/building"
+
+export const BuildingSmall = (props) => {
+    
+    return(
+        <Row>
+               budova: <Link to={buildingRoot + `/${props.code}`}> {props.name}{props.children}</Link> 
+        </Row>)
+}
+
+export const BuildingMedium = (props) => {
+
+    return(
+        <div>
+                <Card.Body>
+                    <Card.Text>                                    
+                        <Row><BuildingSmall name={props.name} code={props.code}/></Row>
+                        <Row>code (id): {props.code}</Row>
+                        <Row>? třeba "výpis seznamu tříd v danné budově" ?</Row>
+                    </Card.Text>
+                </Card.Body>
+  
+        </div>
+
+    )
+}
+
+export const BuildingsCondition = (props) => {
+    const [expanded, setExpanded] = useState(false);
+    var result = <>Error</>
+    if (expanded) {
+        result = (
+            <>                                       
+             <Card.Body>
+                 <Card.Text>
+                     <Row>{<BuildingMedium name={props.name} code={props.code}/>}</Row>                     
+                 </Card.Text>
+             </Card.Body>              
+         <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
+                                
+            </>
+        )
+    } else {
+        result = (
+            <>                
+            <Card.Body>
+                <Card.Text>
+                    <Row>{<BuildingSmall name={props.name} code={props.code}/>}</Row>
+                    <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
+                </Card.Text>
+            </Card.Body>                                                   
+            </>
+        )
+    }
+    return result
+}
+
+
+export const BuildingsLargeAPI = (props) => {
+    const { id } = useParams();
+    console.log("id v ClassroomTest je : ", id)
+
+    const [state, setState] = useState(
+        {'name': "ALEnotaaak",
+        'countries' : [{'name':"name", 'code':"code"}]}
+    );
+    useEffect(() => {
+        fetch('https://countries.trevorblades.com/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: `
+              query {
+                continent(code : "`+id+`"){
+                name
+                countries
+                {
+                  name
+                  code
+                }
+              }
+              }              
+                `,
+              variables: {
+                now: new Date().toISOString(),
+              },
+            }),
+          })
+            .then((res) => res.json())
+            .then((result) => setState(result.data.continent));
+    }, [id] )
+    
+    //console.log("State je : ", state)
+    console.log("STATE je : ", state)
+    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
+    <div>   
+        <BuildingsLarge json={state}/>
+    </div>)
+}
+
+
+export const BuildingsLarge = (props) => {
+    //console.log("id v ClassroomTest je : ", id)
+    console.log("PROPS:  ", props)
+    const json=props.json
+    const arealName=props.json.name
+    
+    /*
+    const [state, setState] = useState(
+        {
+            'arealname' : 'props.json.name',
+            'countries' : [{'name':'budova', 'code': 'id'}]
+        });
+    */
+    
+    const countries = []
+    for(var index = 0; index < json.countries.length; index++) {
+        const sgItem = json.countries[index]
+        countries.push(<BuildingsCondition name={sgItem.name} code={sgItem.code}/>);
+    }
+    //console.log("buldings = ", state)
+    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
+    <div>   <h1>Seznam budov v areálu <i><ArealSmall name={arealName} code={"testing"}/></i>: </h1>
+            {countries}
+            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
+    </div>)
 }
