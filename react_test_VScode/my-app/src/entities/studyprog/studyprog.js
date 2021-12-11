@@ -5,16 +5,13 @@ import {root} from "../index";
 import { Link } from "react-router-dom";
 
 import  Card  from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
-import ArealData from "../../media/classrooms2.js";
+import { Row, Table} from "react-bootstrap";
 
 
 import {useParams } from "react-router-dom";
 
 import React, {Component, useState, useEffect } from "react";
-
-import {ClassroomTest} from "../classroom/classroom";
-import { useButtonProps } from "@restart/ui/esm/Button";
+import {LessonSmall} from "../lesson/lesson";
 
 export const progRoot = root + "studyprog"
 
@@ -65,19 +62,39 @@ export const ProgLarge = (props) => {
     console.log("----obsah props:--- ", json)
 
     
-    const continents = []
+    const programy = []
     for(var index = 0; index < json.continents.length; index++) {
         const sgItem = json.continents[index]
-        continents.push(<ProgMedium name={sgItem.name} code={sgItem.code}/>);
+        programy.push(<ProgMedium name={sgItem.name} code={sgItem.code}/>);
     }
-
+console.log("obsah continents: ",programy)
     return (<div>
-                               
-                <p><b>Seznam studijních programů: </b> <td>  {continents} </td></p>                
+                <Table striped bordered hover>
+                  {programy}                    
+                </Table>
+                
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
 
             </div>)
 }
+
+const tdStyle = {
+    'colspan': "2",
+    'align': "right",
+    
+    
+    //'background-color': '#CCCCCC',
+    };
+
+const tableStyle = {
+    color: '#333333',
+    width: '110%',
+    border: '1px solid black',
+    'border-collapse': 'collapse',
+        
+    //'background-color': '#CCCCCC',
+    };
+
 
 export const ProgMedium = (props) => {
 
@@ -89,15 +106,27 @@ export const ProgMedium = (props) => {
     console.log("ProgMedium state: ", state)
     //useEffect(()=>{})
     return (
-        <Card>
-            <Card.Header>Název studijního programu: <b>{state.name}</b></Card.Header> 
-            <Card.Text>
-                <Row>continent CODE: {state.code}</Row>
-                <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                budovy: <ProgSmall name={state.name} code={state.code}/>
-            </Card.Text>
-        {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
-        </Card>
+            <Table striped bordered hover style={tableStyle}>
+            <tbody>
+                    <tr>
+                        <td>Název: </td>
+                        <td><b>{state.name}</b></td>
+                        <td>Typ programu: <b>P</b></td>
+                        <td>Forma studia: <b>prenzenční</b></td>
+                    </tr>
+                    <tr>
+                        <td>Fakulta: </td>
+                        <td><b>*FAKULTA*</b></td>
+                        <td colSpan="2" align="right">Garant: <b>ppl. Ing. Luděk Jedlička, Ph.D **link</b></td>
+                    </tr>
+                    <tr>
+                        <td>id: </td>
+                        <td><b>{state.code}</b></td>
+                        <td colSpan="2" align="right"> <b><ProgSmall name="předměty" code={state.code}/></b></td>
+                    </tr>
+            </tbody>
+            </Table>
+        
     )
 
 }

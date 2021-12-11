@@ -5,7 +5,7 @@ import React, { useState, useEffect, Component } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes, useParams } from "react-router-dom";
 import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList,buildingRoot, arealRoot, ArealLargeAPI, BuildingsLargeAPI} from "./entities/areal/areal";
 import {ClassroomList,ClassroomsLargeAPI,ClassroomMed,classroomRoot} from "./entities/classroom/classroom";
-//import {LessonSmall} from "./entities/lesson/lesson";
+import {lessonRoot, LessonsListLargeAPI, LessonLargeAPI} from "./entities/lesson/lesson";
 //import {SubjectSmall} from "./entities/subject/subject";
 import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
 import { renderIntoDocument } from 'react-dom/test-utils';
@@ -57,6 +57,9 @@ return(
       <Route path={progRoot+"/testing"} element ={<ProgLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
       <Route path={classroomRoot+"/:id"} element={<h1>Stránka danné třídy</h1>}/>
+      <Route path={progRoot+"/:id"} element={<LessonsListLargeAPI/>}/>
+      <Route path={lessonRoot+"/:id"} element={<div><h3>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
+        --- semestry kdy se uči --- název témat?</h3><LessonLargeAPI/></div>}/>
 
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals" element={<ArealList/>}/>
