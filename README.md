@@ -22,6 +22,7 @@ Doporučení pro responzivní web použít [Bootstrap](https://www.w3schools.com
 [starwars database](https://swapi.co/)
 
 [Fetching API data with react](https://dev.to/olenadrugalya/ways-of-getting-data-from-api-in-react-2kpf)
+[Storybook](https://www.freecodecamp.org/news/what-is-storybook-and-how-can-i-use-it-to-create-a-component-libary-in-react/)
 
 Pomoc : Vytvořit si "fake" komponenty pro prvotní pomoc s definicí provázání struktur a k lepšímu přistupování jendotlivých komponent, (pomohou nám lépe přistoupit k jednotlivým komponentám.)
 
