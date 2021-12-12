@@ -4,7 +4,7 @@ import { getDefaultNormalizer } from '@testing-library/dom';
 import React, { useState, useEffect, Component } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect, Routes, useParams } from "react-router-dom";
 import {ArealLargeSUM, ArealLargeCP, ArealLargeKOU, ArealLargeBAB, ArealList,buildingRoot, arealRoot, ArealLargeAPI, BuildingsLargeAPI} from "./entities/areal/areal";
-import {ClassroomList,ClassroomsLargeAPI,ClassroomMed,classroomRoot} from "./entities/classroom/classroom";
+import {ClassroomsLargeAPI, ClassroomInfoLargeAPI,classroomRoot} from "./entities/classroom/classroom";
 import {lessonRoot, LessonsListLargeAPI, LessonLargeAPI} from "./entities/lesson/lesson";
 //import {SubjectSmall} from "./entities/subject/subject";
 import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
@@ -17,19 +17,13 @@ function Home() {
     <h1>navigation testing HOME site :)</h1>
     <ul>
       <li>
-        <Link to="/areals">areals</Link>
-      </li>
-      <li>
         <Link to="/about"><p style={{color: 'red'}}>Problems in project</p></Link>
       </li>
       <li>
-        <Link to="/classrooms">ClassRooms list</Link>
+        <Link to={progRoot}><p style={{color: 'grey'}}>Seznam studijních programů (graphQL <b>newest</b>)</p></Link>
       </li>
       <li>
-        <Link to={progRoot+"/testing"}><p style={{color: 'grey'}}>Seznam studijních předmětů (graphQL <b>newest</b>)</p></Link>
-      </li>
-      <li>
-        <Link to={arealRoot+"/testing"}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
+        <Link to={arealRoot}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
       </li>
     </ul>
   </div>
@@ -53,23 +47,21 @@ return(
       <Route path="/" element={<Home/>}/>
       <Route path={arealRoot+"/:id"} element={<BuildingsLargeAPI/>}/>
       <Route path={buildingRoot+"/:id"} element={<ClassroomsLargeAPI/>}/>
-      <Route path={arealRoot+"/testing"} element ={<ArealLargeAPI/>}/>
-      <Route path={progRoot+"/testing"} element ={<ProgLargeAPI/>}/>
+      <Route path={arealRoot} element ={<ArealLargeAPI/>}/>
+      <Route path={progRoot} element ={<ProgLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
-      <Route path={classroomRoot+"/:id"} element={<h1>Stránka danné třídy</h1>}/>
+      <Route path={classroomRoot+"/:id"} element={<div><h1>Stránka danné třídy</h1><ClassroomInfoLargeAPI id={"AO"}/></div>}/>
       <Route path={progRoot+"/:id"} element={<LessonsListLargeAPI/>}/>
       <Route path={lessonRoot+"/:id"} element={<div><h3>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
         --- semestry kdy se uči --- název témat?</h3><LessonLargeAPI/></div>}/>
 
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
-      <Route path="/areals" element={<ArealList/>}/>
       <Route path="/areals/5" element={<ArealLargeSUM/>}/>
       <Route path="/areals/2" element={<ArealLargeCP/>}/>
       <Route path="/areals/7" element={<ArealLargeKOU/>}/>
       <Route path="/areals/8" element={<ArealLargeKOU/>}/>
       <Route path="/areals/6" element={<ArealLargeBAB/>}/>
-      
-      <Route path="/classrooms" element={<ClassroomList/>}/>  
+     
     </Routes>
   </BrowserRouter>
   </div>
@@ -102,8 +94,8 @@ export const About = () => {
 Při použití "const state =useState(<br/>{"{"} 'name': props.name,<br/>'code': props.code {"}"} );<br/> - se vynechá 0.prvek !<b>vyřešeno:</b><br/>
 -uložení props do dictionary state, místo vytvoření state constanty s pomocnou funkcí setState() jak by tomu mělo být správně...
 </div>
-<div style={{color: 'orange'}}> <br/>Postupný fetching pouze informací které potřebujeme ! (menší zátěž) hotové: arealy --- tridy v danem arealu,<br />
-dodělat další --- každá třída : předměty --- každý předmět --- hodiny se třídou (popřípadě areálem, pokud bude v jiném než aktuálním)
+<div style={{color: 'green'}}> <br/>Postupný fetching pouze informací které potřebujeme ! (menší zátěž) <b>vyřešeno:</b><br />
+-v každé jiné komponentě fetchneme pouze co budeme potřebovat na danné stránce případně stránkách s ní spojené.
 </div>
 <div style={{color: 'green'}}><br/> Zjistit co bude na stránce "studijní program"<b>vyřešeno:</b><br/>
 Studijní program --- seznam předmětů --- semestry předmětu --- topic předmětu<br />

@@ -11,6 +11,8 @@ import {SubjectSmall} from "../subject/subject";
 //import {ArealSmall} from "../areal/areal";        //možná ? uvidíme :)
 import {Classroom} from "../classroom/classroom";
 
+import {PersonSmall} from "../person/person";
+
 export const lessonRoot = root + "lesson"
 
 export const LessonSmall = (props) => {
@@ -195,12 +197,12 @@ export const LessonLarge = (props) => {
     <div>   <h1>Informace o předmětu <i>{predmetName}</i>: </h1>
             <Table>
                 <tr>
-                    <td>Garant: </td>
-                    <td><h3>*fetchnuty garant pro {predmetName}  -  link*</h3></td>
+                    <td>Garant pro předmět "{predmetName}" : </td>
+                    <td><h3>*<PersonSmall code={props.code} name={"*garant*"}/>*</h3></td>
                 </tr>
                 <tr>
                     <td>Semestry: </td>
-                    <td><b>*fetchnuty semestry kdy se {predmetName} učí  -  linky na jednotlivé semestry(filtr podle semestru)?*</b></td>
+                    <td><b>*fetchnuty semestry kdy se {predmetName} učí  -  linky na jednotlivé semestry(filtr podle semestru (<i>*lesson/AO?filter=semestr==2*</i>))?*</b></td>
                     
                 </tr>
                 <br/>
@@ -223,7 +225,10 @@ export const LessonSelectedMed = (props) => {
                     </tr>
                     <tr>                                    
                         <td align="left">Vyučující: </td>
-                        <td colSpan="5" align="left"> zde budou učitel(é) pro téma {props.name}  -  linky </td>                      
+                        <td colSpan="5" align="left"> {props.name}  -  
+                        <PersonSmall code={props.code} name={"vyučující1"}/> 
+                        <PersonSmall code={props.code+"2"} name={"vyučující2"}/> 
+                        <PersonSmall code={props.code+"3"} name={"vyučující3"}/> </td>                      
                     </tr>
                 </Table>
   

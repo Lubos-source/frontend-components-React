@@ -11,7 +11,10 @@ import { Row, Table} from "react-bootstrap";
 import {useParams } from "react-router-dom";
 
 import React, {Component, useState, useEffect } from "react";
-import {LessonSmall} from "../lesson/lesson";
+//import {LessonSmall} from "../lesson/lesson";
+
+import {PersonSmall} from "../person/person";
+import {DepartmenSmall} from "../department/department";
 
 export const progRoot = root + "studyprog"
 
@@ -70,6 +73,9 @@ export const ProgLarge = (props) => {
 console.log("obsah continents: ",programy)
     return (<div>
                 <Table striped bordered hover>
+                    <thead>
+                        <h3>Seznam studijních předmětů:</h3>
+                    </thead>
                   {programy}                    
                 </Table>
                 
@@ -116,8 +122,8 @@ export const ProgMedium = (props) => {
                     </tr>
                     <tr>
                         <td>Fakulta: </td>
-                        <td><b>*FAKULTA*</b></td>
-                        <td colSpan="2" align="right">Garant: <b>ppl. Ing. Luděk Jedlička, Ph.D **link</b></td>
+                        <td><b><DepartmenSmall code={state.code} name={"*FAKULTA*"}/></b></td>
+                        <td colSpan="2" align="right">Garant: <b><PersonSmall code={props.code} name={"ppl. Ing. Luděk Jedlička, Ph.D"}/></b></td>
                     </tr>
                     <tr>
                         <td>id: </td>

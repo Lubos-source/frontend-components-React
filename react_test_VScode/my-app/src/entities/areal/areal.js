@@ -13,7 +13,7 @@ import React, {Component, useState, useEffect } from "react";
 
 import {root} from "../index";
 
-import {ClassroomTest} from "../classroom/classroom";
+import {ClassroomsListAPI} from "../classroom/classroom";
 import { useButtonProps } from "@restart/ui/esm/Button";
 
 
@@ -109,35 +109,6 @@ const arealRoot = root + "areals/6"
         
 }
 
-export const ArealList = (props) => {
-    
-//console.log(ArealData)
-    return(<div>
-        <Card>
-            <h2>-----------------Automatický list areálu z JSON file ----------------</h2>
-            <ul>
-            {
-                ArealData.areas.map((datas, key)=>{
-                    return(
-                        <div key={key}>
-                            <Card.Body>
-                                <Card.Text>
-                                    <Row><Link to={arealRoot+"/"+ datas.id}>{datas.name}</Link></Row>
-                                </Card.Text>
-                            </Card.Body>
-                        </div>
-                    )
-                                                })
-            }
-            </ul>
-        </Card>
-
-        </div>
-    )
-
-}
-
-
 //---------------------------------Nové, správné provedení pomocí FETCH (GraphQL)-----------------------------
 
 export const ArealLargeAPI = (props) => {
@@ -168,7 +139,7 @@ export const ArealLargeAPI = (props) => {
             .then((res) => res.json())
             .then((result) => setState(result.data));
             
-    }, [] )
+    }, [] );
     
     //POTOM BUDE: [props.id] - závislost kdy se udělá fetch (vždy když změníme id)!
     //console.log("po fetchi:", state)
@@ -229,8 +200,7 @@ export const ArealMedium = (props) => {
             <Card.Header>Název AREÁLU: <b>{state.name}</b></Card.Header> 
             <Card.Text>
                 <Row>continent CODE: {state.code}</Row>
-                <Row>contries: [name, id, languages:[code, name, nativ]</Row>
-                budovy: <ArealSmall name={state.name} code={state.code}/>
+                <ArealSmall name={" budovy: " + state.name} code={state.code}/>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>
@@ -260,13 +230,13 @@ export const BuildingSmall = (props) => {
 
 export const BuildingMedium = (props) => {
 
+    //console.log("props code v building je: ", props.code)
     return(
         <div>
                 <Card.Body>
                     <Card.Text>                                    
-                        <Row><BuildingSmall name={props.name} code={props.code}/></Row>
                         <Row>code (id): {props.code}</Row>
-                        <Row>? třeba "výpis seznamu tříd v danné budově" ?</Row>
+                        <Row>{<ClassroomsListAPI id={props.code}/>}</Row>
                     </Card.Text>
                 </Card.Body>
   
@@ -283,6 +253,7 @@ export const BuildingsCondition = (props) => {
             <>                                       
              <Card.Body>
                  <Card.Text>
+                     <Row>{<BuildingSmall name={props.name} code={props.code}/>}</Row>
                      <Row>{<BuildingMedium name={props.name} code={props.code}/>}</Row>                     
                  </Card.Text>
              </Card.Body>              
@@ -311,8 +282,8 @@ export const BuildingsLargeAPI = (props) => {
     console.log("id v ClassroomTest je : ", id)
 
     const [state, setState] = useState(
-        {'name': "ALEnotaaak",
-        'countries' : [{'name':"name", 'code':"code"}]}
+        {'name': "loading",
+        'countries' : [{'name':"loading", 'code':"loading"}]}
     );
     useEffect(() => {
         fetch('https://countries.trevorblades.com/', {
@@ -340,7 +311,7 @@ export const BuildingsLargeAPI = (props) => {
           })
             .then((res) => res.json())
             .then((result) => setState(result.data.continent));
-    }, [id] )
+    }, [id] );
     
     //console.log("State je : ", state)
     console.log("STATE je : ", state)
@@ -372,7 +343,7 @@ export const BuildingsLarge = (props) => {
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Seznam budov v areálu <i><ArealSmall name={arealName} code={"testing"}/></i>: </h1>
+    <div>   <h1>Seznam budov v areálu <i><ArealSmall name={arealName} code={""}/></i>: </h1>
             {countries}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
