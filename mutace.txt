@@ -1,0 +1,8 @@
+mutation {
+	createRandomUniversitz(name: "University", facultyCount: 2) {
+	    ok
+	    result {
+	       id
+	}
+    }
+}
