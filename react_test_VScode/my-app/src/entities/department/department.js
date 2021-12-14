@@ -7,7 +7,7 @@ export const departmenRoot = root + "departmen"
 export const DepartmenSmall = (props) => {
 
     return (
-        <Link to={departmenRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+        <Link to={departmenRoot + `/${props.id}`}>{props.name}{props.children}</Link>
     )
 
     

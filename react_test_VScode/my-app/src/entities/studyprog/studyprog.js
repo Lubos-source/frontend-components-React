@@ -20,10 +20,10 @@ export const progRoot = root + "studyprog"
 
 export const ProgLargeAPI = (props) => {
     const [state, setState] = useState(
-        {'continents':[]}
+        {'program':[{'name':'name', 'id':'id' }]}
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -31,12 +31,12 @@ export const ProgLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               # Write your query or mutation here
-              query {
-                continents {
-                  code
+              query{
+                program(id:704){
                   name
+                  id
                 }
-              }              
+              }           
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -64,19 +64,21 @@ export const ProgLarge = (props) => {
     //setState(props)
     console.log("----obsah props:--- ", json)
 
-    
+    /*
     const programy = []
-    for(var index = 0; index < json.continents.length; index++) {
-        const sgItem = json.continents[index]
-        programy.push(<ProgMedium name={sgItem.name} code={sgItem.code}/>);
+    for(var index = 0; index < json.program.length; index++) {
+        const sgItem = json.program[index]
+        programy.push(<ProgMedium name={sgItem.name} id={sgItem.id}/>);
     }
-console.log("obsah continents: ",programy)
+*/
+//console.log("obsah program: ",programy)
     return (<div>
                 <Table striped bordered hover>
                     <thead>
-                        <h3>Seznam studijních předmětů:</h3>
+                        <h3>Seznam studijních programů:</h3>
                     </thead>
-                  {programy}                    
+                  {/*programy*/}       
+                  <Card><ProgMedium name={json.program.name} id={json.program.id}/></Card>             
                 </Table>
                 
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
@@ -107,7 +109,7 @@ export const ProgMedium = (props) => {
     //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ? ---> NENÍ TO NEJLEPŠÍ, NĚKDE SE OBJEVÍ CHYBA !!!
     const state ={
         'name': props.name,
-        'code': props.code
+        'id': props.id
     };
     console.log("ProgMedium state: ", state)
     //useEffect(()=>{})
@@ -122,13 +124,13 @@ export const ProgMedium = (props) => {
                     </tr>
                     <tr>
                         <td>Fakulta: </td>
-                        <td><b><DepartmenSmall code={state.code} name={"*FAKULTA*"}/></b></td>
-                        <td colSpan="2" align="right">Garant: <b><PersonSmall code={props.code} name={"ppl. Ing. Luděk Jedlička, Ph.D"}/></b></td>
+                        <td><b><DepartmenSmall id={state.id} name={"*FAKULTA*"}/></b></td>
+                        <td colSpan="2" align="right">Garant: <b><PersonSmall id={props.id} name={"ppl. Ing. Luděk Jedlička, Ph.D"}/></b></td>
                     </tr>
                     <tr>
                         <td>id: </td>
-                        <td><b>{state.code}</b></td>
-                        <td colSpan="2" align="right"> <b><ProgSmall name="předměty" code={state.code}/></b></td>
+                        <td><b>{state.id}</b></td>
+                        <td colSpan="2" align="right"> <b><ProgSmall name="předměty" id={state.id}/></b></td>
                     </tr>
             </tbody>
             </Table>
@@ -141,99 +143,6 @@ export const ProgSmall = (props) => {
     
     return(
     
-            <Link to={progRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+            <Link to={progRoot + `/${props.id}`}>{props.name}{props.children}</Link>
     )
 }
-
-/*
-const studyprogRoot = root + "studyprog"
-
-export const ProgList = () => {
-
-    return(
-        <div>
-        <ul>
-            <li>
-                <Link to={studyprogRoot+"/subject"}>Predmety</Link>
-            </li>
-            <li>
-                <Link to={studyprogRoot+"/lesson"}>Lekce</Link>
-            </li>
-            <li>    
-                <Link to={studyprogRoot+"/course"}>Kurzy</Link>
-            </li>
-        </ul>
-        </div>
-    )
-}
-
-export const ProgSubject = () => {
-    const arealRoot = root + "studyprog/subject"
-        return(
-            <div>
-            <h1>Předměty:</h1>
-            <ul>
-                <li>
-                Aerodynamika a konstrukce letadel
-                </li>
-                <li>
-                Aerodynamika a konstrukce letadel II
-                </li>
-                <li>
-                Aerodynamika a konstrukce letadel III
-                </li>
-                <li>
-                    ....
-                </li>
-            </ul>
-            </div>
-        )
-    }
-
-    export const ProgLesson = () => {
-        const arealRoot = root + "studyprog/lesson"
-            return(
-                <div>
-                <h1>Lekce:</h1>
-                <ul>
-                    <li>
-                    Aerobik
-                    </li>
-                    <li>
-                    Bakalářský seminář
-                    </li>
-                    <li>
-                    Diplomový seminář 
-                    </li>
-                    <li>
-                        ....
-                    </li>
-                </ul>
-                </div>
-            )
-        }
-
-       
-        export const ProgCourse = () => {
-            const arealRoot = root + "studyprog/course"
-                return(
-                    <div>
-                    <h1>Kurzy:</h1>
-                    <ul>
-                        <li>
-                        ATSEP –  kvalifikační kurz: Surveillance Data Transmision
-                        </li>
-                        <li>
-                        ATSEP –  obnovovací/konverzní kurz: ATM/CNS Data Processing Domain
-                        </li>
-                        <li>
-                        Kurz generálního štábu MO
-                        </li>
-                        <li>
-                            ....
-                        </li>
-                    </ul>
-                    </div>
-                )
-            }
-            */

@@ -10,6 +10,9 @@ import {lessonRoot, LessonsListLargeAPI, LessonLargeAPI} from "./entities/lesson
 import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
+import {FetchtestAPI} from './entities/fetchtest';
+
+
 
 function Home() {
   return (
@@ -24,6 +27,9 @@ function Home() {
       </li>
       <li>
         <Link to={arealRoot}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
+      </li>
+      <li>
+        <Link to="/fetchtest"><p style={{color: 'orange'}}>Test LocalGraphQL Fetch data</p></Link>
       </li>
     </ul>
   </div>
@@ -55,6 +61,7 @@ return(
       <Route path={lessonRoot+"/:id"} element={<div><h3>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
         --- semestry kdy se uči --- název témat?</h3><LessonLargeAPI/></div>}/>
 
+        <Route path="/fetchtest" element={<FetchtestAPI/>}/>
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals/5" element={<ArealLargeSUM/>}/>
       <Route path="/areals/2" element={<ArealLargeCP/>}/>

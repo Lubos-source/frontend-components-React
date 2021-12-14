@@ -16,9 +16,9 @@ import {PersonSmall} from "../person/person";
 export const lessonRoot = root + "lesson"
 
 export const LessonSmall = (props) => {
-
+    const ProgID=props.ProgID
     return (
-        <Link to={lessonRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+        <Link to={lessonRoot + `/${props.id}`}>{props.name}{props.children}</Link>
     )
 
     
@@ -34,14 +34,15 @@ const tableStyle = {
     };
 
 export const LessonMed = (props) => {
+    const id=props.ProgID
 
     return(
         <div>
                 <Table striped bordered hover style={tableStyle}>
                     <tr>                                    
                         <td align="left">Název předmětu: </td>
-                        <td colSpan="3" align="center"><LessonSmall name={props.name} code={props.code}/></td>
-                        <td colSpan="2" align="right">code (id): <b>{props.code}</b> </td>                        
+                        <td colSpan="3" align="center"><LessonSmall name={props.name} id={props.id} ProgID={id}/></td>
+                        <td colSpan="2" align="right">id (id): <b>{props.id}</b> </td>                        
                     </tr>
                     <tr>
                         <td>Semestry: </td>
@@ -60,26 +61,25 @@ export const LessonsListLargeAPI = (props) => {
 
     const [state, setState] = useState(
         {'name': "StudyProgName",
-        'countries' : [{'name':"name", 'code':"code"}]}
+        'subjects' : [{'name':"name", 'id':"id"}]}
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               query: `
-              query {
-                continent(code : "`+id+`"){
-                name
-                countries
-                {
+              query{
+                program(id:`+id+`){
                   name
-                  code
+                  subjects{
+                    id
+                    name
+                  }
                 }
-              }
-              }              
+              }             
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -87,14 +87,14 @@ export const LessonsListLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.continent));
+            .then((result) => setState(result.data.program));
     }, [id] )
     
     //console.log("State je : ", state)
     console.log("STATE je : ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   
-        <LessonsListLarge json={state}/>
+        <LessonsListLarge json={state} ProgID={id}/>
     </div>)
 }
 
@@ -103,6 +103,7 @@ export const LessonsListLarge = (props) => {
     console.log("PROPS:  ", props)
     const json=props.json
     const arealName=props.json.name
+    const id=props.ProgID
     
     /*
     const [state, setState] = useState(
@@ -113,9 +114,9 @@ export const LessonsListLarge = (props) => {
     */
     
     const predmety = []
-    for(var index = 0; index < json.countries.length; index++) {
-        const sgItem = json.countries[index]
-        predmety.push(<LessonMed name={sgItem.name} code={sgItem.code} semestry={sgItem.code+"-1/3-"+sgItem.name}/>);
+    for(var index = 0; index < json.subjects.length; index++) {
+        const sgItem = json.subjects[index]
+        predmety.push(<LessonMed name={sgItem.name} id={sgItem.id} semestry={sgItem.id+"-1/3-"+sgItem.name} ProgID={id}/>);
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
@@ -134,26 +135,26 @@ export const LessonLargeAPI = (props) => {
     console.log("id v ClassroomLargeAPI je : ", id)
 
     const [state, setState] = useState(
-        {'name': "ALEnotaaak",
-        'languages' : [{'name':"name", 'code':"code"}]}
+        {'name': "StudyProgName",
+        'subjects' : [{'name':"name", 'id':"id"}]}
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               query: `
-              query {
-                country(code: "`+id+`"){
+              query{
+                program(id:`+id+`){
+                  name
+                  subjects{
+                    id
                     name
-                    languages {
-                    name
-                    code
-                    }
+                  }
                 }
-              }              
+              }             
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -161,14 +162,14 @@ export const LessonLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.country));
+            .then((result) => setState(result.data.program));
     }, [id] )
     
     //console.log("State je : ", state)
     console.log("STATE je : ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   
-        <LessonLarge json={state} code={id}/>
+        <LessonLarge json={state} id={id}/>
     </div>)
 }
 
@@ -188,9 +189,9 @@ export const LessonLarge = (props) => {
     */
     
     const infopredmet = []
-    for(var index = 0; index < json.languages.length; index++) {
-        const sgItem = json.languages[index]
-        infopredmet.push(<LessonSelectedMed name={sgItem.name} code={sgItem.code}/>);
+    for(var index = 0; index < json.subjects.length; index++) {
+        const sgItem = json.subjects[index]
+        infopredmet.push(<LessonSelectedMed name={sgItem.name} id={sgItem.id}/>);
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
@@ -198,7 +199,7 @@ export const LessonLarge = (props) => {
             <Table>
                 <tr>
                     <td>Garant pro předmět "{predmetName}" : </td>
-                    <td><h3>*<PersonSmall code={props.code} name={"*garant*"}/>*</h3></td>
+                    <td><h3>*<PersonSmall id={props.id} name={"*garant*"}/>*</h3></td>
                 </tr>
                 <tr>
                     <td>Semestry: </td>
@@ -221,14 +222,14 @@ export const LessonSelectedMed = (props) => {
                     <tr>                                    
                         <td align="left">Název tématu: </td>
                         <td colSpan="3" align="left"> {props.name} </td>
-                        <td colSpan="2" align="right">code (id): <b>{props.code}</b> </td>                        
+                        <td colSpan="2" align="right">id (id): <b>{props.id}</b> </td>                        
                     </tr>
                     <tr>                                    
                         <td align="left">Vyučující: </td>
                         <td colSpan="5" align="left"> {props.name}  -  
-                        <PersonSmall code={props.code} name={"vyučující1"}/> 
-                        <PersonSmall code={props.code+"2"} name={"vyučující2"}/> 
-                        <PersonSmall code={props.code+"3"} name={"vyučující3"}/> </td>                      
+                        <PersonSmall id={props.id+"/1"} name={"vyučující1"}/> 
+                        <PersonSmall id={props.id+"/2"} name={"vyučující2"}/> 
+                        <PersonSmall id={props.id+"/3"} name={"vyučující3"}/> </td>                      
                     </tr>
                 </Table>
   
