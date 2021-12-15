@@ -113,10 +113,10 @@ const arealRoot = root + "areals/6"
 
 export const ArealLargeAPI = (props) => {
     const [state, setState] = useState(
-        {'continents':[]}
+        {'areal':[{'name':'name', 'id':'id'}]}
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -125,9 +125,15 @@ export const ArealLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query {
-                continents {
-                  code
-                  name
+                areal(id:4214) {
+                    buildings {
+                        id
+                        name
+                        rooms {
+                            id
+                            name
+                        }
+                    }
                 }
               }              
                 `,
@@ -137,7 +143,7 @@ export const ArealLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data));
+            .then((result) => setState(result.data.areal));
             
     }, [] );
     
