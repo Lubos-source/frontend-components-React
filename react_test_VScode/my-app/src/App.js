@@ -8,9 +8,9 @@ import {ClassroomsLargeAPI, ClassroomInfoLargeAPI,classroomRoot} from "./entitie
 import {lessonRoot, LessonsListLargeAPI, LessonLargeAPI} from "./entities/lesson/lesson";
 //import {SubjectSmall} from "./entities/subject/subject";
 import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
+import {subjectsRoot, SubjectLargeAPI}from './entities/subject/subject';
 import { renderIntoDocument } from 'react-dom/test-utils';
 
-import {FetchtestAPI} from './entities/fetchtest';
 
 
 
@@ -28,9 +28,7 @@ function Home() {
       <li>
         <Link to={arealRoot}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
       </li>
-      <li>
-        <Link to="/fetchtest"><p style={{color: 'orange'}}>Test LocalGraphQL Fetch data</p></Link>
-      </li>
+      
     </ul>
   </div>
   
@@ -56,12 +54,12 @@ return(
       <Route path={arealRoot} element ={<ArealLargeAPI/>}/>
       <Route path={progRoot} element ={<ProgLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
-      <Route path={classroomRoot+"/:id"} element={<div><h1>Stránka danné třídy</h1><ClassroomInfoLargeAPI id={"AO"}/></div>}/>
+      <Route path={classroomRoot+"/:id"} element={<div><h1>Stránka danné třídy</h1><ClassroomInfoLargeAPI/></div>}/>
       <Route path={progRoot+"/:id"} element={<LessonsListLargeAPI/>}/>
-      <Route path={lessonRoot+"/:id"} element={<div><h3>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
-        --- semestry kdy se uči --- název témat?</h3><LessonLargeAPI/></div>}/>
+      <Route path={lessonRoot+"/:id"} element={<div><h5>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
+        --- semestry kdy se uči --- název témat?</h5><LessonLargeAPI/></div>}/>
+        <Route path={subjectsRoot+"/:id"} element={<SubjectLargeAPI/>}/>
 
-        <Route path="/fetchtest" element={<FetchtestAPI/>}/>
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}
       <Route path="/areals/5" element={<ArealLargeSUM/>}/>
       <Route path="/areals/2" element={<ArealLargeCP/>}/>

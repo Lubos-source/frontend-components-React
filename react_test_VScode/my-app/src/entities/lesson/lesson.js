@@ -8,17 +8,15 @@ import { Row, Table} from "react-bootstrap";
 import React, {Component, useState, useEffect } from "react";
 
 import {SubjectSmall} from "../subject/subject";
-//import {ArealSmall} from "../areal/areal";        //možná ? uvidíme :)
-import {Classroom} from "../classroom/classroom";
 
 import {PersonSmall} from "../person/person";
 
 export const lessonRoot = root + "lesson"
 
 export const LessonSmall = (props) => {
-    const ProgID=props.ProgID
+    //const ProgID=props.ProgID
     return (
-        <Link to={lessonRoot + `/${props.id}`}>{props.name}{props.children}</Link>
+        <Link to={lessonRoot + `/${props.ProgID},${props.lessonid}`}>{props.name}{props.children}</Link>
     )
 
     
@@ -34,19 +32,18 @@ const tableStyle = {
     };
 
 export const LessonMed = (props) => {
-    const id=props.ProgID
 
     return(
         <div>
                 <Table striped bordered hover style={tableStyle}>
                     <tr>                                    
                         <td align="left">Název předmětu: </td>
-                        <td colSpan="3" align="center"><LessonSmall name={props.name} id={props.id} ProgID={id}/></td>
-                        <td colSpan="2" align="right">id (id): <b>{props.id}</b> </td>                        
+                        <td colSpan="3" align="center"><LessonSmall name={props.name} lessonid={props.lessonid} ProgID={props.ProgID}/></td>
+                        <td colSpan="2" align="right">id (id): <b>{props.lessonid}</b> </td>                        
                     </tr>
                     <tr>
                         <td>Semestry: </td>
-                        <td colSpan="5"> {props.semestry} </td>
+                        <td colSpan="5"> {props.semesters} </td>
                     </tr>
                 </Table>
   
@@ -61,7 +58,7 @@ export const LessonsListLargeAPI = (props) => {
 
     const [state, setState] = useState(
         {'name': "StudyProgName",
-        'subjects' : [{'name':"name", 'id':"id"}]}
+        'subjects' : [{'name':"name", 'id':"id", 'semesters':[{'name':'name','id':'id'}]}]}
     );
     useEffect(() => {
         fetch('http://localhost:50001/gql', {
@@ -77,6 +74,10 @@ export const LessonsListLargeAPI = (props) => {
                   subjects{
                     id
                     name
+                    semesters{
+                      name
+                      id
+                    }
                   }
                 }
               }             
@@ -103,7 +104,7 @@ export const LessonsListLarge = (props) => {
     console.log("PROPS:  ", props)
     const json=props.json
     const arealName=props.json.name
-    const id=props.ProgID
+    const ProgID=props.ProgID
     
     /*
     const [state, setState] = useState(
@@ -113,15 +114,20 @@ export const LessonsListLarge = (props) => {
         });
     */
     
-    const predmety = []
+    const subjects = []
     for(var index = 0; index < json.subjects.length; index++) {
-        const sgItem = json.subjects[index]
-        predmety.push(<LessonMed name={sgItem.name} id={sgItem.id} semestry={sgItem.id+"-1/3-"+sgItem.name} ProgID={id}/>);
+      const semesters = []
+      const sgItem = json.subjects[index]
+            for(var index2 = 0; index2 < json.subjects[index].semesters.length; index2++) {
+                const sgItem2 = json.subjects[index].semesters[index2]
+                semesters.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+            }
+        subjects.push(<LessonMed name={sgItem.name} lessonid={sgItem.id} semesters={semesters} ProgID={ProgID}/>);
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   <h1>Seznam předmětů ve studijním programu <i>{arealName}</i>: </h1>
-            {predmety}
+            {subjects}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
 }
@@ -131,12 +137,14 @@ export const LessonsListLarge = (props) => {
 
 
 export const LessonLargeAPI = (props) => {
-    const { id } = useParams();
+  const { id } = useParams();
+  const studyprog=id.split(',')[0]
+  const lesson=id.split(',')[1]
     console.log("id v ClassroomLargeAPI je : ", id)
 
     const [state, setState] = useState(
-        {'name': "StudyProgName",
-        'subjects' : [{'name':"name", 'id':"id"}]}
+      {'name': "StudyProgName",
+      'subjects' : [{'name':"name", 'id':"id", 'semesters':[{'name':'name','id':'id','topics':[{'name':'name','id':'id'}]}]}]}
     );
     useEffect(() => {
         fetch('http://localhost:50001/gql', {
@@ -147,14 +155,22 @@ export const LessonLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query{
-                program(id:`+id+`){
+                program(id:`+studyprog+`){
                   name
                   subjects{
                     id
                     name
+                    semesters{
+                      name
+                      id
+                      topics{
+                        name
+                        id
+                      }
+                    }
                   }
                 }
-              }             
+              }              
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -169,7 +185,7 @@ export const LessonLargeAPI = (props) => {
     console.log("STATE je : ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   
-        <LessonLarge json={state} id={id}/>
+        <LessonLarge json={state} ProgID={studyprog} lessonid={lesson}/>
     </div>)
 }
 
@@ -178,7 +194,8 @@ export const LessonLarge = (props) => {
     //console.log("id v ClassroomTest je : ", id)
     console.log("PROPS:  ", props)
     const json=props.json
-    const predmetName=props.json.name
+    const programName=props.json.name
+    var temaname="empty"
     
     /*
     const [state, setState] = useState(
@@ -188,28 +205,43 @@ export const LessonLarge = (props) => {
         });
     */
     
-    const infopredmet = []
-    for(var index = 0; index < json.subjects.length; index++) {
-        const sgItem = json.subjects[index]
-        infopredmet.push(<LessonSelectedMed name={sgItem.name} id={sgItem.id}/>);
-    }
-    //console.log("buldings = ", state)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Informace o předmětu <i>{predmetName}</i>: </h1>
+        const subjects = []
+        const semesters = []
+        for(var index = 0; index < json.subjects.length; index++) {
+          const topics = []
+          const sgItem = json.subjects[index]
+          if(props.lessonid===sgItem.id){
+            for(var index2 = 0; index2 < json.subjects[index].semesters.length; index2++) {
+              const sgItem2 = json.subjects[index].semesters[index2]
+              for(var index3 = 0; index3 < json.subjects[index].semesters[index2].topics.length; index3++) {
+                const sgItem3 = json.subjects[index].semesters[index2].topics[index3]
+                topics.push(<i><LessonSelectedMed name={sgItem3.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID} topicid={sgItem3.id}/></i>);
+            }
+            topics.push(<b>------------------------------------------------další---semestr---------------------------------------------------</b>)
+              semesters.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID}/> -||- </i>);
+          }
+          subjects.push(topics);
+          temaname=sgItem.name
+          }
+                
+        }
+        
+    return(                                                       
+    <div>   <h1>Informace o předmětu <i><LessonSmall name={temaname} ProgID={props.ProgID} lessonid={props.lessonid}/></i>: </h1>
             <Table>
                 <tr>
-                    <td>Garant pro předmět "{predmetName}" : </td>
+                    <td>Garant pro studijní program "{programName}" : </td>
                     <td><h3>*<PersonSmall id={props.id} name={"*garant*"}/>*</h3></td>
                 </tr>
                 <tr>
                     <td>Semestry: </td>
-                    <td><b>*fetchnuty semestry kdy se {predmetName} učí  -  linky na jednotlivé semestry(filtr podle semestru (<i>*lesson/AO?filter=semestr==2*</i>))?*</b></td>
+                    <td><b>{semesters}  -  (filtr podle semestru (<i>*lesson/1,2?filter=semestr===2*</i>))?*</b></td>
                     
                 </tr>
                 <br/>
             </Table>
             <h3>Seznam lekcí(témat):</h3>
-            {infopredmet}
+            {subjects}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
 }
@@ -222,14 +254,14 @@ export const LessonSelectedMed = (props) => {
                     <tr>                                    
                         <td align="left">Název tématu: </td>
                         <td colSpan="3" align="left"> {props.name} </td>
-                        <td colSpan="2" align="right">id (id): <b>{props.id}</b> </td>                        
+                        <td colSpan="2" align="right">id (id): <b>{props.topicid}</b> </td>                        
                     </tr>
                     <tr>                                    
                         <td align="left">Vyučující: </td>
-                        <td colSpan="5" align="left"> {props.name}  -  
-                        <PersonSmall id={props.id+"/1"} name={"vyučující1"}/> 
-                        <PersonSmall id={props.id+"/2"} name={"vyučující2"}/> 
-                        <PersonSmall id={props.id+"/3"} name={"vyučující3"}/> </td>                      
+                        <td colSpan="5" align="left"> {/*props.name*/}  -  
+                        <PersonSmall id={props.topicid+"/1"} name={"vyučující1 "}/> -||-
+                        <PersonSmall id={props.topicid+"/2"} name={"vyučující2 "}/> -||-
+                        <PersonSmall id={props.topicid+"/3"} name={"vyučující3 "}/> </td>                      
                     </tr>
                 </Table>
   

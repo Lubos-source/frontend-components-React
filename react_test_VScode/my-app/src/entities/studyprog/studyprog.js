@@ -20,7 +20,11 @@ export const progRoot = root + "studyprog"
 
 export const ProgLargeAPI = (props) => {
     const [state, setState] = useState(
-        {'program':[{'name':'name', 'id':'id' }]}
+        {
+            'programy':[{'id':'id',
+            'name':'name',
+            'subjects':[{'id':'id','name':'name','semesters':[{'id':'id','name':'name'}]}]
+        }]}
     );
     useEffect(() => {
         fetch('http://localhost:50001/gql', {
@@ -32,11 +36,19 @@ export const ProgLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query{
-                program(id:704){
-                  name
+                program(id:1){
                   id
+                  name
+                  subjects{
+                    id
+                    name
+                    semesters{
+                      name
+                      id
+                    }
+                  }
                 }
-              }           
+              }       
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -71,19 +83,61 @@ export const ProgLarge = (props) => {
         programy.push(<ProgMedium name={sgItem.name} id={sgItem.id}/>);
     }
 */
-//console.log("obsah program: ",programy)
-    return (<div>
+try{ 
+    if(json.program.length>1){
+        const programy = []
+        for(var index = 0; index < json.program.length; index++) {
+            const sgItem = json.program[index]
+            programy.push(<ProgMedium name={sgItem.name} id={sgItem.id}/>);
+        }
+        return (<div>
+            <Table striped bordered hover>
+                <thead>
+                    <h3>Seznam studijních programů:</h3>
+                </thead>
+              {programy}                  
+            </Table>
+            
+            <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+
+        </div>)
+    
+        }
+        else{
+            return(<div>
                 <Table striped bordered hover>
                     <thead>
-                        <h3>Seznam studijních programů:</h3>
+                        <h3>Studijní program:</h3>
                     </thead>
-                  {/*programy*/}       
+                        
                   <Card><ProgMedium name={json.program.name} id={json.program.id}/></Card>             
                 </Table>
                 
                 <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
 
             </div>)
+        }
+
+} catch(e) { 
+    console.error(e); 
+    return(<div>
+        <Table striped bordered hover>
+            <thead>
+                <h3>Studijní program:</h3>
+            </thead>
+              
+          <Card><ProgMedium name={json.programy.name} id={json.programy.id}/></Card>             
+        </Table>
+        
+        <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+
+    </div>)
+    
+}
+
+
+//console.log("obsah program: ",programy)
+    
 }
 
 const tdStyle = {

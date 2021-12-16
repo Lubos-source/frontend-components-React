@@ -25,7 +25,7 @@ export const ClassroomSmall = (props) => {
     
     return(
         
-               <Link to={classroomRoot + `/${props.code}`}> {props.name}{props.children},</Link> 
+               <Link to={classroomRoot + `/${props.arealid},${props.buildingid},${props.classroomid}`}> {props.name}{props.children},</Link> 
         )
 }
 
@@ -65,12 +65,12 @@ export const ClassroomMed = (props) => {
         <div>   
                 <Card.Body>
                     <Card.Text>                                    
-                    <Row><ClassroomSmall name={props.name} code={props.code}/></Row>
+                    <Row><b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b></Row>
                         <table style={tableStyle}>
                         <tbody>
                         <tr style={lineStyle}>
                         <td ><Row><b>code (id):</b> </Row></td>
-                        <td style={textStyle}> <Row><ClassroomSmall name={props.code} code={props.code}/></Row></td>
+                        <td style={textStyle}> <Row>{props.classroomid}</Row></td>
                         </tr>
                         <tr style={lineStyle2}>
                         <td><Row><b>Účel použití:</b> </Row></td>
@@ -102,7 +102,7 @@ export const ClassroomCond = (props) => {
             <>                                       
              <Card.Body>
                  <Card.Text>
-                     <Row>třída: {<ClassroomMed name={props.name} code={props.code}/>}</Row>                     
+                     <Row>třída: {<ClassroomMed name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/>}</Row>                     
                  </Card.Text>
              </Card.Body>              
          <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
@@ -114,7 +114,7 @@ export const ClassroomCond = (props) => {
             <>                
             <Card.Body>
                 <Card.Text>
-                    <Row>třída: {<ClassroomSmall name={props.name} code={props.code}/>}</Row>
+                    <Row>třída: {<b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b>}</Row>
                     <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
                 </Card.Text>
             </Card.Body>                                                   
@@ -127,14 +127,21 @@ export const ClassroomCond = (props) => {
 
 export const ClassroomsLargeAPI = (props) => {
     const { id } = useParams();
-    console.log("id v ClassroomLargeAPI je : ", id)
+    console.log("typ: ",id)
+    const arealid=id.split(',')[0]
+    const buildingid=id.split(',')[1]
+    
+    console.log("id v ClassroomLargeAPI je : ", id, " arealid: ",arealid, " buidlingid: ",buildingid)
+
 
     const [state, setState] = useState(
-        {'name': "ALEnotaaak",
-        'languages' : [{'name':"name", 'code':"code"}]}
+        {'id':'id',
+        'name':'name',
+        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+    }
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -142,14 +149,22 @@ export const ClassroomsLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                country(code: "`+id+`"){
+                areal(id:`+arealid+`){
+                    id
                     name
-                    languages {
-                    name
-                    code
+                    buildings{
+                        areal{
+                            id
+                            }
+                        id
+                        name
+                        rooms{
+                            id
+                            name
+                            }
+                        }
                     }
-                }
-              }              
+                }                  
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -157,23 +172,26 @@ export const ClassroomsLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.country));
-    }, [id] )
+            .then((result) => setState(result.data.areal));
+    }, [arealid] )
     
-    //console.log("State je : ", state)
+    
     console.log("STATE je : ", state)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
+    return(                                                        
     <div>   
-        <ClassroomsLarge json={state} code={id}/>
+        <ClassroomsLarge json={state} arealid={arealid} buildingid={buildingid}/>
     </div>)
 }
 
 
 export const ClassroomsLarge = (props) => {
-    //console.log("id v ClassroomTest je : ", id)
+    
     console.log("PROPS:  ", props)
     const json=props.json
     const arealName=props.json.name
+    const arealid=props.arealid
+    const buildingid=props.buildingid
+    var buildingname=props.name
     
     /*
     const [state, setState] = useState(
@@ -183,20 +201,31 @@ export const ClassroomsLarge = (props) => {
         });
     */
     
-    const countries = []
-    for(var index = 0; index < json.languages.length; index++) {
-        const sgItem = json.languages[index]
-        countries.push(<ClassroomCond name={sgItem.name} code={sgItem.code}/>);
-    }
-    //console.log("buldings = ", state)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Seznam tříd v budově <i>{arealName}</i>: </h1>
-            {countries}
+        const buildings = []
+        for(var index = 0; index < json.buildings.length; index++) {
+            const rooms = []
+
+            if(buildingid===json.buildings[index].id){
+                for(var index2 = 0; index2 < json.buildings[index].rooms.length; index2++) {
+                    const sgItem2 = json.buildings[index].rooms[index2]
+                    rooms.push(<ClassroomCond name={sgItem2.name} arealid={arealid} buildingid={buildingid} classroomid={sgItem2.id}/>);
+                }
+                buildingname=json.buildings[index].name
+            }            
+            
+            buildings.push(rooms);
+            console.log("Jen buidlings for: ",rooms)
+            
+        }
+    
+    return(                                                        
+    <div>   <h1>Seznam tříd v budově <i>{buildingname}</i>: </h1>
+            {buildings}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
 }
 
-
+/*
 export const ClassroomsListAPI = (props) => {
     const id  = props.id;
     console.log("classromm list id :::: ", id)
@@ -238,10 +267,14 @@ export const ClassroomsListAPI = (props) => {
         {<ClassroomsList json={state} code={id}/>}
     </div>)
 }
-
+*/
 export const ClassroomsList = (props) => {
     console.log("PROPS:  ", props)
     const json=props.json
+    const state ={
+        'name': props.name,
+        'id': props.id,
+    };
     //const arealName=props.json.name
     
     /*
@@ -251,31 +284,37 @@ export const ClassroomsList = (props) => {
             'countries' : [{'name':'budova', 'code': 'id'}]
         });
     */
-    
+    /*
     const countries = []
     for(var index = 0; index < json.languages.length; index++) {
         const sgItem = json.languages[index]
         countries.push(<ClassroomSmall name={sgItem.name} code={sgItem.code}/>);
-    }
+    }*/
     //console.log("buldings = ", state)
     return(    
         <Row>
-            Třídy: {countries}
+            ♣ <b>{state.name}</b> <i> id - </i> {state.id}
         </Row>
     )
 }
 
 
 export const ClassroomInfoLargeAPI = (props) => {
-    const  id  = props.id;
+    const { id } = useParams();
+    console.log("id je : ",id)
+    const arealid=id.split(',')[0]
+    const buildingid=id.split(',')[1]
+    const classroomid=id.split(',')[2]
     console.log("id v ClassroomLargeAPI je : ", id)
 
     const [state, setState] = useState(
-        {'name': "ALEnotaaak",
-        'languages' : [{'name':"name", 'code':"code"}]}
+        {'id':'id',
+        'name':'name',
+        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+    }
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -283,14 +322,22 @@ export const ClassroomInfoLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                country(code: "`+id+`"){
+                areal(id:`+arealid+`){
+                    id
                     name
-                    languages {
-                    name
-                    code
+                    buildings{
+                        areal{
+                            id
+                            }
+                        id
+                        name
+                        rooms{
+                            id
+                            name
+                            }
+                        }
                     }
-                }
-              }              
+                }                  
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -298,23 +345,26 @@ export const ClassroomInfoLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.country));
+            .then((result) => setState(result.data.areal));
     }, [id] )
     
-    //console.log("State je : ", state)
+    
     console.log("STATE je : ", state)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
+    return(                                                        
     <div>   
-        <ClassroomsInfoLarge json={state} code={id}/>
+        <ClassroomsInfoLarge json={state} arealid={arealid} buildingid={buildingid} classroomid={classroomid}/>
     </div>)
 }
 
 
 export const ClassroomsInfoLarge = (props) => {
-    //console.log("id v ClassroomTest je : ", id)
+    
     console.log("PROPS:  ", props)
     const json=props.json
-    const arealName=props.json.name
+    const arealid=props.arealid
+    const buildingid=props.buildingid
+    const classroomid=props.classroomid
+    var classroomname="empty"
     
     /*
     const [state, setState] = useState(
@@ -324,15 +374,25 @@ export const ClassroomsInfoLarge = (props) => {
         });
     */
     
-    const countries = []
-    for(var index = 0; index < json.languages.length; index++) {
-        const sgItem = json.languages[index]
-        countries.push(<div><ClassroomMed name={sgItem.name} code={sgItem.code}/><TimetableSmall code={props.code+"/rozvrh"} name={"rozvrh"}/></div>);
-    }
-    //console.log("buldings = ", state)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Informace o třídě <i>............</i>: </h1>
-            {countries}
+        const buildings = []
+        for(var index = 0; index < json.buildings.length; index++) {
+            const rooms = []
+
+            if(buildingid===json.buildings[index].id){
+                for(var index2 = 0; index2 < json.buildings[index].rooms.length; index2++) {
+                    const sgItem2 = json.buildings[index].rooms[index2]
+                    if(classroomid===sgItem2.id){
+                        rooms.push(<div><ClassroomMed name={sgItem2.name} arealid={arealid} buildingid={buildingid} classroomid={sgItem2.id}/><TimetableSmall id={classroomid+"/rozvrh"} name={"rozvrh"}/></div>);
+                    classroomname=sgItem2.name
+                    }
+                }
+                buildings.push(rooms);
+            }
+        }
+    
+    return(                                                        
+    <div>   <h1>Informace o třídě <i>{classroomname}</i>: </h1>
+            {buildings}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
 }

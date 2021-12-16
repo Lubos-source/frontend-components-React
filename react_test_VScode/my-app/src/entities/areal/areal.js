@@ -13,7 +13,7 @@ import React, {Component, useState, useEffect } from "react";
 
 import {root} from "../index";
 
-import {ClassroomsListAPI} from "../classroom/classroom";
+import {ClassroomsListAPI, ClassroomsList} from "../classroom/classroom";
 import { useButtonProps } from "@restart/ui/esm/Button";
 
 
@@ -113,7 +113,11 @@ const arealRoot = root + "areals/6"
 
 export const ArealLargeAPI = (props) => {
     const [state, setState] = useState(
-        {'areal':[{'name':'name', 'id':'id'}]}
+        {
+        'arealy':[{'id':'id',
+        'name':'name',
+        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+    }]}
     );
     useEffect(() => {
         fetch('http://localhost:50001/gql', {
@@ -125,17 +129,22 @@ export const ArealLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query {
-                areal(id:4214) {
-                    buildings {
-                        id
-                        name
-                        rooms {
-                            id
-                            name
-                        }
+                areal(id:578){
+                    id
+                    name
+                  buildings{
+                    areal{
+                      id
                     }
-                }
-              }              
+                        id
+                    name
+                    rooms{
+                      id
+                      name
+                    }
+                  }
+                    }
+                }             
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -143,7 +152,7 @@ export const ArealLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.areal));
+            .then((result) => setState(result.data));
             
     }, [] );
     
@@ -174,20 +183,30 @@ export const ArealLarge = (props) => {
 
     //setState(props)
     console.log("----obsah props:--- ", json)
-
     
-    const continents = []
-    for(var index = 0; index < json.continents.length; index++) {
-        const sgItem = json.continents[index]
-        continents.push(<ArealMedium name={sgItem.name} code={sgItem.code}/>);
+    try{ 
+        if(json.areal.length>1){
+            const arealy = []
+            for(var index = 0; index < json.areal.length; index++) {
+                const sgItem = json.areal[index]
+                arealy.push(<ArealMedium name={sgItem.name} id={sgItem.id}/>);
+            }
+            return (<div><p><b>Seznam více areálů: </b> <td>  {arealy} </td></p>
+                    <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+        
+            }
+            else{
+                return(<div><p><b>Seznam areálů: </b><ArealMedium name={json.areal.name} id={json.areal.id}/></p>                
+                        <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+            }
+
+    } catch(e) { 
+        console.error(e); 
+        return(<div><p><b>Seznam areálů: </b> <td>jméno - {props.json.name} id - {json.id}</td></p>                
+            <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+        
     }
-
-    return (<div>
-                               
-                <p><b>Seznam areálů: </b> <td>  {continents} </td></p>                
-                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
-
-            </div>)
+    
 }
 
 
@@ -197,7 +216,7 @@ export const ArealMedium = (props) => {
     //VYŘEŠENO zmizení [0]teho prvku ----> ale je to správně ? ---> NENÍ TO NEJLEPŠÍ, NĚKDE SE OBJEVÍ CHYBA !!!
     const state ={
         'name': props.name,
-        'code': props.code
+        'id': props.id
     };
     console.log("ArealMedium state: ", state)
     //useEffect(()=>{})
@@ -205,8 +224,8 @@ export const ArealMedium = (props) => {
         <Card>
             <Card.Header>Název AREÁLU: <b>{state.name}</b></Card.Header> 
             <Card.Text>
-                <Row>continent CODE: {state.code}</Row>
-                <ArealSmall name={" budovy: " + state.name} code={state.code}/>
+                <Row>areal id: {state.id}</Row>
+                <ArealSmall name={" budovy: " + state.name} id={state.id}/>
             </Card.Text>
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>
@@ -218,7 +237,7 @@ export const ArealSmall = (props) => {
     
     return(
     
-            <Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+            <Link to={arealRoot + `/${props.id}`}>{props.name}{props.children}</Link>
     )
 }
 
@@ -230,7 +249,7 @@ export const BuildingSmall = (props) => {
     
     return(
         <Row>
-               budova: <Link to={buildingRoot + `/${props.code}`}> {props.name}{props.children}</Link> 
+               budova: <Link to={buildingRoot + `/${props.arealid},${props.id}`}> {props.name}{props.children}</Link> 
         </Row>)
 }
 
@@ -241,8 +260,9 @@ export const BuildingMedium = (props) => {
         <div>
                 <Card.Body>
                     <Card.Text>                                    
-                        <Row>code (id): {props.code}</Row>
-                        <Row>{<ClassroomsListAPI id={props.code}/>}</Row>
+                        <Row>buildings id: {props.id}</Row>
+                        <Row><h3>Třídy:</h3></Row>
+                        <Row>{props.rooms}</Row>
                     </Card.Text>
                 </Card.Body>
   
@@ -253,14 +273,15 @@ export const BuildingMedium = (props) => {
 
 export const BuildingsCondition = (props) => {
     const [expanded, setExpanded] = useState(false);
+    const arealid=props.arealid
     var result = <>Error</>
     if (expanded) {
         result = (
             <>                                       
              <Card.Body>
                  <Card.Text>
-                     <Row>{<BuildingSmall name={props.name} code={props.code}/>}</Row>
-                     <Row>{<BuildingMedium name={props.name} code={props.code}/>}</Row>                     
+                     <Row>{<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Row>
+                     <Row>{<BuildingMedium name={props.name} id={props.id} rooms={props.rooms}/>}</Row>                     
                  </Card.Text>
              </Card.Body>              
          <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
@@ -272,7 +293,7 @@ export const BuildingsCondition = (props) => {
             <>                
             <Card.Body>
                 <Card.Text>
-                    <Row>{<BuildingSmall name={props.name} code={props.code}/>}</Row>
+                    <Row>{<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Row>
                     <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
                 </Card.Text>
             </Card.Body>                                                   
@@ -288,11 +309,13 @@ export const BuildingsLargeAPI = (props) => {
     console.log("id v ClassroomTest je : ", id)
 
     const [state, setState] = useState(
-        {'name': "loading",
-        'countries' : [{'name':"loading", 'code':"loading"}]}
+        {'id':'id',
+        'name':'name',
+        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+    }
     );
     useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
+        fetch('http://localhost:50001/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -300,15 +323,22 @@ export const BuildingsLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                continent(code : "`+id+`"){
-                name
-                countries
-                {
-                  name
-                  code
-                }
-              }
-              }              
+                areal(id:`+id+`){
+                    id
+                    name
+                    buildings{
+                        areal{
+                            id
+                            }
+                        id
+                        name
+                        rooms{
+                            id
+                            name
+                            }
+                        }
+                    }
+                }           
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -316,14 +346,14 @@ export const BuildingsLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.continent));
+            .then((result) => setState(result.data.areal));
     }, [id] );
     
     //console.log("State je : ", state)
     console.log("STATE je : ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   
-        <BuildingsLarge json={state}/>
+        <BuildingsLarge json={state} arealid={id}/>
     </div>)
 }
 
@@ -333,6 +363,7 @@ export const BuildingsLarge = (props) => {
     console.log("PROPS:  ", props)
     const json=props.json
     const arealName=props.json.name
+    const arealid=props.arealid
     
     /*
     const [state, setState] = useState(
@@ -342,15 +373,22 @@ export const BuildingsLarge = (props) => {
         });
     */
     
-    const countries = []
-    for(var index = 0; index < json.countries.length; index++) {
-        const sgItem = json.countries[index]
-        countries.push(<BuildingsCondition name={sgItem.name} code={sgItem.code}/>);
-    }
+        const buildings = []
+        for(var index = 0; index < json.buildings.length; index++) {
+            const rooms = []
+            for(var index2 = 0; index2 < json.buildings[index].rooms.length; index2++) {
+                const sgItem2 = json.buildings[index].rooms[index2]
+                rooms.push(<ClassroomsList name={sgItem2.name} id={sgItem2.id}/>);
+            }
+            const sgItem = json.buildings[index]
+            buildings.push(<BuildingsCondition name={sgItem.name} id={sgItem.id} rooms={rooms} arealid={arealid}/>);
+            console.log("Jen buidlings for: ",buildings)
+            
+        }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
     <div>   <h1>Seznam budov v areálu <i><ArealSmall name={arealName} code={""}/></i>: </h1>
-            {countries}
+            {buildings}
             <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
     </div>)
 }

@@ -7,7 +7,7 @@ export const timetableRoot = root + "timetable"
 export const TimetableSmall = (props) => {
 
     return (
-        <Link to={timetableRoot + `/${props.code}`}>{props.name}{props.children}</Link>
+        <Link to={timetableRoot + `/${props.id}`}>{props.name}{props.children}</Link>
     )
 
     
