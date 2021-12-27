@@ -54,10 +54,9 @@ return(
       <Route path={arealRoot} element ={<ArealLargeAPI/>}/>
       <Route path={progRoot} element ={<ProgLargeAPI/>}/>
       <Route path="/about" element={<About/>}/>
-      <Route path={classroomRoot+"/:id"} element={<div><h1>Stránka danné třídy</h1><ClassroomInfoLargeAPI/></div>}/>
+      <Route path={classroomRoot+"/:id"} element={<ClassroomInfoLargeAPI/>}/>
       <Route path={progRoot+"/:id"} element={<LessonsListLargeAPI/>}/>
-      <Route path={lessonRoot+"/:id"} element={<div><h5>**rozkliknutý předmět** --- garant předmětu --- seznam vyučujících v předmětu 
-        --- semestry kdy se uči --- název témat?</h5><LessonLargeAPI/></div>}/>
+      <Route path={lessonRoot+"/:id"} element={<LessonLargeAPI/>}/>
         <Route path={subjectsRoot+"/:id"} element={<SubjectLargeAPI/>}/>
 
 {/*----------------------------Testování a staré provedení pomocí JSON dat z PC -----------------------*/}

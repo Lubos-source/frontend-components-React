@@ -3,7 +3,7 @@ import {root} from "../index";
 
 import { Link, useParams } from "react-router-dom";
 
-import { Row, Table} from "react-bootstrap";
+import { Row, Table, Card} from "react-bootstrap";
 import React, {Component, useState, useEffect } from "react";
 
 import {PersonSmall} from "../person/person";
@@ -124,35 +124,50 @@ export const SubjectLargeAPI = (props) => {
           }
           
       return(                                                       
-      <div>   <h1>Informace o předmětu <i><LessonSmall name={temaname} ProgID={props.ProgID} lessonid={props.lessonid}/></i>: </h1>
-              <Table>
-                  <tr>
-                      <td>Garant pro studijní program "{programName}" : </td>
-                      <td><h3>*<PersonSmall id={props.id} name={"*garant*"}/>*</h3></td>
-                  </tr>
-                  <tr>
-                      <td>Semestry: </td>
-                      <td><b>{semesters}  -  (filtr podle semestru (<i>*lesson/1,2?filter=semestr===2*</i>))?*</b></td>
-                      
-                  </tr>
-                  <br/>
-              </Table>
-              <h3>Seznam lekcí(témat):</h3>
-              {subjects}
-              <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
-      </div>)
+      
+      <Card>   
+      <Card.Header><h1>Informace o předmětu <i><LessonSmall name={temaname} ProgID={props.ProgID} lessonid={props.lessonid}/></i>: </h1></Card.Header>
+      <Card>
+            <Table>
+            <Card.Body>
+                
+                    <td>Garant pro studijní program "{programName}" : </td>
+                    <td><h3>*<PersonSmall id={props.id} name={"*garant*"}/>*</h3></td>
+                
+            </Card.Body>
+            <Card.Body>
+                
+                    <td>Semestry: </td>
+                    <td><b>{semesters}  (filtr podle semestru)</b></td>
+                    
+                
+                <br/>
+          </Card.Body>    
+            </Table>
+      </Card>
+      <Card>
+      <Card.Header><h3>Seznam lekcí(témat):</h3></Card.Header>
+            <Card>{subjects}</Card>
+      </Card>
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+    </Card>
+      
+      )
   }
   
   export const SubjectSelectedMed = (props) => {
   
       return(
-          <div>
+        <Card>
                   <Table striped bordered hover style={tableStyle}>
+                  <thead>
                       <tr>                                    
                           <td align="left">Název tématu: </td>
                           <td colSpan="3" align="left"> {props.name} </td>
                           <td colSpan="2" align="right">id (id): <b>{props.topicid}</b> </td>                        
                       </tr>
+                  </thead>
+                  <tbody>
                       <tr>                                    
                           <td align="left">Vyučující: </td>
                           <td colSpan="5" align="left"> {/*props.name*/}  -  
@@ -160,9 +175,10 @@ export const SubjectLargeAPI = (props) => {
                           <PersonSmall id={props.topicid+"/2"} name={"vyučující2 "}/> -||-
                           <PersonSmall id={props.topicid+"/3"} name={"vyučující3 "}/> </td>                      
                       </tr>
+                  </tbody>
                   </Table>
     
-          </div>
+        </Card>
   
       )
   }

@@ -5,7 +5,7 @@ import {root} from "../index";
 import React, {Component, useState, useEffect } from "react";
 
 import  Card  from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
+import { Row, Button, Table } from "react-bootstrap";
 
 import {LessonSmall} from "../lesson/lesson";
 
@@ -25,69 +25,49 @@ export const ClassroomSmall = (props) => {
     
     return(
         
-               <Link to={classroomRoot + `/${props.arealid},${props.buildingid},${props.classroomid}`}> {props.name}{props.children},</Link> 
+               <Link to={classroomRoot + `/${props.arealid},${props.buildingid},${props.classroomid}`}> {props.name}{props.children} </Link> 
         )
 }
 
 const tableStyle = {
     color: '#333333',
-    width: '100%',
+    width: '70%',
     border: '1px solid black',
     'border-collapse': 'collapse',
-    
+        
     //'background-color': '#CCCCCC',
     };
 
-const lineStyle = {
-    color: '#333333',
-    'background-color': '#CCCCCC',
-     //width: '100%',
-     'text-align': 'left',
-     
-    };
-const lineStyle2 = {
-    color: '#333333',
-    'background-color': '#F6F6F6',
-    //width: '100%',
-    'text-align': 'left',
-    };
-const textStyle = {
-    color: '#333333',
-    //width: '100%',
-    'text-align': 'left',
-    'padding': '5px',
-
-    };
 
 export const ClassroomMed = (props) => {
 
     return(
         <div>   
-                <Card.Body>
-                    <Card.Text>                                    
-                    <Row><b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b></Row>
-                        <table style={tableStyle}>
+                
+                    <Table striped bordered hover style={tableStyle}>                                    
+                    
+                        
                         <tbody>
-                        <tr style={lineStyle}>
-                        <td ><Row><b>code (id):</b> </Row></td>
-                        <td style={textStyle}> <Row>{props.classroomid}</Row></td>
+                        <tr >
+                        <td ><b>code (id):</b> </td>
+                        <td > {props.classroomid}</td>
                         </tr>
-                        <tr style={lineStyle2}>
-                        <td><Row><b>Účel použití:</b> </Row></td>
-                        <td style={textStyle}> učebna </td>
+                        <tr >
+                        <td><b>Účel použití:</b> </td>
+                        <td > učebna, kancelář, schodiště, chodba, ... </td>
                         </tr>
-                        <tr style={lineStyle}>
-                        <td><Row><b>Patří katedře:</b> </Row></td>
-                        <td style={textStyle}> FVT-K206 </td>
+                        <tr >
+                        <td><b>Patří katedře:</b> </td>
+                        <td > FVT-K206 </td>
                         </tr>
-                        <tr style={lineStyle2}>
-                        <td><Row><b>Uživatel:</b> </Row></td>
-                        <td style={textStyle}><Row>(kancelář-učitel) (učebna-studenti) (skaldy,schodiště,zbytek... asi prázdný)</Row></td>
+                        <tr >
+                        <td><b>Uživatel:</b> </td>
+                        <td >(kancelář - učitel) (učebna - studijní skupiny) (sklady,schodiště,zbytek - asi prázdný)</td>
                         </tr>                        
                         </tbody>
-                        </table>
-                    </Card.Text>
-                </Card.Body>
+                        
+                    </Table>
+                
   
         </div>
 
@@ -99,26 +79,31 @@ export const ClassroomCond = (props) => {
     var result = <>Error</>
     if (expanded) {
         result = (
-            <>                                       
-             <Card.Body>
-                 <Card.Text>
-                     <Row>třída: {<ClassroomMed name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/>}</Row>                     
-                 </Card.Text>
-             </Card.Body>              
-         <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
-                                
-            </>
+                                                 
+             <Card>
+                 <Card.Header>
+                     třída: <b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b>               
+                 </Card.Header>
+                 <Card.Body>
+                 {<ClassroomMed name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/>}
+                 </Card.Body>
+                          
+                 <Button variant="secondary" size="md" onClick={() => setExpanded(false)} style={{ color: 'red' }}>hide information</Button>
+         </Card>                   
+            
         )
     } else {
         result = (
-            <>                
-            <Card.Body>
-                <Card.Text>
-                    <Row>třída: {<b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b>}</Row>
-                    <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
-                </Card.Text>
-            </Card.Body>                                                   
-            </>
+            <Card>                
+            
+                <Card.Header>
+                    třída: {<b><ClassroomSmall name={props.name} arealid={props.arealid} buildingid={props.buildingid} classroomid={props.classroomid}/></b>}
+                    </Card.Header>
+                    <Card.Body>
+                                    
+                    </Card.Body>
+                <Button variant="secondary" size="md" onClick={() => setExpanded(true)} style={{ color: 'blue' }}>show information</Button>                                                   
+            </Card>
         )
     }
     return result
@@ -219,82 +204,34 @@ export const ClassroomsLarge = (props) => {
         }
     
     return(                                                        
-    <div>   <h1>Seznam tříd v budově <i>{buildingname}</i>: </h1>
+    <Card>   
+        <Card.Header><h1>Seznam tříd v budově <i>{buildingname}</i>: </h1></Card.Header>
+        <Card.Body> 
             {buildings}
-            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
-    </div>)
+        </Card.Body> 
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+    </Card>)
 }
 
-/*
-export const ClassroomsListAPI = (props) => {
-    const id  = props.id;
-    console.log("classromm list id :::: ", id)
 
-    const [state, setState] = useState(
-        {'name': "loading",
-        'languages' : [{'name':"loading", 'code':"loading"}]}
-    );
-    useEffect(() => {
-        fetch('https://countries.trevorblades.com/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              query: `
-              query {
-                country(code: "`+id+`"){
-                    name
-                    languages {
-                    name
-                    code
-                    }
-                }
-              }              
-                `,
-              variables: {
-                now: new Date().toISOString(),
-              },
-            }),
-          })
-            .then((res) => res.json())
-            .then((result) => setState(result.data.country));
-    }, [id] );
-    
-    console.log("STATE je : ", state, "ajdi:",id)
-    return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   
-        {<ClassroomsList json={state} code={id}/>}
-    </div>)
-}
-*/
 export const ClassroomsList = (props) => {
     console.log("PROPS:  ", props)
     const json=props.json
     const state ={
         'name': props.name,
         'id': props.id,
+        'buildingid':props.buildingid,
+        'arealid':props.arealid
     };
-    //const arealName=props.json.name
-    
-    /*
-    const [state, setState] = useState(
-        {
-            'arealname' : 'props.json.name',
-            'countries' : [{'name':'budova', 'code': 'id'}]
-        });
-    */
-    /*
-    const countries = []
-    for(var index = 0; index < json.languages.length; index++) {
-        const sgItem = json.languages[index]
-        countries.push(<ClassroomSmall name={sgItem.name} code={sgItem.code}/>);
-    }*/
-    //console.log("buldings = ", state)
+  
     return(    
-        <Row>
-            ♣ <b>{state.name}</b> <i> id - </i> {state.id}
-        </Row>
+        <Card >
+            <Card.Body>
+            <Card.Text> ♣ <b><ClassroomSmall arealid={state.arealid} buildingid={state.buildingid} classroomid={state.id} name={state.name} /></b>
+            </Card.Text>
+            </Card.Body>
+            
+        </Card>
     )
 }
 
@@ -382,7 +319,7 @@ export const ClassroomsInfoLarge = (props) => {
                 for(var index2 = 0; index2 < json.buildings[index].rooms.length; index2++) {
                     const sgItem2 = json.buildings[index].rooms[index2]
                     if(classroomid===sgItem2.id){
-                        rooms.push(<div><ClassroomMed name={sgItem2.name} arealid={arealid} buildingid={buildingid} classroomid={sgItem2.id}/><TimetableSmall id={classroomid+"/rozvrh"} name={"rozvrh"}/></div>);
+                        rooms.push(<div><ClassroomMed name={sgItem2.name} arealid={arealid} buildingid={buildingid} classroomid={sgItem2.id}/><TimetableSmall id={classroomid+"/rozvrh"} name={`rozvrh pro ${sgItem2.name}`}/></div>);
                     classroomname=sgItem2.name
                     }
                 }
@@ -391,8 +328,12 @@ export const ClassroomsInfoLarge = (props) => {
         }
     
     return(                                                        
-    <div>   <h1>Informace o třídě <i>{classroomname}</i>: </h1>
+    <Card>   
+        <Card.Header><h2>Informace o třídě <i>{classroomname}</i>: </h2></Card.Header>
+        <Card.Body>
             {buildings}
-            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
-    </div>)
+        </Card.Body>
+            
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+    </Card>)
 }

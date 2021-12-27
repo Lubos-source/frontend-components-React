@@ -34,20 +34,24 @@ const tableStyle = {
 export const LessonMed = (props) => {
 
     return(
-        <div>
+        <Card.Body>
                 <Table striped bordered hover style={tableStyle}>
+                    <thead>
                     <tr>                                    
                         <td align="left">Název předmětu: </td>
                         <td colSpan="3" align="center"><LessonSmall name={props.name} lessonid={props.lessonid} ProgID={props.ProgID}/></td>
                         <td colSpan="2" align="right">id (id): <b>{props.lessonid}</b> </td>                        
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>Semestry: </td>
                         <td colSpan="5"> {props.semesters} </td>
                     </tr>
+                    </tbody>
                 </Table>
   
-        </div>
+        </Card.Body>
 
     )
 }
@@ -126,9 +130,12 @@ export const LessonsListLarge = (props) => {
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Seznam předmětů ve studijním programu <i>{arealName}</i>: </h1>
+    <div>   
+      <Card>
+      <Card.Header><h1>Seznam předmětů ve studijním programu <i>{arealName}</i>: </h1></Card.Header>
             {subjects}
-            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
+      </Card>   
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
     </div>)
 }
 
@@ -217,7 +224,7 @@ export const LessonLarge = (props) => {
                 const sgItem3 = json.subjects[index].semesters[index2].topics[index3]
                 topics.push(<i><LessonSelectedMed name={sgItem3.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID} topicid={sgItem3.id}/></i>);
             }
-            topics.push(<b>------------------------------------------------další---semestr---------------------------------------------------</b>)
+            topics.push(<div><h3><b> ♣ další semestr:</b></h3></div>)
               semesters.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID}/> -||- </i>);
           }
           subjects.push(topics);
@@ -227,35 +234,48 @@ export const LessonLarge = (props) => {
         }
         
     return(                                                       
-    <div>   <h1>Informace o předmětu <i><LessonSmall name={temaname} ProgID={props.ProgID} lessonid={props.lessonid}/></i>: </h1>
+    <Card>   
+      <Card.Header><h1>Informace o předmětu <i><LessonSmall name={temaname} ProgID={props.ProgID} lessonid={props.lessonid}/></i>: </h1></Card.Header>
+      <Card>
             <Table>
-                <tr>
+            <Card.Body>
+                
                     <td>Garant pro studijní program "{programName}" : </td>
                     <td><h3>*<PersonSmall id={props.id} name={"*garant*"}/>*</h3></td>
-                </tr>
-                <tr>
+                
+            </Card.Body>
+            <Card.Body>
+                
                     <td>Semestry: </td>
-                    <td><b>{semesters}  -  (filtr podle semestru (<i>*lesson/1,2?filter=semestr===2*</i>))?*</b></td>
+                    <td><b>{semesters}  (filtr podle semestru)</b></td>
                     
-                </tr>
+                
                 <br/>
+          </Card.Body>    
             </Table>
-            <h3>Seznam lekcí(témat):</h3>
-            {subjects}
-            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
-    </div>)
+      </Card>
+      <Card>
+      <Card.Header><h3>Seznam lekcí(témat):</h3></Card.Header>
+            <Card>{subjects}</Card>
+      </Card>
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+    </Card>)
 }
 
 export const LessonSelectedMed = (props) => {
 
     return(
-        <div>
+        <Card>
+          
                 <Table striped bordered hover style={tableStyle}>
+                    <thead>
                     <tr>                                    
                         <td align="left">Název tématu: </td>
                         <td colSpan="3" align="left"> {props.name} </td>
                         <td colSpan="2" align="right">id (id): <b>{props.topicid}</b> </td>                        
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>                                    
                         <td align="left">Vyučující: </td>
                         <td colSpan="5" align="left"> {/*props.name*/}  -  
@@ -263,9 +283,10 @@ export const LessonSelectedMed = (props) => {
                         <PersonSmall id={props.topicid+"/2"} name={"vyučující2 "}/> -||-
                         <PersonSmall id={props.topicid+"/3"} name={"vyučující3 "}/> </td>                      
                     </tr>
+                    </tbody>
                 </Table>
   
-        </div>
+        </Card>
 
     )
 }

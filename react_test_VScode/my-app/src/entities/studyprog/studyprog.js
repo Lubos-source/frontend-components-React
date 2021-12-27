@@ -36,7 +36,7 @@ export const ProgLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query{
-                program(id:1){
+                program(id:175){
                   id
                   name
                   subjects{
@@ -98,7 +98,7 @@ try{
               {programy}                  
             </Table>
             
-            <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
 
         </div>)
     
@@ -113,7 +113,7 @@ try{
                   <Card><ProgMedium name={json.program.name} id={json.program.id}/></Card>             
                 </Table>
                 
-                <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+                {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
 
             </div>)
         }
@@ -129,7 +129,7 @@ try{
           <Card><ProgMedium name={json.programy.name} id={json.programy.id}/></Card>             
         </Table>
         
-        <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p>
+        {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
 
     </div>)
     
@@ -179,12 +179,12 @@ export const ProgMedium = (props) => {
                     <tr>
                         <td>Fakulta: </td>
                         <td><b><DepartmenSmall id={state.id} name={"*FAKULTA*"}/></b></td>
-                        <td colSpan="2" align="right">Garant: <b><PersonSmall id={props.id} name={"ppl. Ing. Luděk Jedlička, Ph.D"}/></b></td>
+                        <td colSpan="2" align="left">Garant: <b><PersonSmall id={props.id} name={"ppl. Ing. Luděk Jedlička, Ph.D"}/></b></td>
                     </tr>
                     <tr>
                         <td>id: </td>
                         <td><b>{state.id}</b></td>
-                        <td colSpan="2" align="right"> <b><ProgSmall name="předměty" id={state.id}/></b></td>
+                        <td colSpan="2" align="left"> <b><ProgSmall name="předměty" id={state.id}/></b></td>
                     </tr>
             </tbody>
             </Table>

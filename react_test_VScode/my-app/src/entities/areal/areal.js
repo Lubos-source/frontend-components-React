@@ -4,7 +4,7 @@ import MapaKOU from "../../media/kounicova_svg.SVG";
 import MapaBAB from "../../media/babak_svg.SVG";
 
 import  Card  from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
+import { Row,Table,Button } from "react-bootstrap";
 import ArealData from "../../media/classrooms2.js";
 
 import { Link, useParams } from "react-router-dom";
@@ -111,6 +111,17 @@ const arealRoot = root + "areals/6"
 
 //---------------------------------Nové, správné provedení pomocí FETCH (GraphQL)-----------------------------
 
+const tableStyle = {
+    color: '#333333',
+    width: '70%',
+    border: '1px solid black',
+    'border-collapse': 'collapse',
+        
+    //'background-color': '#CCCCCC',
+    };
+
+
+
 export const ArealLargeAPI = (props) => {
     const [state, setState] = useState(
         {
@@ -129,7 +140,7 @@ export const ArealLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query {
-                areal(id:578){
+                areal(id:1){
                     id
                     name
                   buildings{
@@ -191,19 +202,33 @@ export const ArealLarge = (props) => {
                 const sgItem = json.areal[index]
                 arealy.push(<ArealMedium name={sgItem.name} id={sgItem.id}/>);
             }
-            return (<div><p><b>Seznam více areálů: </b> <td>  {arealy} </td></p>
-                    <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+            return (<div>
+                <Table striped bordered hover style={tableStyle}>
+                    <thead><b>Seznam více areálů: </b></thead>
+                    
+                       {arealy} 
+                    {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+                </Table>
+                    </div>)
         
             }
             else{
-                return(<div><p><b>Seznam areálů: </b><ArealMedium name={json.areal.name} id={json.areal.id}/></p>                
-                        <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+                return(<div>
+                    <Table striped bordered hover style={tableStyle}>
+                    <thead>
+                    <b>Seznam areálů: </b>
+                    </thead>
+                    <ArealMedium name={json.areal.name} id={json.areal.id}/>                
+                        {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+                    </Table>
+                        </div>)
             }
 
     } catch(e) { 
         console.error(e); 
-        return(<div><p><b>Seznam areálů: </b> <td>jméno - {props.json.name} id - {json.id}</td></p>                
-            <p><b>původní JSON soubor fatchnuty z GraphQL:</b> {JSON.stringify(json)}</p></div>)
+        return(<div><b>LOADING - future load:</b> <ArealMedium name={props.json.name} id={props.json.id}/>                
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+            </div>)
         
     }
     
@@ -222,11 +247,14 @@ export const ArealMedium = (props) => {
     //useEffect(()=>{})
     return (
         <Card>
-            <Card.Header>Název AREÁLU: <b>{state.name}</b></Card.Header> 
-            <Card.Text>
-                <Row>areal id: {state.id}</Row>
-                <ArealSmall name={" budovy: " + state.name} id={state.id}/>
-            </Card.Text>
+            <Card.Header>Název AREÁLU: <b>{state.name}</b> areal id: {state.id}</Card.Header>
+            <Card.Body>
+            <Card.Title>
+               
+                <ArealSmall name={" budovy v arealu - " + state.name} id={state.id}/>
+                
+            </Card.Title>
+            </Card.Body> 
         {/*<Link to={arealRoot + `/${props.code}`}>{props.name}{props.children}</Link>*/}
         </Card>
     )
@@ -248,25 +276,23 @@ export const buildingRoot=arealRoot+"/building"
 export const BuildingSmall = (props) => {
     
     return(
-        <Row>
-               budova: <Link to={buildingRoot + `/${props.arealid},${props.id}`}> {props.name}{props.children}</Link> 
-        </Row>)
+               <Link to={buildingRoot + `/${props.arealid},${props.id}`}> {props.name}{props.children}</Link> 
+        )
 }
 
 export const BuildingMedium = (props) => {
 
     //console.log("props code v building je: ", props.code)
     return(
-        <div>
-                <Card.Body>
-                    <Card.Text>                                    
-                        <Row>buildings id: {props.id}</Row>
-                        <Row><h3>Třídy:</h3></Row>
-                        <Row>{props.rooms}</Row>
-                    </Card.Text>
+        
+        <Card>
+                <Card.Header><Row><h3>Třídy:</h3></Row><Row>budova id: {props.id}</Row></Card.Header>
+                <Card.Body>                        
+                        {props.rooms}         
                 </Card.Body>
-  
-        </div>
+                
+        </Card>
+        
 
     )
 }
@@ -277,27 +303,30 @@ export const BuildingsCondition = (props) => {
     var result = <>Error</>
     if (expanded) {
         result = (
-            <>                                       
+            <Card>
+                <Card.Header>budova: {<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Card.Header>                                       
              <Card.Body>
-                 <Card.Text>
-                     <Row>{<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Row>
-                     <Row>{<BuildingMedium name={props.name} id={props.id} rooms={props.rooms}/>}</Row>                     
+                 <Card.Text>                     
+                     {<BuildingMedium name={props.name} id={props.id} rooms={props.rooms}/>}                    
                  </Card.Text>
-             </Card.Body>              
-         <Row><span className="btn" onClick={() => setExpanded(false)} style={{ color: 'red' }}><b>⇪⇪⇪⇪⇪⇪⇪⇪⇪</b></span></Row>
+                 
+             </Card.Body>
+             <Button variant="secondary" size="md" onClick={() => setExpanded(false)} style={{ color: 'red' }}>hide rooms</Button>   
+         
                                 
-            </>
+            </Card>
         )
     } else {
         result = (
-            <>                
+            <Card>      
+                <Card.Header>budova: {<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Card.Header>         
             <Card.Body>
                 <Card.Text>
-                    <Row>{<BuildingSmall name={props.name} id={props.id} arealid={arealid}/>}</Row>
-                    <Row><span className="btn" onClick={() => setExpanded(true)} style={{ color: 'green' }}><b>⇩⇩⇩⇩⇩⇩⇩</b></span></Row>
+
                 </Card.Text>
-            </Card.Body>                                                   
-            </>
+            </Card.Body>
+            <Button variant="secondary" size="md" onClick={() => setExpanded(true)} style={{ color: 'blue' }}>show rooms</Button>                                                   
+            </Card>
         )
     }
     return result
@@ -378,7 +407,7 @@ export const BuildingsLarge = (props) => {
             const rooms = []
             for(var index2 = 0; index2 < json.buildings[index].rooms.length; index2++) {
                 const sgItem2 = json.buildings[index].rooms[index2]
-                rooms.push(<ClassroomsList name={sgItem2.name} id={sgItem2.id}/>);
+                rooms.push(<ClassroomsList name={sgItem2.name} id={sgItem2.id} buildingid={json.buildings[index].id} arealid={props.arealid} />);
             }
             const sgItem = json.buildings[index]
             buildings.push(<BuildingsCondition name={sgItem.name} id={sgItem.id} rooms={rooms} arealid={arealid}/>);
@@ -387,8 +416,13 @@ export const BuildingsLarge = (props) => {
         }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
-    <div>   <h1>Seznam budov v areálu <i><ArealSmall name={arealName} code={""}/></i>: </h1>
-            {buildings}
-            <p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>
-    </div>)
+    <Card>   
+        
+        <Card.Header><h1>Seznam budov v areálu <i>{arealName} - (id:{arealid})</i>: </h1></Card.Header>
+        <Card.Body>
+        {buildings}
+        </Card.Body>
+            
+            {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
+    </Card>)
 }
