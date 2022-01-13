@@ -36,7 +36,7 @@ export const ProgLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query{
-                program(id:175){
+                program(id:1){
                   id
                   name
                   subjects{

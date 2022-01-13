@@ -10,6 +10,9 @@ import {lessonRoot, LessonsListLargeAPI, LessonLargeAPI} from "./entities/lesson
 import {progRoot, ProgLargeAPI} from './entities/studyprog/studyprog';
 import {subjectsRoot, SubjectLargeAPI}from './entities/subject/subject';
 import { renderIntoDocument } from 'react-dom/test-utils';
+import  Card  from "react-bootstrap/Card";
+import  CardGroup  from "react-bootstrap/CardGroup";
+
 
 
 
@@ -17,19 +20,24 @@ import { renderIntoDocument } from 'react-dom/test-utils';
 function Home() {
   return (
   <div>
-    <h1>navigation testing HOME site :)</h1>
-    <ul>
-      <li>
-        <Link to="/about"><p style={{color: 'red'}}>Problems in project</p></Link>
-      </li>
-      <li>
-        <Link to={progRoot}><p style={{color: 'grey'}}>Seznam studijních programů (graphQL <b>newest</b>)</p></Link>
-      </li>
-      <li>
-        <Link to={arealRoot}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link>
-      </li>
+    <Card>
+        <Card.Header><h1>navigation testing HOME site :)</h1></Card.Header>
+  <Card.Body>
+    <CardGroup>
+    
+      <Card>
+        <Card.Header><Link to="/about"><p style={{color: 'red'}}>Problems in project</p></Link></Card.Header>
+      </Card>
+      <Card>
+      <Card.Header><Link to={progRoot}><p style={{color: 'grey'}}>Seznam studijních programů (graphQL <b>newest</b>)</p></Link></Card.Header>
+      </Card>
+      <Card>
+      <Card.Header><Link to={arealRoot}><p style={{color: 'green'}}>Seznam Areálů (graphQL <b>newest</b>)</p></Link></Card.Header>
+      </Card>
       
-    </ul>
+    </CardGroup>
+  </Card.Body>
+    </Card>
   </div>
   
   )

@@ -15,6 +15,7 @@ import {root} from "../index";
 
 import {ClassroomsListAPI, ClassroomsList} from "../classroom/classroom";
 import { useButtonProps } from "@restart/ui/esm/Button";
+import  CardGroup  from "react-bootstrap/CardGroup";
 
 
 export const arealRoot = root + "areals"
@@ -140,7 +141,7 @@ export const ArealLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query {
-                areal(id:1){
+                areal(id:587){
                     id
                     name
                   buildings{
@@ -204,7 +205,11 @@ export const ArealLarge = (props) => {
             }
             return (<div>
                 <Table striped bordered hover style={tableStyle}>
-                    <thead><b>Seznam více areálů: </b></thead>
+                    <thead>
+                        <Card>           
+                            <Card.Header><h1>Seznam více areálů: </h1></Card.Header>
+                        </Card>
+                    </thead>
                     
                        {arealy} 
                     {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
@@ -216,8 +221,11 @@ export const ArealLarge = (props) => {
                 return(<div>
                     <Table striped bordered hover style={tableStyle}>
                     <thead>
-                    <b>Seznam areálů: </b>
+                        <Card>           
+                            <Card.Header><h1>Seznam areálů: </h1></Card.Header>
+                        </Card>
                     </thead>
+                        
                     <ArealMedium name={json.areal.name} id={json.areal.id}/>                
                         {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
                     </Table>
@@ -284,7 +292,7 @@ export const BuildingMedium = (props) => {
 
     //console.log("props code v building je: ", props.code)
     return(
-        
+        <CardGroup>
         <Card>
                 <Card.Header><Row><h3>Třídy:</h3></Row><Row>budova id: {props.id}</Row></Card.Header>
                 <Card.Body>                        
@@ -292,7 +300,7 @@ export const BuildingMedium = (props) => {
                 </Card.Body>
                 
         </Card>
-        
+        </CardGroup>
 
     )
 }
@@ -420,7 +428,9 @@ export const BuildingsLarge = (props) => {
         
         <Card.Header><h1>Seznam budov v areálu <i>{arealName} - (id:{arealid})</i>: </h1></Card.Header>
         <Card.Body>
+        <CardGroup>
         {buildings}
+        </CardGroup>
         </Card.Body>
             
             {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
