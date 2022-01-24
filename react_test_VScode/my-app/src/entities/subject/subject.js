@@ -42,7 +42,7 @@ export const SubjectLargeAPI = (props) => {
         'subjects' : [{'name':"name", 'id':"id", 'semesters':[{'name':'name','id':'id','topics':[{'name':'name','id':'id'}]}]}]}
       );
       useEffect(() => {
-          fetch('http://localhost:50001/gql', {
+          fetch('http://localhost:50055/gql', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export const SubjectLargeAPI = (props) => {
                     subjects{
                       id
                       name
-                      semesters{
+                      semester{
                         name
                         id
                         topics{

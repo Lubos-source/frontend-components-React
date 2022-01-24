@@ -46,7 +46,7 @@ export const LessonMed = (props) => {
                     <tbody>
                     <tr>
                         <td>Semestry: </td>
-                        <td colSpan="5"> {props.semesters} </td>
+                        <td colSpan="5"> {props.semester} </td>
                     </tr>
                     </tbody>
                 </Table>
@@ -62,10 +62,10 @@ export const LessonsListLargeAPI = (props) => {
 
     const [state, setState] = useState(
         {'name': "StudyProgName",
-        'subjects' : [{'name':"name", 'id':"id", 'semesters':[{'name':'name','id':'id'}]}]}
+        'subjects' : [{'name':"name", 'id':"id", 'semester':[{'name':'name','id':'id'}]}]}
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ export const LessonsListLargeAPI = (props) => {
                   subjects{
                     id
                     name
-                    semesters{
+                    semester{
                       name
                       id
                     }
@@ -120,13 +120,27 @@ export const LessonsListLarge = (props) => {
     
     const subjects = []
     for(var index = 0; index < json.subjects.length; index++) {
-      const semesters = []
+      const semester = []
       const sgItem = json.subjects[index]
-            for(var index2 = 0; index2 < json.subjects[index].semesters.length; index2++) {
-                const sgItem2 = json.subjects[index].semesters[index2]
-                semesters.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
-            }
-        subjects.push(<LessonMed name={sgItem.name} lessonid={sgItem.id} semesters={semesters} ProgID={ProgID}/>);
+
+      try{
+          if(json.subjects[index].semester.length>0){
+            for(var index2 = 0; index2 < json.subjects[index].semester.length; index2++) {
+              const sgItem2 = json.subjects[index].semester[index2]
+              semester.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+              }
+              subjects.push(<LessonMed name={sgItem.name} lessonid={sgItem.id} semester={semester} ProgID={ProgID}/>);
+          }else{
+            semester.push(<i><SubjectSmall name={"nemá semestry"} semesterid={"id semestru nenalezeno"} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+            subjects.push(<LessonMed name={sgItem.name} lessonid={sgItem.id} semester={semester} ProgID={ProgID}/>);
+          }
+            
+      }catch(e){
+        console.error(e); 
+        semester.push(<i><SubjectSmall name={"jmeno semestru nenalezeno"} semesterid={"id semestru nenalezeno"} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+        subjects.push(<LessonMed name={sgItem.name} lessonid={sgItem.id} semester={semester} ProgID={ProgID}/>);
+      }
+            
     }
     //console.log("buldings = ", state)
     return(                                                        //předání testing-->vrácení se zpět na seznam arealů
@@ -151,10 +165,10 @@ export const LessonLargeAPI = (props) => {
 
     const [state, setState] = useState(
       {'name': "StudyProgName",
-      'subjects' : [{'name':"name", 'id':"id", 'semesters':[{'name':'name','id':'id','topics':[{'name':'name','id':'id'}]}]}]}
+      'subjects' : [{'name':"name", 'id':"id", 'semester':[{'name':'name','id':'id'}],'lessons':[{'topic':'name','id':'id'}]}]}
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -167,17 +181,17 @@ export const LessonLargeAPI = (props) => {
                   subjects{
                     id
                     name
-                    semesters{
+                    semester{
                       name
                       id
-                      topics{
-                        name
+                    }
+                      lessons{
+                        topic
                         id
                       }
                     }
                   }
-                }
-              }              
+                }              
                 `,
               variables: {
                 now: new Date().toISOString(),
@@ -203,6 +217,7 @@ export const LessonLarge = (props) => {
     const json=props.json
     const programName=props.json.name
     var temaname="empty"
+    const ProgID=props.ProgID
     
     /*
     const [state, setState] = useState(
@@ -213,25 +228,37 @@ export const LessonLarge = (props) => {
     */
     
         const subjects = []
-        const semesters = []
+        const semester = []
         for(var index = 0; index < json.subjects.length; index++) {
-          const topics = []
+          const lessons = []
           const sgItem = json.subjects[index]
           if(props.lessonid===sgItem.id){
-            for(var index2 = 0; index2 < json.subjects[index].semesters.length; index2++) {
-              const sgItem2 = json.subjects[index].semesters[index2]
-              for(var index3 = 0; index3 < json.subjects[index].semesters[index2].topics.length; index3++) {
-                const sgItem3 = json.subjects[index].semesters[index2].topics[index3]
-                topics.push(<i><LessonSelectedMed name={sgItem3.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID} topicid={sgItem3.id}/></i>);
+
+            try{
+                for(var index2 = 0; index2 < json.subjects[index].semester.length; index2++) {
+                  const sgItem2 = json.subjects[index].semester[index2]
+                  semester.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+              }
+              
+            }catch{
+              semester.push(<i><SubjectSmall name={"semestr nenalezen"} semesterid={"id nenalezeno"} lessonid={sgItem.id} ProgID={ProgID}/> -||- </i>);
+              
             }
-            topics.push(<div><h3><b> ♣ další semestr:</b></h3></div>)
-              semesters.push(<i><SubjectSmall name={sgItem2.name} semesterid={sgItem2.id} lessonid={sgItem.id} ProgID={props.ProgID}/> -||- </i>);
-          }
-          subjects.push(topics);
-          temaname=sgItem.name
+            
+
+              for(var index3 = 0; index3 < json.subjects[index].lessons.length; index3++) {
+                const sgItem3 = json.subjects[index].lessons[index3]
+                lessons.push(<i><LessonSelectedMed name={sgItem3.topic} semesterid={semester.semesterid} lessonid={sgItem.id} ProgID={props.ProgID} topicid={sgItem3.id}/></i>);
+            }
+            lessons.push(<div><h3><b> ♣ další semestr:</b></h3></div>)
+              semester.push(<i><SubjectSmall name={semester.name} semesterid={semester.semesterid} lessonid={sgItem.id} ProgID={props.ProgID}/> -||- </i>);
+              
+              temaname=sgItem.name
+            }
+          subjects.push(lessons);          
           }
                 
-        }
+        
         
     return(                                                       
     <Card>   
@@ -247,7 +274,7 @@ export const LessonLarge = (props) => {
             <Card.Body>
                 
                     <td>Semestry: </td>
-                    <td><b>{semesters}  (filtr podle semestru)</b></td>
+                    <td><b>{semester}  (filtr podle semestru)</b></td>
                     
                 
                 <br/>

@@ -122,11 +122,11 @@ export const ClassroomsLargeAPI = (props) => {
     const [state, setState] = useState(
         {'id':'id',
         'name':'name',
-        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+        'buildings':[{'area':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
     }
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -134,11 +134,11 @@ export const ClassroomsLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                areal(id:`+arealid+`){
+                area(id:`+arealid+`){
                     id
                     name
                     buildings{
-                        areal{
+                        area{
                             id
                             }
                         id
@@ -157,7 +157,7 @@ export const ClassroomsLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.areal));
+            .then((result) => setState(result.data.area));
     }, [arealid] )
     
     
@@ -247,11 +247,11 @@ export const ClassroomInfoLargeAPI = (props) => {
     const [state, setState] = useState(
         {'id':'id',
         'name':'name',
-        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+        'buildings':[{'area':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
     }
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -259,11 +259,11 @@ export const ClassroomInfoLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                areal(id:`+arealid+`){
+                area(id:`+arealid+`){
                     id
                     name
                     buildings{
-                        areal{
+                        area{
                             id
                             }
                         id
@@ -282,7 +282,7 @@ export const ClassroomInfoLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.areal));
+            .then((result) => setState(result.data.area));
     }, [id] )
     
     

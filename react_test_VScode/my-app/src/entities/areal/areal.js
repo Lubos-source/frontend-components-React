@@ -128,11 +128,11 @@ export const ArealLargeAPI = (props) => {
         {
         'arealy':[{'id':'id',
         'name':'name',
-        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+        'buildings':[{'area':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
     }]}
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -141,11 +141,11 @@ export const ArealLargeAPI = (props) => {
               query: `
               # Write your query or mutation here
               query {
-                areal(id:587){
+                area(id:1){
                     id
                     name
                   buildings{
-                    areal{
+                    area{
                       id
                     }
                         id
@@ -197,10 +197,10 @@ export const ArealLarge = (props) => {
     console.log("----obsah props:--- ", json)
     
     try{ 
-        if(json.areal.length>1){
+        if(json.area.length>1){
             const arealy = []
-            for(var index = 0; index < json.areal.length; index++) {
-                const sgItem = json.areal[index]
+            for(var index = 0; index < json.area.length; index++) {
+                const sgItem = json.area[index]
                 arealy.push(<ArealMedium name={sgItem.name} id={sgItem.id}/>);
             }
             return (<div>
@@ -226,7 +226,7 @@ export const ArealLarge = (props) => {
                         </Card>
                     </thead>
                         
-                    <ArealMedium name={json.areal.name} id={json.areal.id}/>                
+                    <ArealMedium name={json.area.name} id={json.area.id}/>                
                         {/*<p><b>fetchnuty JSON soubor z GraphQL:</b> {JSON.stringify(json)}</p>*/}
                     </Table>
                         </div>)
@@ -348,11 +348,11 @@ export const BuildingsLargeAPI = (props) => {
     const [state, setState] = useState(
         {'id':'id',
         'name':'name',
-        'buildings':[{'areal':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
+        'buildings':[{'area':{'id':'id'},'id':'id','name':'name','rooms':[{'id':'id','name':'name'}]}]
     }
     );
     useEffect(() => {
-        fetch('http://localhost:50001/gql', {
+        fetch('http://localhost:50055/gql', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -360,11 +360,11 @@ export const BuildingsLargeAPI = (props) => {
             body: JSON.stringify({
               query: `
               query {
-                areal(id:`+id+`){
+                area(id:`+id+`){
                     id
                     name
                     buildings{
-                        areal{
+                        area{
                             id
                             }
                         id
@@ -383,7 +383,7 @@ export const BuildingsLargeAPI = (props) => {
             }),
           })
             .then((res) => res.json())
-            .then((result) => setState(result.data.areal));
+            .then((result) => setState(result.data.area));
     }, [id] );
     
     //console.log("State je : ", state)
